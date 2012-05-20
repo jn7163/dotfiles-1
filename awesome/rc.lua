@@ -108,18 +108,18 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 
 spacer    = widget({ type = "textbox" })
-separator = widget({ type = "textbox" })
 spacer.text     = " "
+separator = widget({ type = "textbox" })
 separator.text  = "|"
 
 -- {{{ MPD
 mpdwidget = widget({ type = "textbox" })
 vicious.register(mpdwidget, vicious.widgets.mpd,
     function (widget, args)
-	if args["{state}"] == ("Stop" or "N/A") then 
+	if args["{state}"] == ("Stop" or "N/A") then
 	    return ""
-	else return ' <span color="gold">MPD Play: '..
-		args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
+	else
+	    return ' <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
 	end
     end, 2)
 -- }}}
