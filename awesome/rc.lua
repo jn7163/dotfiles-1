@@ -42,14 +42,14 @@ for s = 1, screen.count() do
     tags[s] = awful.tag(tags.names, s, tags.layout)
 end
 
-myawesomemenu = {
+awesomemenu = {
    { "Manual", terminal .. " -e man awesome" },
    { "Edit Config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
    { "Restart", awesome.restart },
    { "Quit", awesome.quit }
 }
 
-myaccessories = {
+accessories = {
    { "Xterm", "xterm" },
    { "Leafpad", "leafpad" },
    { "Pcmanfm", "pcmanfm" },
@@ -59,7 +59,7 @@ myaccessories = {
    { "Zim", "zim" }
 }
 
-myinternet = {
+internet = {
     { "Mozilla Firefox", "firefox" },
     { "Opera", "opera" },
     { "GtkQQ", "gtkqq" },
@@ -69,38 +69,38 @@ myinternet = {
     { "Gtmess", "xterm -e gtmess" },
 }
 
-myoffice = {
+office = {
     { "Leafpad", "leafpad" },
     { "WPS Writer", "wps" },
     { "WPS Presentation", "wpp" },
     { "Gnumeric", "gnumeric" }
 }
 
-mymedia = {
+media = {
     { "Gimp", "gimp" },
     { "Cheese", "cheese" },
     { "Deadbeef", "deadbeef" },
     { "Moc", "xterm -e mocp" },
 }
 
-mygames = {
+games = {
     { "Chromium B.S.U", "chromium-bsu" },
 }
 
-mysystemtools = {
+systemtools = {
     { "VirtualBox", "VirtualBox" },
     { "AlsaMixer", "xterm -e alsamixer" },
     { "Htop", "xterm -e htop" },
     { "Fcitx Config", "fcitx-configtool" }
 }
 
-mymainmenu = awful.menu({ items = { { "Accessories", myaccessories, beautiful.awesome_icon },
-				    { "Internet", myinternet, beautiful.awesome_icon },
-				    { "Office", myoffice, beautiful.awesome_icon },
-				    { "Games", mygames, beautiful.awesome_icon },
-				    { "Media", mymedia, beautiful.awesome_icon },
-				    { "System Tools", mysystemtools, beautiful.awesome_icon },
-				    { "Awesome", myawesomemenu, beautiful.awesome_icon }
+mymainmenu = awful.menu({ items = { { "Accessories", accessories, beautiful.awesome_icon },
+				    { "Internet", internet, beautiful.awesome_icon },
+				    { "Office", office, beautiful.awesome_icon },
+				    { "Games", games, beautiful.awesome_icon },
+				    { "Media", media, beautiful.awesome_icon },
+				    { "System Tools", systemtools, beautiful.awesome_icon },
+				    { "Awesome", awesomemenu, beautiful.awesome_icon }
                                   }
                         })
 
@@ -125,8 +125,8 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
 -- }}}
 
 -- {{{ Wifi
-mywifiwidget = widget({ type = "textbox" })
-vicious.register(mywifiwidget, vicious.widgets.wifi,
+wifiwidget = widget({ type = "textbox" })
+vicious.register(wifiwidget, vicious.widgets.wifi,
     function (widget, args)
         if args["{ssid}"] == "N/A" then
             return ""
@@ -151,7 +151,7 @@ vicious.register(mywifiwidget, vicious.widgets.wifi,
 -- }}}
 
 -- {{{ Net
-mynetwidget = widget({ type = "textbox", name = "mynetwidget" })
+netwidget = widget({ type = "textbox", name = "mynetwidget" })
     function netspeed(format)
         args = vicious.widgets.net(format)
         netspeed_tab = {}
@@ -159,11 +159,11 @@ mynetwidget = widget({ type = "textbox", name = "mynetwidget" })
         netspeed_tab['{up_kb}'] = args['{eth0 up_kb}'] + args['{wlan0 up_kb}']
         return netspeed_tab
     end
-vicious.register(mynetwidget, netspeed, "${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)
+vicious.register(netwidget, netspeed, "${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)
 -- }}}
 
 -- {{{ GMAIL
--- touch ~/.netrc file with machine mail.google.com login user password pass, returns a table with string keys: {count} and {subject}
+-- touch ~/.netrc file with [machine mail.google.com login user password pass], returns a table with string keys: {count} and {subject}
 --mygmail = widget({ type = "textbox" })
 --vicious.register(mygmail, vicious.widgets.gmail, "<span color='moccasin'>GMail:</span> <span color='gold'>${count}</span> New", 61)
 -- }}}
@@ -178,13 +178,13 @@ vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='moccasin'>CPU:</s
 --cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
 --vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='moccasin'>CPU:</span> $1%", 1)
 
-mytempwidget = widget({ type = "textbox", name = "thermalwidget", align = 'right' })
-vicious.register(mytempwidget, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
+cputempwidget = widget({ type = "textbox", name = "thermalwidget", align = 'right' })
+vicious.register(cputempwidget, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
 -- }}}
 
 -- {{{ MEM
-mymemwidget = widget({ type = "textbox" })
-vicious.register(mymemwidget, vicious.widgets.mem, "<span color='moccasin'>Ram:</span> $1% ($2MiB/$3MiB)", 2)
+ramwidget = widget({ type = "textbox" })
+vicious.register(ramwidget, vicious.widgets.mem, "<span color='moccasin'>Ram:</span> $1% ($2MiB/$3MiB)", 2)
 -- }}}
 
 -- {{{ Filesystem info
@@ -208,7 +208,7 @@ vicious.register(batwidget, vicious.widgets.bat, "<span color='moccasin'>Bat:</s
 --vicious.register(batwidget, vicious.widgets.bat, "$2", 61, "BAT0")
 -- }}}
 
-mysystray = widget({ type = "systray" })
+systray = widget({ type = "systray" })
 
 -- {{{ Volume
 volwidget = widget({ type = 'textbox', name = 'myvolwidget'})
@@ -242,16 +242,16 @@ vicious.register(uptimewidget, vicious.widgets.uptime, "<span color='moccasin'>U
 -- }}}
 
 -- {{{ OS
-myoswidget = widget({ type = "textbox" })
-vicious.register(myoswidget, vicious.widgets.os, "$1 $2")
+oswidget = widget({ type = "textbox" })
+vicious.register(oswidget, vicious.widgets.os, "$1 $2")
 -- }}}
 
 -- {{{ Date
-mydatewidget = widget({ type = "textbox", align = "right" })
-vicious.register(mydatewidget, vicious.widgets.date, "<span color='moccasin'>Date: %a %D, %R:%S</span>", 1)
+datewidget = widget({ type = "textbox", align = "right" })
+vicious.register(datewidget, vicious.widgets.date, "<span color='moccasin'>Date: %a %D, %R:%S</span>", 1)
 -- }}}
 
-calendar2.addCalendarToWidget(mydatewidget, "<span color='moccasin'>%s</span>")
+calendar2.addCalendarToWidget(datewidget, "<span color='moccasin'>%s</span>")
 
 my_top_wibox = {}
 my_bottom_wibox = {}
@@ -309,15 +309,15 @@ for s = 1, screen.count() do
     my_top_wibox[s] = awful.wibox({ position = "top", height = 14, screen = s })
     my_top_wibox[s].widgets = {
 	{ mylauncher, mytaglist[s], mypromptbox[s], layout = awful.widget.layout.horizontal.leftright },
-	mydatewidget,
+	datewidget,
 	spacer, separator, spacer,
 	batwidget,
 	spacer, separator, spacer,
 	volwidget,
 	spacer, separator, spacer,
-	myoswidget,
+	oswidget,
 	spacer, separator, spacer,
-	s == 1 and mysystray or nil,
+	s == 1 and systray or nil,
 	mytasklist[s],
 	layout = awful.widget.layout.horizontal.rightleft
     }
@@ -331,11 +331,11 @@ for s = 1, screen.count() do
 	spacer, separator, spacer,
 	fsroot, spacer, fshome,
 	spacer, separator, spacer,
-	mymemwidget,
+	ramwidget,
 	spacer, separator, spacer,
-	mytempwidget, spacer, cpuwidget,
+	cputempwidget, spacer, cpuwidget,
 	spacer, separator, spacer,
-	mynetwidget, spacer, mywifiwidget,
+	netwidget, spacer, wifiwidget,
 	layout = awful.widget.layout.horizontal.rightleft
     }
 
