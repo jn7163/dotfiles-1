@@ -248,7 +248,7 @@ vicious.register(oswidget, vicious.widgets.os, "$1 $2")
 
 -- {{{ Date
 datewidget = widget({ type = "textbox", align = "right" })
-vicious.register(datewidget, vicious.widgets.date, "<span color='moccasin'>Date: %a %D, %R:%S</span>", 1)
+vicious.register(datewidget, vicious.widgets.date, "<span color='moccasin'>%a, %D, %R:%S</span>", 1)
 -- }}}
 
 calendar2.addCalendarToWidget(datewidget, "<span color='moccasin'>%s</span>")
