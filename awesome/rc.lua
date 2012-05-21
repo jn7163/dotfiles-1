@@ -211,30 +211,14 @@ vicious.register(batwidget, vicious.widgets.bat, "<span color='moccasin'>Bat:</s
 systray = widget({ type = "systray" })
 
 -- {{{ Volume
-volwidget = widget({ type = 'textbox', name = 'myvolwidget'})
-vicious.register(volwidget, vicious.widgets.volume, "<span color='moccasin'>Vol:</span> $2 $1dB", 2, "Master")
---volwidget = awful.widget.progressbar()
---volwidget:set_width(10)
---volwidget:set_height(10)
---volwidget:set_vertical(true)
---volwidget:set_background_color("#1a1918")
---volwidget:set_color("#ff6500")
---volwidget:set_gradient_colors({ "#1a1918", "#60801f", "#9acd32" })
---vicious.enable_caching(vicious.widgets.volume)
---vicious.register(volwidget, vicious.widgets.volume, "$1", 2, "Master")
+volwidget = widget({ type = "textbox" })
+vicious.register(volwidget, vicious.widgets.volume, "<span color='moccasin'>Vol:</span> $2 $1dB", 1, "Master")
+volwidget:buttons(awful.util.table.join(
+   awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
+   awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) vicious.force({volbar, volwidget}) end),
+   awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) vicious.force({volbar, volwidget}) end)
+))
 -- }}}
-
---myvolwidget = widget({ type = "textbox"})
---myvolwidget.text='<span '..pango_small..'><span color="moccasin">Vol.: </span></span>'
---my_volume=blingbling.volume.new()
---my_volume:set_height(16)
---my_volume:set_v_margin(3)
---my_volume:set_width(20)
---my_volume:update_master()
---my_volume:set_master_control()
---my_volume:set_bar(true)
---my_volume:set_background_graph_color("#00000099")
---my_volume:set_graph_color("#00ccffaa")
 
 -- {{{ UPTime
 uptimewidget = widget({ type = "textbox"})
