@@ -159,7 +159,7 @@ netwidget = widget({ type = "textbox", name = "mynetwidget" })
         netspeed_tab['{up_kb}'] = args['{eth0 up_kb}'] + args['{wlan0 up_kb}']
         return netspeed_tab
     end
-vicious.register(netwidget, netspeed, "${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)
+vicious.register(netwidget, netspeed, "${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 2)
 -- }}}
 
 -- {{{ GMAIL
@@ -172,11 +172,11 @@ vicious.register(netwidget, netspeed, "${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)
 cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='moccasin'>CPU:</span> $1%", 2)
 --cpuwidget = awful.widget.graph()
---cpuwidget:set_width(50)
---cpuwidget:set_background_color("#494B4F")
---cpuwidget:set_color("#FF5656")
---cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
---vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='moccasin'>CPU:</span> $1%", 1)
+--cpuwidget:set_width(40):set_height(14)
+--cpuwidget:set_background_color("#494B4F"):set_color("#FF5656"):set_border_color("moccasin")
+--cpuwidget:set_stack(true):set_max_value(100)
+--cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "AECF96" })
+--vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='moccasin'>CPU:</span> $1", 1)
 
 cputempwidget = widget({ type = "textbox", name = "thermalwidget", align = 'right' })
 vicious.register(cputempwidget, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
@@ -196,7 +196,7 @@ vicious.register(fshome, vicious.widgets.fs, "<span color='moccasin'>HOME:</span
 
 -- {{{ Battery
 batwidget = widget({ type = 'textbox', name = 'mybatwidget'})
-vicious.register(batwidget, vicious.widgets.bat, "<span color='moccasin'>Bat:</span> $1 $2%", 10, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, "<span color='moccasin'>Bat:</span> $1 $2%", 60, "BAT0")
 --batwidget = awful.widget.progressbar()
 --batwidget:set_width(8)
 --batwidget:set_height(10)
@@ -211,12 +211,20 @@ vicious.register(batwidget, vicious.widgets.bat, "<span color='moccasin'>Bat:</s
 systray = widget({ type = "systray" })
 
 -- {{{ Volume
+--volbar = awful.widget.progressbar()
+--volbar:set_vertical(true):set_ticks(true)
+--volbar:set_height(14):set_width(8):set_ticks_size(2)
+--volbar:set_background_color("#494B4F"):set_border_color("moccasin")
+--volbar:set_max_value(100)
+--volbar:set_gradient_colors({ beautiful.fg_widget, beautiful.fg_center_widget, beautiful.fg_end_widget })
+--vicious.cache(vicious.widgets.volume)
+--vicious.register(volbar, vicious.widgets.volume, "1%", 1, "Master")
 volwidget = widget({ type = "textbox" })
 vicious.register(volwidget, vicious.widgets.volume, "<span color='moccasin'>Vol:</span> $2 $1dB", 1, "Master")
 volwidget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
-   awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) vicious.force({volbar, volwidget}) end),
-   awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) vicious.force({volbar, volwidget}) end)
+   awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
+   awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
 ))
 -- }}}
 
@@ -506,5 +514,6 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 
 os.execute("fcitx -d")
 os.execute("conky &")
-os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
+os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
+--os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
 --os.execute("xcompmgr -CcfF -I-.03 -D6 -t-1 -1-3 -r4.2 -o.5 &")
