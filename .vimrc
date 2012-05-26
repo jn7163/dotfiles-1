@@ -233,6 +233,10 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType php setlocal makeprg=zca\ %<.php
 autocmd FileType php setlocal errorformat=%f(line\ %l):\ %m
 
+autocmd BufNewFile,BufRead *.sh set ft=sh
+autocmd BufNewFile,BufRead *.lua set ft=lua
+autocmd BufNewFile,BufRead *.py set ft=py
+
 let Tlist_Use_Right_Window=1
 let Tlist_File_Fold_Auto_Close=1
 let Tlist_Ctags_Cmd='/usr/bin/ctags'
