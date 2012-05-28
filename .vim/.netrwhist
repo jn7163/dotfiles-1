@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/danny/.config/autostart'
+let g:netrw_dirhist_2='/home/danny/.opera/styles/user'
+let g:netrw_dirhist_3='/home/danny/.config/fcitx/conf'
+let g:netrw_dirhist_4='/usr/share/keymaps/i386/qwertz'
+let g:netrw_dirhist_5='/home/danny/.config'
+let g:netrw_dirhist_6='/usr/share/awesome/lib/vicious/widgets'
