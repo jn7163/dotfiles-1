@@ -24,7 +24,7 @@ fi
 export EDITOR=vim
 PS1='\[\e[1;36m\]^_^\[\e[m\] \[\e[0;32m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
 #PS1='\[\e[1;36m\]^_^\[\e[m\] \[\e[0;32m\]\w\[\e[m\] \[\e[0;32m\]●\[\e[m\] '
-XSESSION='gnome-session'
+#XSESSION='gnome-session'
 
 #alias rtorrent='screen rtorrent'
 #alias irssi='screen irssi'
