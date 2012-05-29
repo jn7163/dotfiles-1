@@ -12,10 +12,20 @@ endif
 " 设置搜索方向为向前搜索
 set incsearch
 
-augroup vimrcEx
-au!
-
-autocmd FileType text setlocal textwidth=78
+if has("autocmd")
+    filetype plugin indent on
+    augroup vimrcEx
+    au!
+    autocmd FileType text setlocdth=78
+    " 编辑文件时，自动回到上次位置
+    autocmd BufReadPost *
+                \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
+augroup END
+else
+    set autoindent
+endif
 
 " 自动缩进
 set autoindent
@@ -214,6 +224,7 @@ se ff=unix
 
 " 限制mutt文本宽度在72个字符
 au BufRead /tmp/mutt-* set tw=72
+
 
 "常用快捷键定义
 "map <C-a> ggVG
