@@ -55,9 +55,9 @@ if $TERM =~ '^\(xterm\|screen\)' || $TERM =~ '256color$' || has("gui_running")
     if !has("gui_running")
         set t_Co=256
     endif
-    colorscheme slate
+    colorscheme default
 else
-    colorscheme tango
+    colorscheme slate
 endif
 
 " 高亮当前行
@@ -69,7 +69,7 @@ endif
 set nocompatible
 
 " allow backspacing over everything in insert mode
-"set backspace=indent,eol,start
+set backspace=indent,eol,start
 
 " 设置 Backspace 和 Delete 的灵活程度，backspace=2 则没有任何限制
 set backspace=2
@@ -119,7 +119,7 @@ set cindent shiftwidth=4
 set et
 
 " 在C注释中高亮字符串
-"let c_comment_strings=1
+let c_comment_strings=1
 
 " 关闭备份
 set nobackup
@@ -228,10 +228,6 @@ au BufRead ~/.mutt/.tmp/mutt-* set tw=72
 
 "常用快捷键定义
 "map <C-a> ggVG
-"map <C-c> y
-"map <C-v> p
-"map <C-u> u
-"map <C-s> :w
 
 let g:WC_min_len=2
 :autocmd BufEnter * call DoWordComplete() 
@@ -255,10 +251,8 @@ let Tlist_Process_File_Always=1
 map <C-X><C-t> :TlistToggle<cr>
 map <C-X><C-x> :WMToggle<cr>
 map ca :Calendar<cr>
-"map ^X^S :w<cr>
-"map ^X^X ^[:quite!<cr>
 
-"let s:vimimdata = '/home/havanna/.vim/plugin/pinyin/'
+"let s:vimimdata = '.vim/plugin/pinyin/'
 
 " vimwiki
 " 关闭驼峰英文成为维基词条
@@ -271,7 +265,6 @@ let g:vimwiki_folding = 1
 let g:vimwiki_CJK_length = 1
 " 标签
 let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1,h2,h3,h4,h5,h6,p'
-
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_list = [{'path':'~/Backup/wiki/', 'path_html': '~/Documents/html/', 'html_header': '~/.vim/autoload/vimwiki/header.tpl', 'html_footer': '~/.vim/autoload/vimwiki/footer.tpl', 'auto_export': 1,}]
 
