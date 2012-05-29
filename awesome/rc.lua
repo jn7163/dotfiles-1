@@ -62,6 +62,7 @@ accessories = {
 internet = {
     { "Mozilla Firefox", "firefox" },
     { "Opera", "opera" },
+    { "Canto", "xterm -e canto -u" },
     { "GtkQQ", "gtkqq" },
     { "Openfetion", "openfetion" },
     { "Irssi", "xterm -e screen irssi" },
@@ -190,6 +191,8 @@ vicious.register(ramwidget, vicious.widgets.mem, "<span color='moccasin'>Ram:</s
 -- {{{ Filesystem info
 fsroot = widget({ type = "textbox" })
 vicious.register(fsroot, vicious.widgets.fs, "<span color='moccasin'>ROOT:</span> ${/ used_gb}/${/ size_gb}GiB", 599)
+fsmedia = widget({ type = "textbox" })
+vicious.register(fsmedia, vicious.widgets.fs, "<span color='moccasin'>Media:</span> ${/mnt/Media used_gb}/${/mnt/Media size_gb}GiB", 599)
 fshome = widget({ type = "textbox" })
 vicious.register(fshome, vicious.widgets.fs, "<span color='moccasin'>HOME:</span> ${/home used_gb}/${/home size_gb}GiB", 599)
 -- }}}
@@ -321,7 +324,7 @@ for s = 1, screen.count() do
 	spacer, separator, spacer,
 	uptimewidget,
 	spacer, separator, spacer,
-	fsroot, spacer, fshome,
+	fsroot, spacer, fsmedia, spacer, fshome,
 	spacer, separator, spacer,
 	ramwidget,
 	spacer, separator, spacer,
