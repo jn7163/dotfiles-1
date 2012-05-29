@@ -213,7 +213,7 @@ set laststatus=2
 se ff=unix
 
 " 限制mutt文本宽度在72个字符
-"au BufRead /tmp/mutt-* set tw=72
+au BufRead /tmp/mutt-* set tw=72
 
 "常用快捷键定义
 "map <C-a> ggVG
