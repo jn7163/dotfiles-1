@@ -216,7 +216,7 @@ se ff=unix
 "au BufRead /tmp/mutt-* set tw=72
 
 "常用快捷键定义
-map <C-a> ggVG
+"map <C-a> ggVG
 "map <C-c> y
 "map <C-v> p
 "map <C-u> u
@@ -268,3 +268,18 @@ let g:vimrc_author='Havanna'
 let g:vimrc_email='havanna.sha#gmail.com'
 let g:vimrc_homepage='http://ihavanna.org'
 nmap <F4> :AuthorInfoDetect<cr>
+
+" GNU Compile with gcc
+set makeprg=gcc\ -Wall\ -o\ %<\ %
+"Save and make current file.o
+function! Make()
+    let curr_dir = expand('%:h')
+    if curr_dir == ''
+        let curr_dir = '.'
+    endif
+    echo curr_dir
+    execute 'lcd ' . curr_dir
+    execute 'make'
+    execute 'lcd -'
+endfunction
+nmap <F7> :update<CR>:call Make()<CR>
