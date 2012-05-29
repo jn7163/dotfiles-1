@@ -5,7 +5,7 @@ link_handler("w3m \"%u\"", text=True)
 #link_handler("chromium \"%u\"")
 image_handler("feh \"%u\"", fetch=True)
 link_handler("mplayer -someoptions \"%u\"", ext="mp3")
-link_handler("mpdf \"%u\"", ext="pdf", fetch=True)
+link_handler("mupdf \"%u\"", ext="pdf", fetch=True)
 
 never_discard("unread")
 
