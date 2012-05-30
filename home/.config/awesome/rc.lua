@@ -17,18 +17,18 @@ altkey = "Mod1"
 
 layouts =
 {
-    awful.layout.suit.tile,            --1
-    awful.layout.suit.tile.left,       --2
-    awful.layout.suit.tile.bottom,     --3
-    awful.layout.suit.tile.top,        --4
-    awful.layout.suit.fair,            --5
-    awful.layout.suit.fair.horizontal, --6
-    awful.layout.suit.spiral,          --7
-    awful.layout.suit.spiral.dwindle,  --8
-    awful.layout.suit.max,             --9
-    awful.layout.suit.max.fullscreen,  --10
-    awful.layout.suit.magnifier,       --11
-    awful.layout.suit.floating         --12
+    awful.layout.suit.tile,             1
+    awful.layout.suit.tile.left,        2
+    awful.layout.suit.tile.bottom,      3
+    awful.layout.suit.tile.top,         4
+    awful.layout.suit.fair,             5
+    awful.layout.suit.fair.horizontal,  6
+    awful.layout.suit.spiral,           7
+    awful.layout.suit.spiral.dwindle,   8
+    awful.layout.suit.max,              9
+    awful.layout.suit.max.fullscreen,   10
+    awful.layout.suit.magnifier,        11
+    awful.layout.suit.floating          12
 }
 
 tags = {
@@ -51,7 +51,6 @@ awesomemenu = {
 
 accessories = {
    { "Xterm", "xterm" },
-   { "Leafpad", "leafpad" },
    { "Pcmanfm", "pcmanfm" },
    { "Gpicview", "gpicview" },
    { "BC", "xterm -e bc" },
@@ -67,6 +66,11 @@ internet = {
     { "Irssi", "xterm -e screen irssi" },
     { "Mutt", "xterm -e mutt" },
     { "Gtmess", "xterm -e gtmess" },
+}
+
+editors = {
+    { "Leafpad", "leafpad" },
+    { "Emacs", "emacs" },
 }
 
 office = {
@@ -91,18 +95,17 @@ systemtools = {
     { "VirtualBox", "VirtualBox" },
     { "AlsaMixer", "xterm -e alsamixer" },
     { "Htop", "xterm -e htop" },
-    { "Xarchiver", "xarchiver" },
-    { "Emacs", "emacs" },
     { "Fcitx Config", "fcitx-configtool" }
 }
 
 mymainmenu = awful.menu({ items = { { "Accessories", accessories, beautiful.awesome_icon },
-				    { "Internet", internet, beautiful.awesome_icon },
-				    { "Office", office, beautiful.awesome_icon },
-				    { "Games", games, beautiful.awesome_icon },
-				    { "Media", media, beautiful.awesome_icon },
-				    { "System Tools", systemtools, beautiful.awesome_icon },
-				    { "Awesome", awesomemenu, beautiful.awesome_icon }
+                                    { "Internet", internet, beautiful.awesome_icon },
+                                    { "Editors", editors, beautiful.awesome_icon },
+                                    { "Office", office, beautiful.awesome_icon },
+                                    { "Games", games, beautiful.awesome_icon },
+                                    { "Media", media, beautiful.awesome_icon },
+                                    { "System Tools", systemtools, beautiful.awesome_icon },
+                                    { "Awesome", awesomemenu, beautiful.awesome_icon }
                                   }
                         })
 
@@ -118,11 +121,11 @@ separator.text  = "|"
 mpdwidget = widget({ type = "textbox" })
 vicious.register(mpdwidget, vicious.widgets.mpd,
     function (widget, args)
-	if args["{state}"] == ("Stop" or "N/A") then
-	    return ""
-	else
-	    return ' <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
-	end
+        if args["{state}"] == ("Stop" or "N/A") then
+            return ""
+        else
+            return ' <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
+        end
     end, 2)
 -- }}}
 
@@ -304,36 +307,36 @@ for s = 1, screen.count() do
 
     my_top_wibox[s] = awful.wibox({ position = "top", height = 14, screen = s })
     my_top_wibox[s].widgets = {
-	{ mylauncher, mytaglist[s], mypromptbox[s], layout = awful.widget.layout.horizontal.leftright },
-	datewidget,
-	spacer, separator, spacer,
-	batwidget,
-	spacer, separator, spacer,
-	volwidget,
-	spacer, separator, spacer,
-	oswidget,
-	spacer, separator, spacer,
-	s == 1 and systray or nil,
-	mytasklist[s],
-	layout = awful.widget.layout.horizontal.rightleft
-    }
+                                { mylauncher, mytaglist[s], mypromptbox[s], layout = awful.widget.layout.horizontal.leftright },
+                                datewidget,
+                                spacer, separator, spacer,
+                                batwidget,
+                                spacer, separator, spacer,
+                                volwidget,
+                                spacer, separator, spacer,
+                                oswidget,
+                                spacer, separator, spacer,
+                                s == 1 and systray or nil,
+                                mytasklist[s],
+                                layout = awful.widget.layout.horizontal.rightleft
+                            }
 
     my_bottom_wibox[s] = awful.wibox({ position = "bottom", height = 14, screen = s })
     my_bottom_wibox[s].widgets = {
-	{ mpdwidget, layout = awful.widget.layout.horizontal.leftright },
-	mylayoutbox[s],
-	spacer, separator, spacer,
-	uptimewidget,
-	spacer, separator, spacer,
-	fsroot, spacer, fsmedia, spacer, fshome,
-	spacer, separator, spacer,
-	ramwidget,
-	spacer, separator, spacer,
-	cputempwidget, spacer, cpuwidget,
-	spacer, separator, spacer,
-	netwidget, spacer, wifiwidget,
-	layout = awful.widget.layout.horizontal.rightleft
-    }
+                                    { mpdwidget, layout = awful.widget.layout.horizontal.leftright },
+                                    mylayoutbox[s],
+                                    spacer, separator, spacer,
+                                    uptimewidget,
+                                    spacer, separator, spacer,
+                                    fsroot, spacer, fsmedia, spacer, fshome,
+                                    spacer, separator, spacer,
+                                    ramwidget,
+                                    spacer, separator, spacer,
+                                    cputempwidget, spacer, cpuwidget,
+                                    spacer, separator, spacer,
+                                    netwidget, spacer, wifiwidget,
+                                    layout = awful.widget.layout.horizontal.rightleft
+                                }
 
 end
 
@@ -344,18 +347,18 @@ root.buttons(awful.util.table.join(
 ))
 
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-    awful.key({ "Mod1", "Control" }, "a",  function () awful.util.spawn("deepin-screenshot")   end),
-    awful.key({ modkey,           }, "F3", function () awful.util.spawn("firefox")             end),
-    awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn( "amixer -q sset Master 1dB-" ) end),
-    awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn( "amixer -q sset Master 1dB+" ) end),
-    awful.key({                   }, "XF86AudioMute", function () awful.util.spawn( "amixer -q sset Master toggle" ) end),
-    awful.key({                   }, "XF86AudioNext", function () awful.util.spawn( "mpc next" ) end),
-    awful.key({                   }, "XF86AudioPrev", function () awful.util.spawn( "mpc prev" ) end),
-    awful.key({                   }, "XF86AudioPlay", function () awful.util.spawn( "mpc play" ) end),
-    awful.key({                   }, "XF86AudioStop", function () awful.util.spawn( "mpc stop" ) end),
+    awful.key({ modkey,           }, "Left",                                awful.tag.viewprev  ),
+    awful.key({ modkey,           }, "Right",                               awful.tag.viewnext  ),
+    awful.key({ modkey,           }, "Escape",                              awful.tag.history.restore   ),
+    awful.key({ "Mod1", "Control" }, "a",                       function () awful.util.spawn("deepin-screenshot")   end),
+    awful.key({ modkey,           }, "F3",                      function () awful.util.spawn("firefox") end),
+    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB-" ) end),
+    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB+" ) end),
+    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle" ) end),
+    awful.key({                   }, "XF86AudioNext",           function () awful.util.spawn( "mpc next" ) end),
+    awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev" ) end),
+    awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play" ) end),
+    awful.key({                   }, "XF86AudioStop",           function () awful.util.spawn( "mpc stop" ) end),
 
     awful.key({ modkey,           }, "j",
         function ()
