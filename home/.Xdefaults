@@ -1,16 +1,17 @@
-Xft.dpi:			96
-Xft.lcdfilter:			lcddefault
-Xft.antialias:			true
-Xft.rgba:			rgb
-Xft.hinting:			true
-Xft.autohint:			true
-Xft.hintstyle:			hintslight
+Emacs.geometry:         120x42+20+10
+Xft.dpi:                96
+Xft.lcdfilter:          lcddefault
+Xft.antialias:          true
+Xft.rgba:               rgba
+Xft.hinting:            true
+Xft.autohint:           true
+Xft.hintstyle:          hintslight
 !! RXVT-unicode setting
 URxvt.geometry:			80x24+80+80
 !URxvt.background:		black
 URxvt.foreground:		gray
 !设置背景色
-URxvt.background:		rgba:0000/0000/0000/bbbb
+URxvt.background:		rgba:0000/0000/0000/cccc
 !设置颜色深度
 URxvt.depth:			32
 URxvt.scrollBar:		False
@@ -23,7 +24,7 @@ URxvt.scrollstyle:		next
 !!URxvt.shading:		500
 URxvt.saveLines:		2000
 !!URxvt.borderLess:		False
-!!URxvt.title:			Havanna's Rxvt-Unicode
+!!!URxvt.title:			Havanna's Rxvt-Unicode
 
 !!URxvt.font:xft:DejaVu Sans Mono:pixelsize=10:antialias=False,\xft:WenQuanYi Micro Hei:pixelsize=10:antialias=False
 URxvt.font:xft:DejaVu Sans Mono-10,xft:WenQuanYi Micro Hei-10
@@ -64,10 +65,13 @@ URxvt.color7:			#D3D7CF
 URxvt.color15:			#EEEEEC
 
 
+!!translate.selection
+!URxvt.perl-lib:			/home/havanna/translate.selection
+!URxvt.perl-ext-common:		translate-selection
 
 
 
-
+!URxvt.perl-ext-common:default,tabbed
 
 
 
@@ -113,9 +117,3 @@ xterm*cursorBlink: true
 xterm.borderLess: true
 xterm.cursorBlink: true
 xterm*cjkWidth:false
-
-Xft.antialias: true
-Xft.hinting: true
-Xft.hintstyle: hintfull
-Xft.lcdfilter: lcddefault
-Xft.rgba: rgb
