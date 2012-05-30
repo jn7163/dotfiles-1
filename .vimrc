@@ -97,7 +97,6 @@ set listchars=tab:>-,trail:-
 "set path=.,/usr/include,/usr/include/qt,,
 
 " 告诉 Vim 先尝试用 UNIX 格式在尝试 MS-DOS 格式
-
 set fileformats=unix,dos ff=unix
 
 " 搜索忽略大小写
@@ -117,9 +116,6 @@ set cindent shiftwidth=4
 
 " 将输入的TAB自动展开成空格
 set et
-
-" 在C注释中高亮字符串
-let c_comment_strings=1
 
 " 关闭备份
 set nobackup
@@ -274,7 +270,13 @@ let g:vimrc_homepage='http://ihavanna.org'
 nmap <F4> :AuthorInfoDetect<cr>
 
 " GNU Compile with gcc
-set makeprg=gcc\ -Wall\ -o\ %<\ %
+au BufRead,BufNewFile *.go set filetype=go
+au BufRead,BufNewFile *.c set filetype=c
+au BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
+au BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
+" 在C注释中高亮字符串
+let c_comment_strings=1
+
 "Save and make current file.o
 function! Make()
     let curr_dir = expand('%:h')
