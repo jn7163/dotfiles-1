@@ -269,9 +269,16 @@ let g:vimrc_email='havanna.sha#gmail.com'
 let g:vimrc_homepage='http://ihavanna.org'
 nmap <F4> :AuthorInfoDetect<cr>
 
-" GNU Compile with gcc
+" use cmake-syntax.vim & cmake-indent.vim
+:autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake-indent.vim 
+:autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
+:autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
+
+" filetype
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.c set filetype=c
+
+" GNU Compile with gcc
 au BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
 au BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
 " 在C注释中高亮字符串
