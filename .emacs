@@ -80,14 +80,14 @@
 
 (global-set-key (kbd "C-SPC") 'nil);注销ctrl_space组合健，已启用输入法
 
-;(global-set-key [f2] 'shell);F2进入Shell
-;(global-set-key [f5] 'gdb);F5调试程序
-;(setq compile-command "make -f Makefile")
-;(global-set-key [f7] 'do-compile);F7编译文件
-;(global-set-key [f8] 'other-window);F8窗口间跳转
+(global-set-key [f2] 'shell);F2进入Shell
+(global-set-key [f5] 'gdb);F5调试程序
+(setq compile-command "make -f Makefile")
+(global-set-key [f7] 'do-compile);F7编译文件
+(global-set-key [f8] 'other-window);F8窗口间跳转
 (global-set-key [C-return] 'kill-this-buffer);C-return关闭当前buffer
-;(global-set-key [f11] 'split-window-vertically);F11分割窗口
-;(global-set-key [f12] 'delete-other-windows);F12 关闭其它窗口
+(global-set-key [f11] 'split-window-vertically);F11分割窗口
+(global-set-key [f12] 'delete-other-windows);F12 关闭其它窗口
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  快捷键配置结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
