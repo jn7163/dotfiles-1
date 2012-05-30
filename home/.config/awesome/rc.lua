@@ -54,7 +54,6 @@ accessories = {
    { "Leafpad", "leafpad" },
    { "Pcmanfm", "pcmanfm" },
    { "Gpicview", "gpicview" },
-   { "Xarchiver", "xarchiver" },
    { "BC", "xterm -e bc" },
    { "Zim", "zim" }
 }
@@ -92,6 +91,8 @@ systemtools = {
     { "VirtualBox", "VirtualBox" },
     { "AlsaMixer", "xterm -e alsamixer" },
     { "Htop", "xterm -e htop" },
+    { "Xarchiver", "xarchiver" },
+    { "Emacs", "emacs" },
     { "Fcitx Config", "fcitx-configtool" }
 }
 
@@ -473,6 +474,7 @@ awful.rules.rules = {
      { rule = { class = "Opera" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Google-chrome" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Leafpad" }, properties = { tag = tags[1][4] } },
+     { rule = { class = "Emacs" }, properties = { tag = tags[1][4] } },
      { rule = { class = "Zim" }, properties = { tag = tags[1][4] } },
      { rule = { class = "MuPDF" }, properties = { tag = tags[1][4] } },
      { rule = { class = "Gnumeric" }, properties = { tag = tags[1][4] } },
