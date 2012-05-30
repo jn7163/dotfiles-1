@@ -277,6 +277,7 @@ nmap <F4> :AuthorInfoDetect<cr>
 " filetype
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.c set filetype=c
+au BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in,*.ctest,*.ctest.in set filetype=cmake
 
 " GNU Compile with gcc
 au BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
