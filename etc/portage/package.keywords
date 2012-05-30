@@ -1,0 +1,4 @@
+sys-devel/gcc **
+net-proxy/goagent **
+x11-plugins/wicked **
+app-emulation/emul-linux-x86-glibc-errno-compat **

@@ -1,0 +1,65 @@
+app-admin/conky curl mpd
+app-arch/file-roller nautilus
+app-arch/p7zip rar
+app-editors/emacs xft
+app-i18n/fcitx cairo gtk gtk3 pango table
+app-office/abiword plugins
+app-office/libreoffice-l10n linguas_zh_CN
+app-office/libreoffice-bin java
+app-portage/eix sqlite
+app-portage/layman cvs git mercurial subversion
+app-text/ghostscript-gpl cups
+app-text/poppler cairo cjk
+app-text/wv tools
+dev-db/mysql perl ssl
+dev-db/sqlite secure-delete unlock-notify
+dev-java/icedtea-bin nsplugin
+dev-lang/php apache2 cgi cli curl fpm ftp gd imap ldap mysql mysqlnd mhash pdo sockets sqlite3 xml xmlreader xmlwriter zip
+dev-lang/python sqlite
+dev-libs/libxml2 icu python
+dev-libs/nettle gmp
+dev-libs/protobuf python
+dev-vcs/git cvs subversion
+dev-vcs/subversion perl -dso
+gnome-base/gvfs gdu
+gnome-extra/avant-window-navigator gnome
+gnome-extra/avant-window-navigator-extras gnome
+mail-client/mutt imap mbox nntp pop smime smtp sasl
+media-libs/freetype auto-hinter
+media-libs/libass enca
+media-libs/libpng apng
+media-libs/mesa osmesa
+media-sound/deadbeef dts flac gtk gtk3 m3u ape mp3 sndfile wavpack shn linguas_zh_CN
+media-sound/easytag flac mp3 wavpack
+media-sound/moc ffmpeg flac mad wavpack
+media-sound/mpd cue flac lame wavpack
+media-sound/shntool flac mac wavpack
+media-video/ffmpeg dirac faac faad mp3 sdl theora threads v4l2 vorbis x264 xvid
+media-video/libav -qt-faststart cpudetection dirac faac mp3 schroedinger sdl theora threads v4l vaapi vorbis x264 xvid
+media-video/mplayer2 dga dvb fbcon ggi mad mpeg123 nas openal sdl v4l2
+net-libs/loudmouth debug
+net-misc/curl threads
+net-misc/ntp openntpd
+net-misc/rdesktop -alsa
+net-misc/wicd -nls
+net-p2p/rtorrent xmlrpc color
+net-print/cups -usb
+sys-apps/help2man -nls
+sys-auth/consolekit policykit
+sys-block/parted device-mapper
+sys-devel/gcc graphite go
+sys-fs/ntfs3g -ntfsprogs
+sys-fs/udev extras gudev
+virtual/ffmpeg mp3 sdl theora threads vaapi x264
+www-client/firefox -linguas_en -crashreporter pgo system-sqlite
+www-client/opera -gstreamer gtk gtk3
+www-servers/lighttpd minimal mysql php uploadprogress webdav
+www-servers/nginx fastcgui status
+x11-base/xorg-server kdrive
+x11-libs/cairo xcb
+x11-misc/cairo-dock xcomposite
+x11-misc/cairo-dock-plugins compiz gmenu
+x11-terms/rxvt-unicode 256-color pixbuf xft
+dev-libs/libgcrypt static-libs
+dev-libs/libgpg-error static-libs
+dev-libs/lzo static-libs
