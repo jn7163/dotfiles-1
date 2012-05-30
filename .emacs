@@ -6,7 +6,7 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-(set-default-font "DejaVu Sans-10")
+(set-default-font "DejaVu Sans Mono-12")
 (set-fontset-font (frame-parameter nil 'font)
 	'han '("WenQuanYi Micro Hei" . "unicode-bmp"))
 
