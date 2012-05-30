@@ -221,6 +221,10 @@ se ff=unix
 " 限制mutt文本宽度在72个字符
 au BufRead ~/.mutt/.tmp/mutt-* set tw=72
 
+" 自动补全符号
+":inoremap ( ()<LEFT>
+":inoremap [ []<LEFT>
+":inoremap { {}<LEFT>
 
 "常用快捷键定义
 "map <C-a> ggVG
