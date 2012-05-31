@@ -4,7 +4,7 @@ Creation-Date: 2011-11-02T13:57:42+08:00
 
 ====== Mysql ======
 
-一、安装后
+===== 一、安装后 =====
 
 // 安装mysql后设置管理员root密码
 mysqladmin -u root password 123456
@@ -20,7 +20,7 @@ mysql> UPDATE user SET password=PASSWORD("newpassword") WHERE User='root';
 mysql> FLUSH PRIVILEGES;
 mysql> exit
 
-二、登录数据库
+===== 二、登录数据库 =====
 
 # 连接本地mysql
 mysql -uroot -p
@@ -33,7 +33,7 @@ mysql -u root -p --socket=/tmp/mysql3307.sock
 # 退出mysql.
 mysql> exit;
 
-三、数据库操作
+===== 三、数据库操作 =====
 
 # 显示有多少数据库
 mysql> show databases;
@@ -63,7 +63,7 @@ mysql> select user,host,password from mysql.user;
 # 显示用户molyxuser权限
 mysql> show grants for molyxuser@localhost;
 
-四、数据表操作
+===== 四、数据表操作 =====
 
 # 显示molyx库中的数据表
 mysql> show tables from molyx;
@@ -145,7 +145,7 @@ mysql> drop user 'molyxuser'@'%';
 # 删除表
 mysql> drop table tablename;
 
-五、权限操作
+===== 五、权限操作 =====
 
 # 先创建个molyx库，再创建个可以操作molyx库的用户molyxuser，密码为123456
 mysql> create database molyx;
@@ -159,7 +159,7 @@ mysql> revoke all on molyx.* from 'molyxuser'@localhost identified by "123456";
 #创建一个针对molyx库具有所有权限，可从任意IP登录的帐号molyxuser
 mysql> grant all on molyx.* to 'molyxuser'@'%' identified by '123456';
 
-六、备份与还原
+===== 六、备份与还原 =====
 
 # 备份molyx到文件molyx.sql
 mysqldump -uroot -p --databases molyx > /your/path/molyx.sql
@@ -223,6 +223,8 @@ mysqldump -h database_ip -d -u Username --password=123456 databasename >database
 
 mysqldump -u root -p password --all-databases | gzip > /root/mysql.sql.gz
 gunzip < /root/mysql.sql.gz | mysql -u root -p password
+
+==== 七、其他 ====
 
 mysql 命令使用
 将查询结果保存到文件

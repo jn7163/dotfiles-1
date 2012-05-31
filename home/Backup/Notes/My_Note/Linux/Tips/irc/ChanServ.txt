@@ -1,0 +1,447 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2012-05-10T14:44:57+08:00
+
+====== ChanServ ======
+Created Thursday 10 May 2012
+
+ChanServ
+
+ChanServ is one of the network services provided on the Serenity-IRC network.
+Channels are the official term for what others might call a Chat Room. ChanServ allows registered users to register up to five (5) channels.
+Having a registered channel allows you to:
+
+    retain the use of that channel for your own use
+    manage the channel without the need for a bot script
+    select other users with registered nicknames to be Channel Operators
+    control who is allowed in your channel using permanent bans
+    decide what modes you want to use to protect your channel.
+
+ChanServ will retain your channel registration while the channel is in use. "In Use" means that either the Channel Founder or one of your Channel Operators visits the channel and gains Ops status within a thirty (30) day period.
+If no Channel Operator visits within a 30 day period, the channel will be dropped from being registered.
+The channel will also be dropped from registration if that Channel Founder lets his/her nickname registration lapse too.
+
+Channel names must be clean (PG rated as a guideline) and must adhere to the Acceptable Usage Policy (AUP), as this is a family-oriented network. Any violations will be dealt with according to the AUP.
+
+You can get help from ChanServ about its commands directly at any time by typing:
+
+    Command:
+    /msg ChanServ HELP
+    /msg ChanServ HELP command
+    Example:
+    /msg ChanServ HELP
+    /msg ChanServ HELP ADDOP
+    /msg ChanServ HELP SET FOUNDER
+
+Channel Registration
+
+To register a channel, you need to be connected to the Serenity-IRC network using a registered nickname which you have identified to. If you do not have a registered nickname, please see the NickServ guide.
+
+    Join the channel you wish to Register
+
+    Command:
+    /JOIN #channel
+    Example:
+    /JOIN #help
+
+    You need to ensure that you have Operator Status before proceeding. Check that your nickname in the list of Nicknames for that channel has the @ symbol next to it, indicating that you are a Channel Operator.
+    (Note: the IRC client you are using might use a different symbol or way to show who has Channel Operator status, but @ is used by the majority of clients.)
+    To register the channel, type the following command:
+
+    Command:
+    /msg ChanServ REGISTER #channel
+    Example:
+    /msg ChanServ REGISTER #help
+
+    You do not need to specify a password when registering a channel on Serenity-IRC, because you have to use a Registered nickname.
+
+N.B: You can always check on the status of a registered channel by using the ChanServ INFO command (see below).
+ChanServ Commands
+
+(These commands will only work if you have a Registered nickname and are Identified to it)
+
+    Access
+
+    This command will let you check what level of access a nickname has in any registered channel.
+
+    Command:
+    /msg ChanServ ACCESS #channel nickname
+    Example:
+    /msg ChanServ ACCESS #help Serene
+    AddAK
+
+    This command is the short version of the AKICK ADD command (see below) for adding a Permanent Kick for a registered channel.
+
+    Command:
+    /msg NickServ ADDAK #channel nick!user@host reason
+    Example:
+    /msg NickServ ADDAK #help Serene!peace@*.Serenity-IRC.Net Stick to guidelines please
+    AddOp
+
+    This command is the short version of the CHANOP ADD command (see below) for adding a registered nickname to the list of Operators for a channel.
+    For more help on Channel Operator Levels, see LEVELS help below.
+
+    Command:
+    /msg ChanServ ADDOP #channel nickname level
+    Example:
+    /msg ChanServ ADDOP #help Serene 5
+    AKick
+
+    This command will let you manage the Permanent Kick list for a registered channel. Any user matching an entry on the AKick list will be kicked out of the channel by ChanServ when they try to enter and a banned.
+    ChanServ will protect against these entries even if temporary bans have expired (for instance if the channel empties completely) or if Operators remove a temporary ban from within channel.
+    This is one point to bear in mind when assigning Levels to Operators, that only certain levels can add or remove AKicks. You may or may not want certain Operators to be able to decide who is Permanently kicked out of or let back into the channel.
+
+    Adding a Permanent Kick (AKick) can require a little "art" when learning how to specify hostmasks. Visit the #help channel for more guidance as to how to set effective AKicks if you have trouble.
+    Information to build a Hostmask can be found from using:
+    /WHOIS nickname
+
+    There are three versions of the AKICK command:
+    ADD, DEL and LIST.
+    In the LIST, each entry in the AKick list is given a number. This number can be used to simplify removing entries with DEL.
+
+    Command:
+    /msg ChanServ AKICK #channel ADD nick!user@host reason
+    /msg ChanServ AKICK #channel DEL nick!user@host
+    /msg ChanServ AKICK #channel DEL number
+    /msg ChanServ AKICK #channel LIST
+    Example:
+    /msg ChanServ AKICK #help ADD Serene!peace@*.serenity-irc.net Stick to guidelines please
+    /msg ChanServ AKICK #help DEL Serene!peace@*serenity-irc.net
+    /msg ChanServ AKICK #help DEL 2
+    /msg ChanServ AKICK #help LIST
+    ChanOp
+
+    This command will let you manage the list of Operators for a registered channel.
+    When a registered nickname has been added to the list, any time that user joins the channel after Identifying they will be given Operator status by ChanServ.
+    If they have joined and identified afterwards, they can use the ChanServ OP command (see below) to gain Ops status.
+    For more information about Channel Operator Levels, including which levels of Operators can access this function, see the ChanServ LEVEL command (see below).
+    Whilst other nicknames can be listed at FOUNDER level, only one user can be the true FOUNDER at any one time, as listed in the INFO.
+
+    There are three versions of the CHANOP command:
+    ADD, DEL and LIST.
+    Each entry on the list has a number indicating its place on the list. You can use this number to simplify the DEL command if you wish.
+
+    Command:
+    /msg ChanServ CHANOP #channel ADD nickname level
+    /msg ChanServ CHANOP #channel DEL nickname
+    /msg ChanServ CHANOP #channel DEL listnumber
+    Example:
+    /msg ChanServ CHANOP #help ADD Serene 5
+    /msg ChanServ CHANOP #help DEL Serene
+    /msg ChanServ CHANOP #help DEL 1
+
+    LIST can be used in three ways: plain or by adding -l or -n.
+    -l will list any nicknames matching a given Operator level
+    -n will list any nicknames matching a given word
+
+    Command:
+    /msg ChanServ CHANOP #channel LIST
+    /msg ChanServ CHANOP #channel LIST -l level
+    /msg ChanServ CHANOP #channel LIST -n word
+    Example:
+    /msg ChanServ CHANOP #help LIST
+    /msg ChanServ CHANOP #help LIST -l 10
+    /msg ChanServ CHANOP #help LIST -n Serene
+
+    There are shortened versions of the CHANOP command:
+    see ADDOP, DELOP, LISTOP
+    DelAK
+
+    This command is the short version of the AKICK DEL command (see above). It removes a permanent akick from a registered channel.
+    To remove a specific entry from the list, you can either specify the hostmask that was originally set or use the corresponding number from the LIST command (see AKICK LIST or LISTAK).
+
+    Command:
+    /msg ChanServ DELAK #channel nick!user@host
+    /msg ChanServ DELAK #channel number
+    Example:
+    /msg ChanServ DELAK #help Serene!peace@*.Serenity-irc.Net
+    /msg ChanServ DELAK #help 3
+    DelOp
+
+    This command is the short version of the CHANOP DEL command (see above). It removes a nickname from the list of Channel Operators for a given channel.
+
+    Command:
+    /msg ChanServ DELOP #channel nickname
+    Example:
+    /msg ChanServ DELOP #help Serene
+    DeOp
+
+    This command will temporarily remove the Operator status (DeOp) for you or a specified nickname in a registered channel.
+
+    Command:
+    /msg ChanServ DEOP #channel
+    /msg ChanServ DEOP #channel nickname
+    Example:
+    /msg ChanServ DEOP #help
+    /msg ChanServ DEOP #help Serene
+    Drop
+
+    This command will cancel the registration for a specific channel with ChanServ.
+    This command can only be performed by the Channel Founder. The Founder is by default the person who registered the channel to begin with.
+
+    Command:
+    /msg ChanServ DROP #channel
+    Example:
+    /msg ChanServ DROP #help
+    Help Levels
+
+    This command will list the Channel Operator levels available to use in a registered channel.
+    You can assign certain privilidges to other registered nicknames to help them manage a channel. The various levels and what they're entitled to do are listed below.
+    When a channel is registered by a user, they attain the role of Channel Founder by default.
+    All users are Level 0 unless specified otherwise.
+    As you read through the levels from 3 to 15, remember that higher levels automatically can do everything the lower levels can too.
+    Whilst other users can be listed at Level 15, only one person can be the true FOUNDER at any one time, as listed in the Channel Information (INFO)
+
+    Level 3 - VOICE - Auto-Voice
+        Can use ChanServ UNBAN ME command (see below)
+        Automatically set +v (voiced user) on entering channel with an identified nickname
+        Can use ChanServ OP command to get +v (voice status)
+        Can use ChanServ DEOP command to remove voice status (-v)
+    Level 5 - AOP - Auto Operator
+        Automatically set +o (operator user) on entering channel with an identified nickname
+        Can use ChanServ OP command to get +o (operator status)
+        Can use ChanServ DEOP command to remove operator status (-o)
+        Can KICK users from the channel
+        Can set temporary BANS using the /mode #channel +b nick!user@host command
+    Level 8 - MSOP - Minor SuperOp
+        Can use all ChanServ AKICK functions
+        Can use ChanServ UNBAN ALL command (see below)
+        Can use ChanServ UNBAN MASK command (see below)
+    Level 10 - SOP - SuperOp
+        Can use all ChanServ functions for adding users to the Channel Operators list at Levels 3 (Voice) and 5 (AutoOp), like CHANOP.
+    Level 13 - COFOUNDER - Co-Founder
+        Can use all ChanServ function EXCEPT
+            SET FOUNDER
+            DROP
+    Level 15 - FOUNDER - Channel Founder
+        Same as Level 13 apart from the Current Channel Founder, as listed in ChanServ INFO who is the only Operator than can also use:
+            SET FOUNDER
+            DROP
+
+    Any nicknames that match a Permanent Kick (AKICK) are effectively Level -1.
+
+    Command:
+    /msg ChanServ HELP LEVELS
+    Example:
+    /msg ChanServ HELP LEVELS
+    Info
+
+    This command will display information about a specified registered channel.
+
+    Command:
+    /msg ChanServ INFO #channel
+    Example:
+    /msg ChanServ INFO #help
+    Invite
+
+    This command will allow you to invite your own nickname into an invite only channel, if you are listed on the Channel Operators list. Channels that are set to invite only can only be joined if the user has received an Invite before they attempt to join.
+    In this way, ChanServ issues the Invite because it knows you're entitled to join that channel as you're an Operator.
+
+    Command:
+    /msg ChanServ INVITE #channel nickname
+    Example:
+    /msg ChanServ INVITE #help Serene
+    ListAK
+
+    This command is the short version of the AKICK LIST command (see above). It will list all the Permanent Kick (AKICK) for a given registered channel provided you have authorisation to view that list by being a Channel Operator.
+
+    Command:
+    /msg ChanServ LISTAK #channel
+    Example:
+    /msg ChanServ LISTAK #help
+    ListOp
+
+    This command is the short version of the CHANOP LIST command (see above). It lists the Channel Operators for a given registered channel.
+    As with the CHANOP LIST command, there are three versions of the command: plain, or with -l or -n.
+    Using the -l version, you can search for Operators from the list by Level number
+    Using the -n version, you can search for Operators from the list by Nickname.
+
+    Command:
+    /msg ChanServ LISTOP #channel
+    /msg ChanServ LISTOP #channel -l level
+    /msg ChanServ LISTOP #channel -n nickname
+    Example:
+    /msg ChanServ LISTOP #help
+    /msg ChanServ LISTOP #help -l 10
+    /msg ChanServ LISTOP #help -n Serene
+    MassDeOp
+
+    This command will remove (DeOp) the Operator status from anyone in a registered channel. It does not delete them from the Channel Operators list.
+
+    Command:
+    /msg ChanServ MASSDEOP #channel
+    Example:
+    /msg ChanServ MASSDEOP #help
+    MassKick
+
+    This command will remove all users from a registered channel by kicking them out. It only works for the FOUNDER.
+
+    Command:
+    /msg ChanServ MASSKICK #channel
+    Example:
+    /msg ChanServ MASSKICK #help
+    MLock
+
+    This command will allow you to lock a set of Modes on to a registered channel. It allows Founders and high level Operators to make sure that certain modes always remain on. Modes can be locked on (+) or off (-).
+    If an Operator attempts to change a mode that has been Locked in this way, ChanServ will set it back to the preference indicated.
+    A list of modes is provided here for your reference:
+    Modes 	Description
+    +c 	Rejects all messages that contain colour
+    +i 	Sets channel 'invite only'
+    +l number 	Only number of people can be in the channel at any one time
+    +k password 	Users need the password to join channel
+    +m 	Sets channel to be moderated. Only users with a Voice (+v) or Operator status (+o) can talk
+    +n 	Channel will accept no messages from outside the channel
+    +t 	Only channel operators can change the topic
+    +R 	Only registered and identified nicks can join a channel
+    +s 	Channel is secret. It will not appear on any channel lists or against your nickname if people do a /WHOIS on you.
+
+    The mode +r is set by ChanServ indicating that it is a registered channel and cannot be changed.
+
+    Command:
+    /msg ChanServ MLOCK #channel modes
+    Example:
+    /msg ChanServ MLOCK #help +tnc-is
+    ModeClear
+
+    This command will remove all modes currently set in a channel, apart from +r. As ChanServ has removed the modes, it will only enforce modes locked with MLOCK if either an Operator tries to change a channel mode or if everyone leaves and joins again.
+
+    Command:
+    /msg ChanServ MODECLEAR #channel
+    Example:
+    /msg ChanServ MODECLEAR #help
+    Op
+
+    This command will give a user either Voice or Operator status in a registered channel if they appear on the Channel Operators list. The user must be Identified to their nickname for the command to work.
+    If a user is listed at Level 3, they will be given Voice status (+v);
+    If a user is listed at Level 5 or above, they will be given Operator status (+o).
+    If you do not specify a nickname, you will perform the command on your own nickname. If you specify a nickname, ChanServ will attempt to Op that nickname.
+
+    Command:
+    /msg ChanServ OP #channel
+    /msg ChanServ OP #channel nickname
+    Example:
+    /msg ChanServ OP #help
+    /msg ChanServ OP #help Serene
+    Restrict
+
+    This command will prevent anyone who is not on the Channel Operators list for a registered channel, at or above a specified level, from joining that channel.
+
+    Command:
+    /msg ChanServ RESTRICT #channel level
+    Example:
+    /msg ChanServ RESTRICT #help 3
+    Set Desc
+
+    This command will allow you to change the description of a registered channel. This description appears when a user joins a channel as a notice if the SET NOTICE option is set on (see below), and also in the ChanServ INFO listing.
+
+    Command:
+    /msg ChanServ SET #channel DESC description
+    Example:
+    /msg ChanServ SET #help DESC The offical help channel for the Serenity-IRC network
+    Set Founder
+
+    This command will transfer the ownership of a channel to another nickname. The old Founder will remain in the Nickname list at level 15.
+
+    Command:
+    /msg ChanServ SET #channel FOUNDER nickname
+    Example:
+    /msg ChanServ SET #help FOUNDER Serene
+    Set Ident
+
+    This command will require operators to identify before they will get Ops status with ChanServ in the registered channel. This is set ON by default when a channel is registered.
+    With this set ON, operators are required to Identify before gaining Ops status from ChanServ;
+    With this set OFF, operators can gain Ops status by just matching an Access Mask.
+
+    Command:
+    /msg ChanServ SET #channel IDENT on
+    /msg ChanServ SET #channel IDENT off
+    Example:
+    /msg ChanServ SET #help IDENT on
+    /msg ChanServ SET #help IDENT off
+    Set KeepTopic
+
+    This command will determine if ChanServ will retain the topic of a registered channel between the last user leaving and the next person to join.
+    This option is set ON by default on newly registered channels.
+    With this set ON, ChanServ will keep the topic between the last user leaving and the next user joining;
+    WIth this set OFF, the topic will be lost if the channel empties completely.
+
+    Command:
+    /msg ChanServ SET #channel KEEPTOPIC on
+    /msg ChanServ SET #channel KEEPTOPIC off
+    Example:
+    /msg ChanServ SET #help KEEPTOPIC on
+    /msg ChanServ SET #help KEEPTOPIC off
+    Set Notice
+
+    This command will determine if ChanServ will send the Channel Description (SET DESC) to any user joining a registered channel in notice form.
+    With this option set ON, ChanServ will take the Channel Description and send a notice to any user joining the channel;
+    WIth this option set OFF, no notice will be sent.
+
+    Command:
+    /msg ChanServ SET #channel NOTICE on
+    /msg ChanServ SET #channel NOTICE off
+    Example:
+    /msg ChanServ SET #help NOTICE on
+    /msg ChanServ SET #help NOTICE off
+    Set OpGuard
+
+    This command will make ChanServ ensure that only those nicknames listed on the Channel Operators list are allowed to be Operators (Level 5 or above).
+    With this option set ON, ChanServ will DeOp (-o) anyone who is made to be an Operator but is not on the Channel Operators list;
+    With this option set OFF, anyone can be set an Operator by other Operator.
+
+    Command:
+    /msg ChanServ SET #channel OPGUARD on
+    /msg ChanServ SET #channel OPGUARD off
+    Example:
+    /msg ChanServ SET #help OPGUARD on
+    /msg ChanServ SET #help OPGUARD off
+    Set ProtOp
+
+    This command will make ChanServ protect against lower level operators from kicking higher level operators.
+    With this option set ON, if an attempt to kick a higher level operator is made, the lower level Op will be kicked by ChanServ;
+    With this option set OFF, no protection is afforded to higher level operators.
+
+    Command:
+    /msg ChanServ SET #channel PROTOP on
+    /msg ChanServ SET #channel PROTOP off
+    Example:
+    /msg ChanServ SET #help PROTOP on
+    /msg ChanServ SET #help PROTOP off
+    Set Quiet
+
+    This command will stop ChanServ announcing any actions or changes made by it to a registered channel to all operators currently online.
+    With this option set ON, ChanServ will not announce changes to the channel to all;
+    With this option set OFF, ChanServ will announce any changes to the channel to all Operators.
+
+    Command:
+    /msg ChanServ SET #channel QUIET on
+    /msg ChanServ SET #channel QUIET off
+    Example:
+    /msg ChanServ SET #help QUIET on
+    /msg ChanServ SET #help QUIET off
+    TopicLock
+
+    This command will allow you to set what level of Operator can change the topic of a registered channel.
+
+    Command:
+    /msg ChanServ TOPICLOCK #channel level
+    Example:
+    /msg ChanServ TOPICLOCk #help 10
+    Unban
+
+    This command will get ChanServ to remove bans in a registered channel. There are three versions of the UNBAN command:
+    ME, ALL and mask.
+    UNBAN ME will get ChanServ to remove any bans set against you joining a channel (Level 3+).
+    UNBAN ALL will get ChanServ to remove ALL bans currently set in a channel (Level 8+).
+    UNBAN mask will get ChanServ to remove any bans set in a channel that match the specified mask
+
+    Command:
+    /msg ChanServ UNBAN #channel ME
+    /msg ChanServ UNBAN #channel ALL
+    /msg ChanServ UNBAN #channel nick!user@host
+    Example:
+    /msg ChanServ UNBAN #help ME
+    /msg ChanServ UNBAN #help ALL
+    /msg ChanServ UNBAN #help *!*@*.Serenity-IRC.Net
+

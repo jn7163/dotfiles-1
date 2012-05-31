@@ -1,0 +1,215 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2012-05-10T14:49:57+08:00
+
+====== NickServ ======
+Created Thursday 10 May 2012
+
+NickServ
+
+NickServ is one of the network services provided on the Serenity-IRC network.
+It allows users to register up to five (5) nicknames. Having a registered nickname allows you to:
+
+    retain the use of that nickname for your own use
+    join channels who require users to have registered nicknames
+    register your own channel
+    send and receive messages using MemoServ
+
+NickServ will also allow you to set options and use commands to protect your nickname from being used by others.
+Each time you visit Serenity-IRC, you need to Identify yourself (see below) to get access to all the Services provided by NickServ, ChanServ and MemoServ.
+
+Nicknames must be clean (PG rated as a guideline) and must adhere to the Acceptable Usage Policy (AUP), as this is a family-oriented network. Any violations will be dealt with according to the AUP.
+
+After a period of thirty (30) days of not being Identified to, nicknames will automatically be dropped by NickServ.
+
+If you will be away from the network for longer than thirty days but wish to keep your nickname registration, then an extention of this deadline to 120 days is available. You can ask for your nickname to be placed on 'vacation' in the #Help channel.
+
+You can get help from NickServ about its commands directly at any time by typing:
+
+Command:
+/msg NickServ HELP
+/msg NickServ HELP command
+Example:
+/msg NickServ HELP
+/msg NickServ HELP ADDOP
+/msg NickServ HELP SET FOUNDER
+Nickname Registration
+
+To register a nickname, you need to be connected to the Serenity-IRC network using the nickname you wish to register, a valid email address and a password you would like to use for your nickname.
+
+    To change nicknames to the one you wish to register:
+
+    Command:
+    /nick newname
+    Example:
+    /nick sassafras
+
+    To start the registration of your nickname,
+
+    Command:
+    /msg NickServ REGISTER emailaddress password
+    Example:
+    /msg NickServ REGISTER joe@zsfutur.com carrot
+
+    This would register your current nickname to the email address joe@zsfutur.com with a password of carrot.
+
+    NickServ will then send you an Activation Email to the email address you specified in the step above. In the email is an Activation Code which you will need to complete your registration.
+    Find the email and get from it your Activation Code and then use the ACTIVATE command.
+
+    Command:
+    /msg NickServ ACTIVATE code
+    Example:
+    /msg NickServ ACTIVATE 1234567
+
+    If the previous steps have gone fine, then you now have a Registered nickname! Just remember one last point.
+    Each time you visit Serenity-IRC, you need to Identify to your nickname to tell NickServ that you are the rightful owner of that nickname. Identifying allows you access to all the features of NickServ, ChanServ and MemoServ.
+    To Identify yourself, use:
+
+    Command:
+    /msg NickServ ID password
+    Example:
+    /msg NickServ ID carrot
+
+    replacing password with the nickname password you supplied in Step 2.
+
+N.B: You can always check on the current status of your nickname, or anyone else on Serenity-IRC, by using the NickServ INFO command (see below). The Current Access line will allow you to see if you/they are identified.
+NickServ Commands
+
+(These commands will only work if you have a Registered nickname and are Identified to it)
+
+    Access
+
+    This command will let you manage and view the access list for your registered nickname. The Access feature allows you to add internet locations you normally use your nickname from, to extend the time you have to Identify yourself within if you have Guard set.
+    It is not essential that you use this command, but it is explained for completeness.
+    If you connect from an internet location that matches an entry in your Access list, your 'Current Access' will indicate 'Matching Access Mask' rather than 'Not Identified'. This means that, if Guard is set on your nickname, the time limit on Identifying before your nickname is changed will not apply.
+    However, even if you are matching one of your Access Masks, you still need to Identify to gain access to all of the services associated with a registered nickname.
+
+    There are four versions of the Access command: ADD, DEL, LIST and nickname.
+
+    ADD allows you to assign another internet connection as being valid for you to contact from. You will need to know your userid and the host details you wish to enter. If you want to know more about your current connection, you can type /WHOIS nickname.
+    DEL allows you to remove entries from your Access mask list. Use the LIST command (see below) to find out the numbers for each of the entries you have made.
+    LIST allows you to see what entries are in your Access list.
+    The nick version will tell you what the current Access level is for any nickname.
+        Access Level 0 : Not Registered
+        Access Level 1 : Not Identified
+        Access Level 2 : Matching Access Mask
+        Access Level 3 : Identified
+
+    Command:
+    /msg NickServ ACCESS ADD userid@hostmask
+    /msg NickServ ACCESS DEL number
+    /msg NickServ ACCESS LIST
+    /msg NickServ ACCESS nickname
+    Example:
+    /msg NickServ ACCESS ADD serene@*.serenity-irc.net
+    /msg NickServ ACCESS DEL 3
+    /msg NickServ ACCESS LIST
+    /msg NickServ ACCESS Serene
+    AddMask
+
+    This command will add an Access Mask to your Access list. It uses your current internet connection information to add a valid internet location to your list.
+    For a full explanation of Access masks, see the ACCESS command (see above).
+
+    Command:
+    /msg NickServ ADDMASK
+    Example:
+    /msg NickServ ADDMASK
+    Drop
+
+    This command will drop your current nickname from being registered with NickServ. Any channels you have registered and any messages held by MemoServ will be lost. You will need to use your Nickname password to drop.
+
+    Command:
+    /msg NickServ DROP password
+    Example:
+    /msg NickServ DROP carrot
+    Ghost
+
+    This command will disconnect a nickname from the network. Useful for if you get disconnected yourself and find your nickname still appears to be connected, or if you find someone else using your nickname. By using Ghost, the nickname will be disconnected from the network, allowing you to change back to use your nickname.
+
+    Command:
+    /msg NickServ GHOST nickname password
+    Example:
+    /msg NickServ GHOST Serene carrot
+    Info
+
+    This command will display a summary of information about any Registered Nickname.
+
+    Command:
+    /msg NickServ INFO nickname
+    Example:
+    /msg NickServ INFO Serene
+    ListOps
+
+    This command will list all IRC Operators currently online for the Serenity-IRC network.
+
+    Command:
+    /msg NickServ LISTOPS
+    Example:
+    /msg NickServ LISTOPS
+    Set Address
+
+    This command allows you to change the email address associated with your registered nickname. When you have changed your email address, you will be sent another Activation Code. You will need to reactivate your nickname using the ACTIVATE command (see above).
+
+    Command:
+    /msg NickServ SET ADDRESS newEmail
+    Example:
+    /msg NickServ SET ADDRESS serene@serenity-irc.net
+    Set Email
+
+    This command will determine if your email address is displayed with your summary NickServ INFO. When this option is set ON, your email will be displayed; when it is set OFF, your email will not be displayed.
+
+    Command:
+    /msg NickServ SET EMAIL on
+    /msg NickServ SET EMAIL off
+    Example:
+    /msg NickServ SET EMAIL on
+    /msg NickServ SET EMAIL off
+    Set Guard
+
+    This command will prevent other users from using your registered nickname by forcing them to Identify within 30 seconds. With this option, if the nickname isn't identified within the time limit, the nick will be changed to a Guest nickname.
+
+    Command:
+    /msg NickServ SET GUARD on
+    /msg NickServ SET GUARD off
+    Example:
+    /msg NickServ SET GUARD on
+    /msg NickServ SET GUARD off
+    Set Language
+
+    This command will change the language that the Serenity-IRC Services will communicate to your registered nickname in. This only affects the Notices from Serenity-IRC Services and not the help files which are currently only available in English.
+    Language choices are :
+
+        English
+        Cajun
+        Dutch
+        French
+        German
+        LCARS
+        Spanish
+
+    Command:
+    /msg NickServ SET LANGUAGE language
+    Example:
+    /msg NickServ SET LANGUAGE Spanish
+    Set NoOp
+
+    This command will prevent other registered users from adding your nickname to be a Channel Operator for a registered channel on Serenity-IRC.
+    This command will not affect any Operator privilidges you already have in other registered channels.
+    When this option is set ON, others will not be able to add your nickname to their Channel Operators list;
+    When this option is set OFF, other registered users can add your nickname to their list of Channel Operators again.
+
+    Command:
+    /msg NickServ SET NOOP on
+    /msg NickServ SET NOOP off
+    Example:
+    /msg NickServ SET NOOP on
+    /msg NickServ SET NOOP off
+
+    Set Password
+
+    This command will allow you to change the password you use for your registered nickname. To be able to change your password, you first need to be Identified to your nickname with the old password. You cannot use this command to change your password if you have forgotten it. Please visit the #help room for further assistance in this case.
+
+    Command:
+    /msg NickServ SET PASSWORD newpassword
+    Example:
+    /msg NickServ SET PASSWORD ilovefrenchfries

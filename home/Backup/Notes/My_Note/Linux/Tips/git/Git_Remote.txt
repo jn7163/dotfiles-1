@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2012-05-10T21:21:55+08:00
+
+====== Git Remote ======
+Created Thursday 10 May 2012
+
+# 我先吧 tualatrix Fork 的版本获取到本地
+~/work $ git clone git://github.com/tualatrix/ruby-china.git
+~/work $ cd ruby-china
+~/work/ruby-china <master> $ git remote
+origin
+# 添加 huacnlee (也就是主项目的 remote 地址)
+~/work/ruby-china <master> $ git remote add huacnlee git://github.com/huacnlee/ruby-china.git
+# 用 fetch 命令获取 huacnlee 的所有分支
+~/work/ruby-china <master> $ git fetch huacnlee
+remote: Counting objects: 499, done.
+remote: Compressing objects: 100% (143/143), done.
+remote: Total 315 (delta 211), reused 253 (delta 172)
+Receiving objects: 100% (315/315), 190.17 KiB | 92 KiB/s, done.
+Resolving deltas: 100% (211/211), completed with 72 local objects.
+From git://github.com/huacnlee/ruby-china
+ * [new branch]      master -> huacnlee/master
+# 将 huacnlee 的 master 分支的改动合并过来,目前是处与 master 分支
+~/work/ruby-china <master> $ git merge huacnlee/master
