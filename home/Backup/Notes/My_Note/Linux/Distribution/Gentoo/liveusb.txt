@@ -1,0 +1,28 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T14:27:57+08:00
+
+====== liveusb ======
+
+# fdisk -l /dev/sdb
+# emerge -av sys-fs/dosfstools
+# mkdosfs -F 32 /dev/sdb
+# emerge -av '>sys-boot/syslinux-3'
+# dd if=/usr/share/syslinux/mbr.bin of=/dev/sdb
+# mkdir -p /mnt/cdrom
+# mount -o loop,ro -t iso9660 livecd-amd64-installer-2007.0.iso /mnt/cdrom
+# mkdir -p /mnt/usb
+# mount -t vfat /dev/sdb1 /mnt/usb
+# cp -r /mnt/cdrom/* /mnt/usb
+# mv /mnt/usb/isolinux/* /mnt/usb
+# mv /mnt/usb/isolinux.cfg /mnt/usb/syslinux.cfg
+# rm -rf /mnt/usb/isolinux*
+# mv /mnt/usb/memtest86 /mnt/usb/memtest
+# umount /mnt/cdrom
+# sed -i \
+    -e "s:cdroot:cdroot slowusb:" \
+    -e "s:kernel memtest86:kernel memtest:" \
+    /mnt/usb/syslinux.cfg
+# umount /mnt/usb
+
+#syslinux /dev/sdb1

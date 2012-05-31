@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T14:38:25+08:00
+
+====== rtorrent ======
+
+ctrl_q					#退出rtorrent
+ctrl_d					#停滞活动的下载，或移除已停止的下载
+ctrl_r					#开始torrent的hash检查
+ctrl_s					#开始下载
+ctrl_k					#停止下载
+bksp					#用url或路径来添加torrent
+space					#文件下载优先级
+
+
+ctrl_o					#更改下载路径
+ctrl_x					#进入命令行
+d.add_peer=ip:port			#手动添加peer地址
+d.set_connection_seed=initial_seed	#初始种子
+
+
+mktorrent files -a http://announce -p -o name.torrent

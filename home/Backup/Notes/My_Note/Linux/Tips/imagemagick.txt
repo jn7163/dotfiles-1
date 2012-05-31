@@ -1,0 +1,232 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T15:10:30+08:00
+
+====== imagemagick ======
+
+$ convert input.png output.jgp			#转换图像格式
+$ convert -thumbnail 60% input.png output.jgp	#创建缩略图
+$ convert -sample 60% input.png output.jgp	#创建缩略图
+$ convert -negate input.png output.jgp		#单色把图片变为黑白颜色
+$ convert -flip input.png output.jgp		#左右翻转
+$ convert -flop input.png output.jgp		#反色形成底片的样子
+$ convert -monochrome input.png output.jgp	#加噪声
+$ convert -noise 3 input.png output.jgp		#油画效果
+$ convert -paint 4 input.png output.jgp		#旋转把一张图片，旋转一定的角度：
+$ convert -rotate 30 input.png output.jgp	#上面的30，表示向右旋转30度，反之是负数
+$ convert -charcoal 2 input.png output.jgp	#形成炭笔或者说是铅笔画的效果
+$ convert -fill color -font font -pointsize 20 -draw "text 10,20 'hello'" input.png output.png
+
+
+$ import /path/output.png			#鼠标选取范围截图
+$ import -pause 3 output.png			#seconds delay between snapshots
+$ import -resize 50% /path/output.png		#输出缩略图
+$ import -thumbnail 50% /path/output.png	#输出缩略图
+
+
+$ display input.png				#显示图片
+$ display /path/*				#显示一堆图片
+
+    制作索引图和动画
+
+    !/bin/bash
+    montage -bordercolor red -borderwidth 3 -label "%f" -tile 5x3 *.JPG montage.jpg
+    mogrify -format gif *.JPG
+    display montage.jpg
+    animate *.JPG
+
+    缩放 convert -sample 80x40 input.jpg output.jpg #注意：缩放后图像保持原来的长宽比例 convert -sample 25%x25% input.jpg output.jpg
+    为当前目录的所有图像生成缩略图
+
+    for img in `ls *.jpg`
+     do
+       convert -sample 25%x25% $img thumb-$img
+     done
+
+    获取文件信息 libtiff
+
+    tiffinfo filename.tiff
+    pnginfo filename.png
+
+    可以使用 ImageMagick 的 identify
+
+     identify -verbose sample.png 
+     identify -format "%wx%h" sample.png 
+
+    旋转图像
+
+     convert -rotate 90 input.jpg output.jpg
+
+    更改文件类型
+
+     convert input.jpg output.png
+
+    为图像增加注释文字
+
+    convert -font helvetica -fill white -pointsize 36 \
+     -draw 'text 10,50 "Floriade 2002, Canberra, Australia"' \
+     floriade.jpg comment.jpg 
+    convert -font fonts/1900805.ttf -fill white -pointsize 36 \
+     -draw 'text 10,475 "stillhq.com"' \
+     floriade.jpg stillhq.jpg 
+
+    特殊效果
+
+    convert -charcoal 2 input.jpg output.jpg #炭笔
+    convert -colorize 255 input.jpg output.jpg #着色 可以指定三种颜色 red/green/blue
+    convert -implode 4 input.jpg output.jpg  #内爆效果
+    convert -solarize 42 input.jpg output.jpg #曝光，模拟胶片曝光
+    convert -spread 5 input.jpg output.jpg  #随机移动，参数是位移大小
+
+    一次执行多个操作
+
+     convert -sample 25%x25% -spread 4  -charcoal 4 input.jpg output.jpg 
+
+ImageMagick FAQ 摘要
+
+    如何让animate在显示图片的过程保持窗口的标题不变
+
+    animate -title "My Image Sequence" images.
+
+    import抓得的图片与X服务器上显示的不一致怎么办？
+
+    import -descend image.miff
+
+    如何动画显示YUV 图片序列?
+
+    animate -geometry 352x240 -scene 0-71 yuv3:frame%d
+
+    如果只看一个RGB图片的红色通道(red channel)?
+
+    display -gamma 1.0,0.0,0.0 image.miff
+
+    如何改变PostScript默认纸张大小?
+    要改变默认的612x792大小，修改magick/image.h中的PSPageGeometry的值并重编译.
+    如何自左至右无边无框无文字半三幅画连接在一起？
+
+    convert +append image1.ppm image2.ppm image3.ppm side_by_side.miff
+     # 或
+    convert -size 350x500 xc:black composite.miff
+    composite -geometry +0+0 composite.miff image1.gif composite.miff
+    composite -geometry +100+0 composite.miff image2.gif composite.miff
+    composite -geometry +0+300 composite.miff image3.gif composite.miff
+    composite -geometry +0+375 composite.miff image4.gif composite.miff
+
+    如何生成gif动画?
+
+    convert -delay 20 frame*.gif animation.gif
+    convert -delay 20 frame1.gif -delay 10 frame2.gif -delay 5 frame3.gif animation.gif
+    convert frame1.gif -page +50+100 frame2.gif -page +0+100 frame3.gif animation.gif
+    convert -loop 50 frame*.gif animation.gif
+    convert +adjoin images.* frames%d.gif
+
+    如果完整的显示PostScript图片？
+
+    display -page letter image.ps
+
+    什么是图片目录？如何使用它们?
+
+    #图片目录（visual image directory ，VID）的创建：
+       montage *.jpg directory.vid
+       convert 'vid:*.jpg' directory.vid
+    #显示图片目录
+       display directory.vid
+       display vid:movie.mpg
+
+    如果带框架保存一个窗口?
+
+    xwininfo -frame
+    import -frame -window ID window.miff
+
+    图片以单一颜色（a solid color）显示，是怎么回事？ 图片被破坏，或含有值为0的matte层，试着:
+
+     display +matte image.miff
+
+    出现 "???? library is not available ..."是怎么回事? 没安装相关的函数库。参见安装说明。
+    如何查看图片不光滑层(matte channel)的值？
+
+    convert image.tiff image.matte
+    display -size 640x480 gray:image.matte
+
+    运行"Convert in.gif out.png" 时显示 "Invalid Parameter - out. 你运行的convert是windows的分区类型转换程序。
+    如何在图片增加斜角?
+
+    #对图片边缘的处理共分四类。
+     1）增加有色边
+    convert -bordercolor red -border 25x25 image.jpg image.gif
+     2）加亮或变暗图片边缘，以增强3D效果
+    convert -raise 25 image.jpg image.gif
+     3）在图片周围增加装饰性框架。
+    convert -mattecolor gray -frame 25x25 image.jpg image.gif
+     4）在图片边缘增加升、降斜角
+    convert -mattecolor gray -frame 25x25+0+25 image.jpg image.gif
+    convert -mattecolor gray -frame 25x25+25+0 image.jpg image.gif
+
+    用窗口管理器运行display失败了，怎么办? 用下列命令之一来确认display运行在一个交互环境中：
+
+    display logo:Untitled
+    display < /dev/console
+
+    将PostScript文件转换为其它格式时，如何改善文字的外观？
+
+    convert -density 288 -geometry 25% image.ps image.gif
+
+    如何用2－3英寸高的文字注释一个图片? 先检查有无可缩放字体： xlsfonts -fn '*-0-0-0-0-*'　有则：
+
+    convert -font '-*-helvetica-*-*-*--300-300-*-*-*-*-iso8859-1' \
+            -fill green -draw 'text 50,300 Magick' image.gif annotated.gif
+    # If you have the FreeType support built into ImageMagick,
+    # just increase your pointsize and/or density:
+    convert -font Helvetica -pointsize 100 -density 300 ...
+
+    如何将gif文件分析为一系列的单个图片？
+
+    convert animation.gif frame%02d.gif
+
+    用NetScape显示的图片，如何去掉周围的背景色？ convert +page alpha.gif beta.gif
+    如何用web安全的颜色（Web safe colors）创建GIF或PNG图片？
+
+    convert -map netscape: alpha.gif beta.gif
+
+    为何Adobe Acrobat 2.1不能读ImageMagick's制作的PDF? 用 Acrobat 3.0或以上版本，来阅读这种经zip压缩的pdf，或制作PDF时不进行压缩。
+
+    convert +compress images.tiff image.pdf
+
+    如何在图片上增加一个不光滑层(matte channel)?
+
+    convert image.gif -matte temp.miff
+    composite -compose CopyOpacity mask.xbm temp.miff transparent.gif
+
+    在NT环境下如何用convert在图片上写字？
+
+    convert -font Arial -fill blue -draw "text 10,10 'your text here'" d:\test.tif png:d:\test.png
+    convert.exe -pointsize 18 -draw "text 0,0 "This is my text!"" C:\blank.gif c:\text.gif
+
+    为何GIF文件比期望的大? 需要在编译源码时加 --enable-lzw 参数，来打开LZW压缩功能。
+    为何JPEG文件比期望的大? 可能嵌入Exif或IPTC等"profiles", 或者含有没压缩的thumbnails. 可以用命令行参数 +profile ""或相关的API来将它们去掉。
+    如何从图片文件中抽取第一张图片？
+
+    convert "Image.gif[0]" first.gif
+
+    如何创建一张空白图片？
+
+    convert -size 800x600 xc:"#ddddff" ltblue.ppm
+    convert -size 800x600 null:white white.ppm
+    convert in.png -threshold 100% black.ppm  #<--与in.png同大小
+
+    为何GIF文件比期望的大? 需要在编译源码时加 --enable-lzw 参数，来打开LZW压缩功能。
+    为何JPEG文件比期望的大? 可能嵌入Exif或IPTC等"profiles", 或者含有没压缩的thumbnails. 可以用命令行参数 +profile ""或相关的API来将它们去掉。
+
+使用笔记
+
+    把matlab中画出的多幅图作成GIF动画
+
+     for i in `ls *.jpg`; do convert -trim -resize 350x305 $i crop.$i; done
+     convert -delay 10 -loop 3 crop.frame*.jpg string.gif
+     rm crop.frame*.jpg
+
+    生成png格式的email地址
+
+    convert -size 185x19 null:white email.png
+    convert -font monospace -fill black -pointsize 16  -draw 'text 4,14 "youremail@yourdomain"' email.png email.png 
+    convert -font monospace -fill blue -pointsize 16  -draw 'text 3,13 "youremail@yourdomain"' em

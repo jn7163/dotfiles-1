@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2012-01-11T10:12:21+08:00
+
+====== img文件作为swap分区 ======
+
+
+
+1、dd if=/dev/zero of=~/swap.img bs=1024 count=2048000
+bs和count参数决定img文件的大小：文件大小=bs x count，这里我们创建一个1G的文件
+2、losetup /dev/loop0 swap.img
+把swap.img映射到/dev/loop0设备，这样/dev/loop0就是这个img了。
+3、mkswap /dev/loop0
+把/dev/loop0设置为swap分区
+4、sudo swapon /dev/loop0
+启用loop0分区
+
+至此就完成了所有的启用工作。如果用完想关掉它，也行：
+1、sudo swapoff /dev/loop0
+2、losetup -d /dev/loop0
+3、rm -f ~/swap.img(建议不做这个，留着以后备用)
+
+两点补充：
+
+    losetup那一步其实不必要。mkswap可以直接接受一个文件名作为swap。（但在btrfs环境下必须mount成loopback device。）
+	mkswap swap.img
+	swapon swap.img
+    "Four-step Process to Add Swap File"： https://help.ubuntu.com/community/SwapFaq#How_do_I_add_more_swap.3F
+    swap.img要保证0600的权限，否则会是一个安全漏洞。

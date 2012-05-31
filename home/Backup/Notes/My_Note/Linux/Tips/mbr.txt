@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T15:26:01+08:00
+
+====== mbr ======
+
+dd if=/dev/sda of=/where/you/want/linux.lnx bs=512 count=1	#备份mbr
+dd if=/where/you/want/linux.lnx of=/dev/sda bs=446 count=1	#恢复mbr
+echo c:\"linux.lnx"=linux >>boot.ini				#windows下回复mbr

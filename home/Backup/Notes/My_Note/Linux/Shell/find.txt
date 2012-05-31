@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T14:08:54+08:00
+
+====== find ======
+
+find . -type d -exec chmod 755 {} \;			#查找当前目录下所有目录，并改为755权限
+find . -type f -exec chmod 644 {} \;			#查找当前目录下所有普通文件，并改为644权限
+find /var/log -type f -mtime +5 -exec rm {} \;		#查找/var/log目录下所有5日以前没有变动的文件，并删除

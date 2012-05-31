@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T14:36:45+08:00
+
+====== diff ======
+
+diff -Nurp oldfile newfile > patch
+patch -Np1 -i patch

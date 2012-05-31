@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-12-08T11:06:06+08:00
+
+====== Widgets ======
+
+
+Widget Logic 插件：
+is_home() 主页
+is_single() 文章页
+is_page() 页面
+is_category() 文章分类页
+is_tag() 文章标签页
+is_archive() 归档页
+is_404() 404页
+is_search() 搜索结果页
+is_feed() 订阅页
+
+||表示或，&&表示和，!表示非

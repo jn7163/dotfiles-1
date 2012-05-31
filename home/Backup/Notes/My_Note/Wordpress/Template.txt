@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-12-08T11:05:28+08:00
+
+====== Template ======
+
+
+header.php的head区域插入如下代码：
+<?php if(is_single()){?>
+    <link rel="canonical" href="<?php echo get_permalink($post->ID);?>" />
+<?php } ?>
