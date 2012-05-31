@@ -1,0 +1,67 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T15:14:03+08:00
+
+====== portage ======
+
+# ebuild abc-1.0.1.ebuild unpack
+# ebuild abc-1.0.1.ebuild compile
+# ebuild abc-1.0.1.ebuild install
+# ebuild abc-1.0.1.ebuild qmerge
+
+#意外中断后继续
+# FEATURES="keepwork keeptemp" emerge --resume
+# rm -r /var/tmp/portage
+# or
+# ebuild path.ebuild compile install qmerge
+# ebuild path.ebuild clean
+
+$ emerge -avuDN world
+$ emerge -f package							#直下载不编译不安装
+$ emerge -s package							#查找名称包含package的包
+$ emerge --search package
+$ emerge -S package							#查找描述包含package
+$ emerge --searchdesc package
+$ emerge -k package							#使用本地编好的包，没有就下源码(尽量避免编译)
+$ emerge --usepkg package
+$ emerge -K package							#只使用本地编好的，否则不安装(绝对不编译，所有依赖的包都有binary才装)
+$ emerge --usepkgonly package
+$ emerge -C package							#卸载
+$ emerge --unmerge package
+$ emerge --depclean && revdep-rebuild					#移除孤立依赖的软件包
+$ emerge -pl package							#查看已安装包的changelog
+$ emerge --pretend --changelog package
+$ emerge -p package							#查看依赖关系(这个包还没装)
+$ emerge --pretend package
+$ emerge -f package							#只下载某个软件的源码(以及它所依赖的)
+$ emerge --fetchonly package
+$ emerge -fp package							#查看从哪下的源码
+$ emerge "<package-1.6"							#安装指定版本号的
+$ emerge "=..........."
+$ .......">..........."
+$ emerge -k "<package-1.6".....
+$ emerge -g package							#从网上下binary包来装
+$ emerge --getbinpkg package
+$ emerge -gp mozilla							#查看binary包依赖
+$ emerge --getbinpkg --pretend package
+$ emerge -ep opera							#查看已安装包的依赖关系
+$ emerge --emptytree --pretend package
+$ emerge -O package							#不使用依赖关系安装软件
+$ emerge --nodeps package
+$ emerge -o package							#只安装其依赖的软件
+$ emerge --onlydeps package
+$ emerge --sync								#升级portage树
+$ emerge-webrsync							#下载snapshot包来完成sync
+$ emerge -u package							#升级软件
+$ emerge --update package
+$ emerge -u system							#升级系统软件
+$ emerge -u world							#升级整个系统
+$ emerge --update --deep world
+$ emerge --update --deep --newuse world					#执行完整更新
+$ emerge -uU world							#避免升级覆盖掉版本更高的软件
+$ emerge --update --upgradeonly world
+
+
+对portage & overlay中同时存在的包的处理
+1 dev-lang/spidermonkey::gentoo-zh
+2 emerge -av dev-lang/spidermonkey::gentoo

@@ -1,0 +1,152 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T13:58:31+08:00
+
+====== Shell ======
+
+Shell基本用法：[[+diff|diff]], [[+find|find]], [[+patch|patch]], [[+sed|sed]],  
+[[+shell脚本传递参数的七个特定的变量|shell脚本传递参数的七个特定的变量]],
+[[+awk|awk]],
+
+useradd  -g kenny    -d / var/ kenny    -s / sbin/ nologin     -M kenny			
+常用命令：
+$ sudo arpspoof -i wlan0 -t 192.168.1.1 192.168.100			#欺骗网关
+$ sudo arpspoof -i wlan0 -t 192.168.1.100 192.168.1			#欺骗客户机
+$ date -d 20110829 +%s							#查看指定时间的时间戳
+$ date +%s								#查看当前时间戳
+$ date -d '19700101 UTC 1199116800 seconds'				#将时间戳转换为时间
+
+$ sudo iptables -I INPUT n -i lo -p all -j accept
+#将规则插入INPUT链的第n位置
+$ synclient touchpad0ff=1						#关闭触摸板
+$ sudo ntpdate pool.ntp.org						#同步时间
+$ sudo sed -ie 's/UTC=yes/UTC=no/g' /etc/default/rcS			#关闭UTC服务
+$ sudo hwclock --systohc						#写入bios
+$ sudo mount /dev/sda1 /mnt/windows -t vfat -o iocharset=utf8,umask=000	#挂载sda1分区到/mnt/windows内
+$ sudo mount -t ntfs-3g /dev/sdb1 /media				#手动挂载
+$ sudo fdisk -l								#查看分区
+$ sudo mount /dev/sdb1 /media/sdb1					#挂载u盘
+$ pmount -sA /dev/sdb1							#挂载u盘
+$ pmount -sA /dev/dvdn							#挂载dvd光驱
+$ mount.cifs //ip/dirname /mnt/dirname -o username=username,password=password,iocharset=utf8	#网络共享浏览
+$ sudo ifconfig eth1 192.168.1.10 netmask 255.255.255.0			#设置网卡子网及ip 
+$ ifconfig eth0 -arp							#关闭网卡arp解析，设定固定网关arp
+$ arping -U -I eth0 -s
+$ export http_proxy=http://xx.xx.xx.xx:xx				#终端设置代理
+$ unset http_proxy							取消终端代理
+#自动挂载widows分区
+# /dev/sda1
+/dev/sda1			/mnt/windows		vfat    iocharset=utf8,umask=000   0       0
+$ shutdown -h 23:00							#晚上11点自动关机
+$ mplayer abc.avi -subcp gb2312						#播放影片挂载中文字幕
+$ scrot -q1 -s -e 'mv $f ~/Desktop/'					#截取屏幕并保存到桌面
+$ ffcast -s -r 3 -f gif -o - --debug | convert gif:- 1.gif		#输出到giF
+$ lftp -u user,password ftps://server.ip:port				#登录隐式ssl
+$ hdparm -Tt /dev/sda							#硬盘读写速度
+$ mutt -a XXX								#mutt发送附件
+$ acpi -V								#笔记本电池
+$ cat /proc/acpi/battery/BAT0/*						#电池信息
+$ zcat /proc/config.gz > config						#根据当前环境生成config
+$ cp filename{,.bak}							#复制filename到filename.bak
+$ mv filename{,.bak}							#改名filename到filename.bak
+$ ps aux | grep XX
+$ mtr -r --no-dns www.youtube.com					#路由诊断
+$ arp -s ip mac		#arp绑定
+$ arp -f file
+$ arp -a
+
+
+$ /usr/bin/vbox_build_module						#重建vboxdrv模块
+$ mpd --create-db
+$ mpc update ; mpc clear ; mpc listall | mpc add ; mpc play		#mpc播放歌曲
+$ pacman-optimize							#改善pacman的性能
+$ chown danny:users /where/you/want					#更改目录所属用户与组
+$ gtf 1366 768 60							#生成屏幕分辨率
+$ ssh -p port user@server-ip
+$ smb://192.168.1.100							#访问局域网共享
+$ watch -n 1 "/sbin/ifconfig eth0 | grep bytes"				#实时查看流量
+
+$ ls $HOME/music > music.lst						#mplayer制作mp3播放列表
+$ mplayer -vo fbdev2 -fs-vf scale=1366:768 filename				#cli mplayer
+$ echo music.mp3 >> music.lst						#添加歌曲
+$ mplayer -playlist mylist.m3u -shuffle					#随机播放列表内歌曲
+$ cat /dev/dsp > test							#录音
+$ cat test > /dev/dsp							#回放
+$ dd if=/dev/audio of=~/test.wav bs=30k count=1				#录音
+$ dd if=image.nrg of=out.iso bs=512 skip=500				#转换nrg到iso
+$ wodim -v dev=/dev/cdrw isoimage.iso					#刻录镜像到光盘
+$ cdrdao write --device /dev/cdrw image.cue				#刻录bin.cue
+$ dd if=/dev/cdrw of=/home/user/isoimage.iso				#从光盘生成镜像
+$ cat /dev/cdrw > isoimage.iso						#从光盘生成镜像
+$ cp /dev/cdrom isoimage.iso						#从光盘生成镜像
+$ growisofs -Z /dev/cdrw=/path/to/iso					#刻录DVD镜像
+$ growisofs -Z /dev/cdrw -r -J /path/to/files				#刻录DVD
+$ growisofs -M /dev/cdrw -r -J /path/to/files				#继续刻录DVD
+$ dd if=/dev/zero of=/dev/sda bs=512 count=0				#清除硬盘分区表信息
+
+$ dd if=/dev/zero of=/home/havanna/test bs=1024 count=1024		#创建1M文件，一个块是1024，共1024个块
+
+
+$ mencoder filename.avi -ovc x264 -e264encopts -oac faac -lameopts -of lavf -o newfilename.mkv
+$ mktorrent files -a http://announce -p -o files.torrent
+$ tune2fs -m reserved-blocks-percentage /dev/sd?
+$ mplayer tv:// -tv driver=v4l:input=0:width=320:height=250 -vo x11	#mplayer捕捉摄像头
+$ cue2tracks -R -c flac -o “/path/%t-%P” name.cue			#分轨ape并转换到flac无损格式
+
+#修改文件时间
+touch -d "20000101" file
+touch -d "20000101 00:00" file
+touch -d "20000101 00:00:00" file
+touch -d 20000101 file
+touch -d "00:00am 01/01/2000" file
+
+#内核编译步骤
+make mrproper
+make clean
+make localmodconfig
+make menuconfig
+
+    # uname -a # 查看内核/操作系统/CPU信息
+    # head -n 1 /etc/issue # 查看操作系统版本
+    # cat /proc/cpuinfo # 查看CPU信息
+    # hostname # 查看计算机名
+    # lspci -tv # 列出所有PCI设备
+    # lsusb -tv # 列出所有USB设备
+    # lsmod # 列出加载的内核模块
+    # env # 查看环境变量
+    资源
+    # free -m # 查看内存使用量和交换区使用量
+    # df -h # 查看各分区使用情况
+    # du -sh # 查看指定目录的大小
+    # grep MemTotal /proc/meminfo # 查看内存总量
+    # grep MemFree /proc/meminfo # 查看空闲内存量
+    # uptime # 查看系统运行时间、用户数、负载
+    # cat /proc/loadavg # 查看系统负载
+   磁盘和分区
+    # mount | column -t # 查看挂接的分区状态
+    # fdisk -l # 查看所有分区
+    # swapon -s # 查看所有交换分区
+    # hdparm -i /dev/hda # 查看磁盘参数(仅适用于IDE设备)
+    # dmesg | grep IDE # 查看启动时IDE设备检测状况
+    网络
+    # ifconfig # 查看所有网络接口的属性
+    # iptables -L # 查看防火墙设置
+    # route -n # 查看路由表
+    # netstat -lntp # 查看所有监听端口
+    # netstat -antp # 查看所有已经建立的连接
+    # netstat -s # 查看网络统计信息
+    进程
+    # ps -ef # 查看所有进程
+    # top # 实时显示进程状态
+    用户
+    # w # 查看活动用户
+    # id # 查看指定用户信息
+    # last # 查看用户登录日志
+    # cut -d: -f1 /etc/passwd # 查看系统所有用户
+    # cut -d: -f1 /etc/group # 查看系统所有组
+    # crontab -l # 查看当前用户的计划任务
+    服务
+    # chkconfig --list # 列出所有系统服务
+    # chkconfig --list | grep on # 列出所有启动的系统服务
+   程序
+    # rpm -qa # 查看所有安装的软件包

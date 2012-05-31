@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-12-15T09:55:37+08:00
+
+====== Adblock ======
+
+
+
+||abc.com/$popup		#阻止所有会打开abc.com这个网站的弹窗
+||abc.com/$popup,domain=def.com		#在def.com网站阻止abc.com这个网站的弹窗
+about:blank^$popup,domain=abc.com	#阻止abc.com网站上的所有弹窗

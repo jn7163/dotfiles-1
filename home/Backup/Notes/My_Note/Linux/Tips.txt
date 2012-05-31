@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T14:38:05+08:00
+
+====== Tips ======
+
+[[+audio|audio]], [[My Note:Linux:Tips:css|css]], [[:My Note:Linux:Tips:date|date]], [[+git|git]], [[+imagemagick|imagemagick]], [[My Note:Linux:Tips:ISO|ISO]], [[+mbr|mbr]], [[My Note:Linux:Tips:mplayer|mplayer]], [[+net|net]], [[+openssh|openssh]], [[+pptpclient|pptpclient]], [[+rtorrent|rtorrent]], [[+smbclient|smbclient]], [[+subversion|subversion]], [[+tar|tar]], [[+vim|vim]], [[My Note:Linux:Tips:vsftpd|vsftpd]], [[:My Note:Linux:Tips:wget|wget]],
+
+[[+wifi加密破解|wifi加密破解]], [[My Note:Linux:Tips:img文件作为swap分区|img文件作为swap分区]]
+
+
+Windows与Linux（Ubuntu）双系统时间不一致 (相差8小时) 的解决方法
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\下中添加一项数据类型为REG_DWORD，名称为RealTimeIsUniversal，值设为1 的键值。
+或者直接使用下如下批处理进行修改：
+------------------------------------------------------------------------
+@echo off
+color 0a
+Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+echo.
+echo 已让Windows识别存贮在主板CMOS内的时间为格林威治标准时间（GMT）,即系统根据CMOS时间和设置的时区来确定当前系统的时间。
+echo.
+pause
+---------------------------------------------------------------------------

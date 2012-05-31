@@ -1,0 +1,50 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T15:05:34+08:00
+
+====== wireless ======
+
+$ ifconfig wlan0 up
+$ iwlist wlan0 scanning		#扫描可用无限网络
+$ iwconfig wlan0 essid linksys key s:mywepkey
+$ iwconfig wlan0 essid "MyEssid" key s:asciikey
+$ iwconfig wlan0 essid linksys open key s:mywepkey
+$ dhcpcd wlan0
+#or
+$ ifconfig wlan0 192.168.0.2
+$ route add default gw 192.168.0.1
+
+
+
+
+
+$ pacman -S netcfg			#安装
+$ 从/etc/network.d/examples复制一个例子配置文件到/etc/network.d/，并修改之，使其适应你的网络
+$ netcfg <profile-name>		#启动
+
+
+
+
+1. compile and install wifi driver
+2. because the conflict between networkmanager and wifi, need to stop networkmanager first:
+/etc/init.d/NetworkManger stop
+killall wpa_supplicant
+3. ifconfig wlan0 up
+4. iwlist wlan0 scan
+
+wep:
+1. iwconfig wlan0 essid xxx
+2. iwconfig wlan0 mode managed
+3. iwconfig wlan0 key xxx
+4. dhcpclient wlan0 -v
+
+wpa:
+1. install wpa_supplicant
+2. wpa_passphrase "essidxxx" "keyxxx" > /etc/wpa_supplicant/wpa_supplicant.conf
+3. wpa_supplicant -B -Dwext -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+4. dhcpclient wlan0 -v
+
+no encryption:
+1. iwconfig wlan0 essid "xxx"
+2. iwconfig wlan0 key off
+3. dhcpclient wlan0 -v

@@ -1,0 +1,69 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T15:05:43+08:00
+
+====== ifconfig ======
+
+ifconfig wlan0 down
+ifconfig wlan0 hw ether aa:bb:cc:dd:ee:ff
+ifconfig wlan0 up		#修改网卡mac地址
+
+
+许多Windwos管理员非常熟悉ipconfig命令行工具，它被用来获取网络接口配置信息并对此进行修改。Linux系统拥有一个类似的工具，也就是ifconfig，它是大多数Linux系统管理员常用工具的共同部分。然而， ipconfig和ifconfig之间有一些明显的区别，例如DOS/Windows ipconfig不允许你修改网络配置。
+通常，你必需以root身份登录或使用sudo以便在一台Linux机器上使用ifconfig工具。依赖于ifconfig命令中使用哪些选项，ifconfig工具不仅可以被用来简单地获取网络接口配置信息，还可以修改这些配置。
+
+基本功能
+在命令行界面输入ifconfig而不指定任何选项，将向你提供所有活动的网络接口当前状态的一个相当完整的描述。例如，一台主机名为erebus 的机器上，在命令行输入ifconfig可能会返回下面的输出：
+
+eth0 Link encap:Ethernet HWaddr 00:C0:F0:77:FD:AD
+inet addr:192.168.2.103 Bcast:192.168.2.255 Mask:255.255.255.0
+inet6 addr: fe80::2c0:f0ff:fe77:fdad/64 Scopeink
+UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+RX packets:913240 errors:230 dropped:0 overruns:0 frame:230
+TX packets:663990 errors:7 dropped:0 overruns:0 carrier:12
+collisions:0 txqueuelen:1000
+RX bytes:179148797 (170.8 MiB) TX bytes:53220450 (50.7 MiB)
+Interrupt:9 Base address:0xb000
+lo Link encapocal Loopback
+inet addr:127.0.0.1 Mask:255.0.0.0
+inet6 addr: ::1/128 Scope:Host
+UP LOOPBACK RUNNING MTU:16436 Metric:1
+RX packets:9814 errors:0 dropped:0 overruns:0 frame:0
+TX packets:9814 errors:0 dropped:0 overruns:0 carrier:0
+collisions:0 txqueuelen:0
+RX bytes:3655065 (3.4 MiB) TX bytes:3655065 (3.4 MiB)
+
+ifconfig命令提供的一些重要信息包括：
+
+每个活动的接口由其名称识别。
+在只有一个物理网络适配器的情况下，你将看到前面加了术语HWaddr的MAC地址。
+接口的IP地址前面加了术语inetaddr，广播地址前面是Bcast，子网掩码前面是Mask。
+每个接口的IPv6地址前面加了术语inet6，其范围前面当然是加了单词Scope。
+每个接口的活动类型被列在一起－在上面eth0的情况下，它列为UP BROADCAST RUNNING MULTICAST。
+接收和转送包的统计数据被分别列在以RX或TX开头的行中。在另一行中，给出了接收和转送数据的总量摘要信息，包括到目前为止，该设 备转送和接收到的字节总数。
+
+选项
+在ifconfig命令中可以指定许多选项以改变其行为：
+
+-a：该选项告诉ifconfig显示所有接口信息，包括活动的和非活动的。在erebus上，ifconfig -a返回eth0,，lo和sit0的结果。
+-s：这是一个”短列表”选项，它为每个接口显示一行摘要数据。该返回信息是有关接口活动性的，并且没有配置。该输出和netstat -i命令的返 回内容是一样的。
+-v：这个”详细的”选项在满足某些类型的错误条件时返回额外信息以帮助发现并处理故障。
+[int]：只要在你的ifconfig命令后跟一个接口的名称，就会得到该接口的信息。例如，如果你只是想了解eth0接口的信息，而不是回路接 口，你可以执行命令ifconfig eth0。除此之外，还有几个选项需要指定你想配置或获得信息的接口。
+up：如果一个接口不是活动的，该选项将激活它。例如，ifconfig eth0 up会激活eth0。
+down：与up相反，它使指定接口无效。因此，ifconfig eth0 down将使当前活动的eth0无效。
+netmask [addr]：使用”netmask”选项使得你可以为一个给定接口设置网络掩码。例如，要为eth0设置网络掩码可以通过输入ifconfig eth0 netmask 255.255.255.0来完成。
+broadcast [addr]：当”broadcast”选项后面跟随一个地址参数，比如ifconfig eth0 broadcast 192.168.2.255，那么将设置指定接口 的广播地址。
+[addr]：只在接口名称后指定一个地址，比如ifconfig eth0 192.168.2.103，将设置该接口的IP地址。
+
+技巧
+在多数Linux系统中，ifconfig eth0 up命令可以被简写为ifup eth0。同样的方法可以使一个接口无效，所以ifconfig eth0 down可以被简写 为ifdown eth0。一些Linux系统甚至拥有一个更进一步的简写命令名为ifupdown，它循环一个接口的状态，快速使接口无效然后让接口重新活动，不过它没有ifup和ifdown简写命令那么常见。
+
+更多信息
+ifconfig以及ifup，ifdown和ifstatus中的if是interface的缩写。它和编程中的条件语句if风马牛不相及。如果你通过在命令行输入man ifconfig查看其线上文档，你可以获得这个工具的更多信息。
+注释中包括的其他连网工具：
+
+arp–它给出地址映射缓存的信息，并允许你以各种方法对它进行操作，例如删除或增加条目。
+iptables–iptables工具实际上是一个具有内核的包过滤性能的防火墙配置接口。
+Netstat–该工具返回网络连接信息，路由表，接口状态，以及其他。
+Route–route工具可以被用来获取你的主机中IP路由表内的信息，或者对路由表进行修改。
+请在命令行输入man utilityname查看这些工具的线上文档以获得更多信息。例如，输入man arp可以查看arp工具的线上文档。你可以通过输入 man man以获得man工具的更多信息。

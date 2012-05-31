@@ -1,0 +1,468 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T13:57:42+08:00
+
+====== Mysql ======
+
+一、安装后
+
+// 安装mysql后设置管理员root密码
+mysqladmin -u root password 123456
+
+// 修改root密码
+mysqladmin -uroot -p password 'newpassword'
+
+// 重设root密码
+/etc/rc.d/mysqld stop
+mysqld_safe --skip-grant-tables &
+mysql -uroot mysql
+mysql> UPDATE user SET password=PASSWORD("newpassword") WHERE User='root';
+mysql> FLUSH PRIVILEGES;
+mysql> exit
+
+二、登录数据库
+
+# 连接本地mysql
+mysql -uroot -p
+# 通过IP和端口连接远程mysql服务器。-h：指定数据库服务器IP -P：指定要连接的端口号。
+mysql -u root -p 123456 -h ip -P 3306
+# 通过TCP连接管理不同端口的多个MySQL（注意：MySQL4.1以上版本才有此项功能）
+mysql -u root –p 123456 --protocol=tcp --host=localhost --port=3307
+#通过socket套接字管理不同端口的多个MySQL
+mysql -u root -p --socket=/tmp/mysql3307.sock
+# 退出mysql.
+mysql> exit;
+
+三、数据库操作
+
+# 显示有多少数据库
+mysql> show databases;
+
+# 创建与删除molyx数据库
+mysql> create database molyx;
+mysql> drop database molyx;
+
+# 选定molyx数据库
+mysql> use molyx;
+
+# 当前选择的数据库
+mysql> select database();
+
+# 查看状态
+mysql> show status;
+
+#查看进程
+mysql> show processlist;
+
+# 显示当前用户
+mysql> select user();
+
+# 显示所有用户
+mysql> select user,host,password from mysql.user;
+
+# 显示用户molyxuser权限
+mysql> show grants for molyxuser@localhost;
+
+四、数据表操作
+
+# 显示molyx库中的数据表
+mysql> show tables from molyx;
+
+# 当前数据包含的表信息
+mysql> show tables;
+
+# 查看表结构
+mysql> describe user;
+or
+mysql> desc tablename;
+or
+mysql> show columns from tablename;
+
+# 建表
+mysql> create table tablename(<column1><type1>,<column2><type2>,<column3><type3>,....<columnN><typeN>);
+example:
+mysql> create table MyClass(
+> id int(4) NOT NULL primary key auto_increment,
+> name char(20) NOT NULL,
+> sex int(4) NOT NULL default '0',
+> degree double(16,2)) ENGINE = MYISAM;
+
+# 查询表中数据
+查询所有行
+mysql> select * from tablename;
+查询并排序
+mysql> select * from tablename order by id desc;
+查询前几行数据
+mysql> select * from tablename order by id limit 0,2;
+指定条件查询
+mysql> select * from tablename where name = 'type';
+查询唯一不重复记录
+mysql> select distinct name from tablename;
+
+# 插入数据
+mysql> insert into tablename (<column1>,<column2>,<column3>) values (type1,type2,type3);
+or
+mysql> insert into tablename values(1,'Tom',96.45),(2,'Joan',82.99), (2,'Wang', 96.59);
+
+# 删除表中数据
+mysql> delete from tablename where id=N
+
+# 修改表中数据
+mysql> update tablename set column='value' where id=1;
+or
+mysql> update tablename set column=replace(column,'oldvalue','newvalue');
+example:
+mysql> update article set content=concat('你好',content);
+mysql> update user set pass='123456' where name='name';
+
+# 更改用户名
+update set user="newname" where user="oldname";
+
+# 更改表名
+mysql> rename table tablenameold to tablenamenew;
+
+# 在表中增加字段
+mysql> alter table tablename add column type default '0';
+example:
+mysql> alter table user add column date char(8) after pass;
+
+# 在user表中修改字段名及字段数据类型
+mysql> alter table tablename change column <column1> <type1> char(10);
+example:
+mysql> alter table user change column pass password char(10);
+
+# 删除表中字段
+mysql> alter table tablename grop column <column1>;
+example:
+mysql> alter table user drop column date;
+
+# 删除用户molyxuser
+mysql> use mysql;
+mysql> DELETE FROM user WHERE User='molyxuser';
+or
+mysql> drop user 'molyxuser'@'%';
+
+# 删除表
+mysql> drop table tablename;
+
+五、权限操作
+
+# 先创建个molyx库，再创建个可以操作molyx库的用户molyxuser，密码为123456
+mysql> create database molyx;
+mysql> grant select,insert,update,delete,create,alter,create temporary tables,create view,show view,drop on molyx.* to 'molyxuser'@'localhost' identified by "123456";
+or
+mysql> grant all on molyx.* to 'molyxuser'@localhost identified by "123456";
+
+#收回molyxuser针对molyx库的所有权限
+mysql> revoke all on molyx.* from 'molyxuser'@localhost identified by "123456";
+
+#创建一个针对molyx库具有所有权限，可从任意IP登录的帐号molyxuser
+mysql> grant all on molyx.* to 'molyxuser'@'%' identified by '123456';
+
+六、备份与还原
+
+# 备份molyx到文件molyx.sql
+mysqldump -uroot -p --databases molyx > /your/path/molyx.sql
+
+# 备份全部数据
+mysqldump -uroot -p -all -database > /your/path/backup.sql
+
+# 备份molyx并压缩
+mysqldump -u root -p --databases molyx | gzip > /your/path/molyx.sql.gz
+mysqldump -uroot -p --all-databases | gzip > /your/patch/mysql.sql.gz
+
+# 将molyx.sql导入到数据库
+mysqlimport -uroot -p < /your/path/molyx.sql
+or
+mysql -u molysuser -p < /your/path/molyx.sql
+
+#将压缩文件molyx.sql.gz中数据恢复到molyx库
+gzip < molyx.sql.gz | mysql -uroot -p --database molyx
+
+# 将文本数据导入数据库:
+mysql> use test;
+mysql> load data local infile "filename" into table tablename;
+
+# 检查所有的.myi文件
+myisamchk /your/path/mysql/*.MYI
+
+# 修复所有的.myi
+myisamchk -r /your/path/mysql/*.MYI
+
+# 查看名为molyx的数据库
+mysqlshow -uroot -p molyx
+
+#mysql 显示和使用的mysql数据库。前面已经简单的提过用法；比如登录等
+#mysqladmin 用来创建和维护mysql数据库的命令
+#isamchk 是用来修复、检查和优化.ism后缀的数据库文件
+#mysqldump 是用于备份数据库
+#myisamchk 用来修复.myi后缀的数据库文件
+
+字段类型
+1．INT[(M)] 型： 正常大小整数类型
+2．DOUBLE[(M,D)] [ZEROFILL] 型： 正常大小(双精密)浮点数字类型
+3．DATE 日期类型：支持的范围是1000-01-01到9999-12-31。MySQL以YYYY-MM-DD格式来显示DATE值，但是允许你使用字符串或数字把值赋给DATE列
+4．CHAR(M) 型：定长字符串类型，当存储时，总是是用空格填满右边到指定的长度
+5．BLOB TEXT类型，最大长度为65535(2^16-1)个字符。
+6．VARCHAR型：变长字符串类型
+
+# emerge --config =dev-db/mysql-5.1.53
+# mysql_upgrade tool
+
+mysqldump 命令的使用
+
+备份和导出数据库
+mysqldump -h database_ip -u Username -p --opt databasename > backup-file.sql
+只导出数据库表结构
+mysqldump -h database_ip -d -u Username -p databasename >database_structure.sql
+只导出数据库中的某个表
+mysqldump --opt --add-drop-table -u Username -p databasename tablename > dump.sql
+如果不想手工输入密码 请使用--password 参数
+mysqldump -h database_ip -u Username --password=123456 --opt databasename > backup-file.sql
+mysqldump -h database_ip -d -u Username --password=123456 databasename >database_structure.sql
+
+mysqldump -u root -p password --all-databases | gzip > /root/mysql.sql.gz
+gunzip < /root/mysql.sql.gz | mysql -u root -p password
+
+mysql 命令使用
+将查询结果保存到文件
+select title from book into outfile '/tmp/outfile.txt';
+查找表中多余的重复记录，重复记录是根据某个字段（peopleId）来判断
+select * from people where peopleId in (select peopleId from people group by
+peopleId having count(peopleId) > 1);
+查询表中不重复记录(排除重复记录)
+select * from phome_ecms_wma where title in (select distinct title from phome_ecms_wma);
+删除表中重复记录,重复记录是根据某个字段（title）来判断
+select *,count(distinct title) INTO OUTFILE '/tmp/table.bak' from phome_ecms_wma group by title;
+delete from phome_ecms_wma;
+LOAD DATA INFILE '/tmp/table.bak' REPLACE INTO TABLE phome_ecms_wma character set utf8;
+查询数据库当前编码
+mysql> show variables like "character_set%";
+修改表字段类型
+mysql> alter table table_name change last_action last_action datetime NOT NULL default '0000-00-00 00:00:00';
+给表添加一个新字段
+mysql> ALTER TABLE host ADD ks_mac VARCHAR(100);
+从表中删除一个字段
+mysql> ALTER TABLE table_name DROP field_name;
+重命名表
+mysql>alter table t1 rename t2;
+给字段加索引
+mysql> alter table tablename add index 索引名 (字段名1[，字段名2 …]);
+mysql> alter table tablename add index emp_name (name);
+加主关键字的索引
+mysql> alter table tablename add primary key(id);
+加唯一限制条件的索引
+mysql> alter table tablename add unique emp_name2(cardnumber);
+删除某个索引
+mysql>alter table tablename drop index emp_name;
+远程访问mysql 设置
+mysql> GRANT ALL PRIVILEGES ON database_test.* to root@192.168.1.9 IDENTIFIED BY '123456';
+mysql> FLUSH PRIVILEGES;
+
+1、使用SHOW语句找出在服务器上当前存在什么数据库
+mysql> show databases;
+2、创建一个数据库MYSQLDATA
+mysql> create database mydata;
+3、选择你所创建的数据库
+mysql> use mydata;
+4、查看现在的数据库中存在什么表
+mysql> show tables;
+5、创建一个数据库表
+mysql> create table mytable (name varchar(20), sex char(1));
+6、显示表的结构：
+mysql> describe mytable;
+7、往表中加入记录
+mysql> insert into mytable values ("test","m");
+8、用文本方式将数据装入数据库表中（例如 d:\mysql.txt）
+mysql> load data local infile "d:/mysql.txt" into table mytable;
+9、导入.sql文件命令（例如 d:\mysql.sql）
+mysql>use database;
+mysql>source d:/mysql.sql;
+10、删除表
+mysql>drop table mytable;
+11、清空表
+mysql>delete from mytable;
+12、更新表中数据
+mysql>update mytable set sex="f" where name=test;
+刚安装好的MySQL包含一个含空密码的root帐户和一个匿名帐户，这是很大的安全隐患，对于一些重要的应用我们应将安全性尽可能提高，在这里应把匿名帐户删除、root帐户设置密码，可用如下命令进行：
+=======================================
+mysql> use mysql;
+mysql> delete from User where User="";
+mysql> update User set Password=PASSWORD(newpassword) where User=root;
+=======================================
+如果要对用户所用的登录终端进行限制，可以更新User表中相应用户的Host字段，在进行了以上更改后应重新启动数据库服务，此时登录时可用如下类似命令：
+=======================================
+shell> mysql -uroot -p;
+shell> mysql -uroot -pnewpassword;
+shell> mysql mydb -uroot -p;
+shell> mysql mydb -uroot -pnewpassword;
+=======================================
+上面命令参数是常用参数的一部分，详细情况可参考文档。此处的mydb是要登录的数据库的名称。
+在进行开发和实际应用中，用户不应该只用root用户进行连接数据库，虽然使用root用户进行测试时很方便，但会给系统带来重大安全隐患，也不利于管理技术的提高。我们给一个应用中使用的用户赋予最恰当的数据库权限。如一个只进行数据插入的用户不应赋予其删除数据的权限。MySQL的用户管理是通过User表来实现的，添加新用户常用的方法有两个，一是在User表插入相应的数据行，同时设置相应的权限；二是通过grant命令创建具有某种权限的用户。其中grant的常用用法如下：
+================================================================
+mysql> grant all on mydb.* to NewUserName@HostName identified by "password" ;
+mysql> grant usage on *.* to NewUserName@HostName identified by "password";
+mysql> grant select,insert,update on mydb.* to NewUserName@HostName identified by "password";
+mysql> grant update,delete on mydb.TestTable to NewUserName@HostName identified by "password";
+================================================================
+若要给此用户赋予他在相应对象上的权限的管理能力，可在grant后面添加with grant option选项。而对于用插入User表添加的用户，Password字段应用password函数进行更新加密，以防不轨之人窃看密码。对于那些已经不用的用户应给予清除，权限过界的用户应及时回收权限，回收权限可以通过更新User表相应字段，也可以使用revoke操作。以下是常用权限的解释：
+=============================================
+全局管理权限
+FILE：在MySQL服务器上读写文件。
+PROCESS：显示或杀死属于其它用户的服务线程。
+RELOAD：重载访问控制表，刷新日志等。
+SHUTDOWN：关闭MySQL服务。
+数据库/数据表/数据列权限
+ALTER：修改已存在的数据表（例如增加/删除列）和索引。
+CREATE：建立新的数据库或数据表。
+DELETE：删除表的记录。
+DROP：删除数据表或数据库。
+INDEX：建立或删除索引。
+INSERT：增加表的记录。
+SELECT：显示/搜索表的记录。
+UPDATE：修改表中已存在的记录。
+特别的权限
+ALL：允许做任何事（和root一样）。
+USAGE：只允许登录--其它什么也不允许做。
+=============================================
+MySQL常用操作基本操作，以下都是MySQL5.0下测试通过首先说明下，记住在每个命令结束时加上；（分号）
+1.导出整个数据库
+mysqldump -u 用户名 -p --default-character-set=latin1 数据库名 > 导出的文件名(数据库默认编码是latin1)
+mysqldump -u wcnc -p smgp_apps_wcnc > wcnc.sql
+2.导出一个表
+mysqldump -u 用户名 -p 数据库名 表名> 导出的文件名
+mysqldump -u wcnc -p smgp_apps_wcnc users> wcnc_users.sql
+3.导出一个数据库结构
+mysqldump -u wcnc -p -d –add-drop-table smgp_apps_wcnc >d:wcnc_db.sql
+-d 没有数据 –add-drop-table 在每个create语句之前增加一个drop table
+4.导入数据库
+常用source 命令
+进入mysql数据库控制台，
+如mysql -u root -p
+mysql>use 数据库
+然后使用source命令，后面参数为脚本文件(如这里用到的.sql)
+mysql>source d:wcnc_db.sql
+
+MySQL数据库的表是一个二维表，由一个或多个数据列构成。每个数据列都有它的特定类型，该类型决定了MySQL如何看待该列数据，我们可以把整型数值存放到字符类型的列中，MySQL则会把它看成字符串来处理。MySQL中的列类型有三种：数值类、字符串类和日期/时间类。从大类来看列类型和数值类型一样，都是只有三种。但每种列类型都还可细分。下面对各种列类型进行详细介绍。
+
+1.2.1. 数值类的数据列类型
+数值型的列类型包括整型和浮点型两大类。
+
+Table 1.2. 数值类数据列类型
+数据列类型        存储空间        描述
+TINYINT        1字节        非常小的正整数，带符号：-128~127，不带符号：0~255
+SMALLINT    2字节        小整数，带符号：-32768~32767，不带符号：0~65535
+MEDIUMINT    3字节        中等大小的整数，带符号：-8388608~8388607，不带符号：0~16777215
+INT        4字节        标准整数，带符号：-2147483648~2147483647，不带符号：0~4294967295
+BIGINT        8字节        大整数，带符号：-9223372036854775808~9233372036854775807，不带符号：0~18446744073709551615
+FLOAT        4字节        单精度浮点数，最小非零值：+-1.175494351E-38，最大非零值：+-3.402823466E+38
+DOUBLE        8字节        双精度浮点数，最小非零值：+-2.2250738585072014E-308，最大非零值：+-1.7976931348623157E+308
+DECIMAL        M+2字节        以字符串形式表示的浮点数，它的取值范围可变，由M和D的值决定。
+
+1.2.1.1. 整型数据列类型
+MySQL有五种整型数据列类型，即TINYINT，SMALLINT，MEDIUMINT，INT和BIGINT。它们之间的区别是取值范围不同，存储空间也各不相同。在整型数据列后加上UNSIGNED属性可以禁止负数，取值从0开始。
+声明整型数据列时，我们可以为它指定个显示宽度M(1~255)，如INT(5)，指定显示宽度为5个字符,如果没有给它指定显示宽度，MySQL会为它指定一个默认值。显示宽度只用于显示，并不能限制取值范围和占用空间，如：INT(3)会占用4个字节的存储空间，并且允许的最大值也不会是999,而是INT整型所允许的最大值。
+
+1.2.1.2. 浮点型数据列类型
+MySQL有三种浮点型数据列类型，分别是：FLOAT，DOUBLE和DECIMAL。浮点类数据类型有一个最大可表示值和一个最小非零可表示值，最小非零可表示值决定了该类型的精确度。
+MySQL 4.0.2版之后，FLOAT和DOUBLE都可以指定UNSIGNED属性。当指定该属性时，取值范围不平移到正数区间，而只是简单地把浮点类型的负数部份去掉。
+浮点类型也有M(1~255)和D(1~30，且不能大于M-2)。分别表示显示宽度和小数位数。M和D在FLOAT和DOUBLE中是可选的，默认，当MySQL版本大于3.23.6时，FLOAT和DOUBLE类型将被保存为硬件所支持的最大精度。DECIMAL的M和D值在MySQL3.23.6后可选，默认D值为0,M值为10。
+
+1.2.1.3. 如何选择数值类数据列类型？
+为了节省存储空间和提高数据库处理效率，我们应根据应用数据的取值范围来选择一个最适合的数据列类型。如果把一个超出数据列取值范围的数存入该列，则MySQL就会截短该值，如：我们把99999存入SMALLINT(3)数据列里，因为SMALLINT(3)的取值范围是-32768~32767，所以就会被截短成32767存储。显示宽度3不会影响数值的存储。只影响显示。
+对于浮点数据列，存入的数值会被该列定义的小数位进行四舍五入。如把一个1.234存入FLOAT(6.1)数据列中，结果是1.2。
+DECIMAL与FLOAT和DOUBLE的区别是：DECIMAL类型的值是以字符串的形式被储存起来的，它的小数位数是固定的。它的优点是，不会象FLOAT和DOUBLE类型数据列那样进行四舍五入而产生误差，所以很适合用于财务计算；而它的缺点是：由于它的存储格式不同，CPU不能对它进行直接运算，从而影响运算效率。DECIMAL(M，D)总共要占用M+2个字节。
+
+1.2.1.4. 数值类数据列的属性
+ZEROFILL属性适用于所有数值类数据列类型，作用是，如果数值的宽度小于定义的显示宽度，则在数值前填充0。
+UNSIGNED属性不允许数据列出现负数。
+AUTO_INCREMENT属性可生成独一无二的数字序列。只对整数类的数据列有效。
+NULL和NOT NULL属性设置数据列是否可为空。
+DEFAULT属性可为数据列指定默认值。
+
+1.2.2. 字符串类数据列类型
+字符串可以用来表示任何一种值，所以它是最基本的类型之一。我们可以用字符串类型来存储图象或声音之类的二进制数据，也可存储用gzip压缩的数据。下表介绍了各种字符串类型：
+
+Table 1.3. 字符串类数据列类型
+类型                最大长度        占用存储空间
+CHAR[(M)]            M字节        M字节
+VARCHAR[(M)]            M字节        L+1字节
+TINYBLOD，TINYTEXT        2^8-1字节    L+1字节
+BLOB，TEXT            2^16-1字节    L+2
+MEDIUMBLOB，MEDIUMTEXT        2^24-1字节    L+3
+LONGBLOB，LONGTEXT        2^32-1字节    L+4
+ENUM('value1','value2',...)    65535个成员    1或2字节
+SET('value1','value2',...)    64个成员        1,2,3,4或8字节
+
+L+1、L+2是表示数据列是可变长度的，它占用的空间会根据数据行的增减面则改变。数据行的总长度取决于存放在这些数据列里的数据值的长度。L+1或L+2里多出来的字节是用来保存数据值的长度的。在对长度可变的数据进行处理时，MySQL要把数据内容和数据长度都保存起来。
+如果把超出字符串最大长度的数据放到字符类数据列中，MySQL会自动进行截短处理。
+ENUM和SET类型的数据列定义里有一个列表，列表里的元素就是该数据列的合法取值。如果试图把一个没有在列表里的值放到数据列里，它会被转换为空字符串(“”)。
+字符串类型的值被保存为一组连续的字节序列，并会根据它们容纳的是二进制字符串还是非二进制字符而被区别对待为字节或者字符：
+二进制字符串被视为一个连续的字节序列，与字符集无关。MySQL把BLOB数据列和带BINARY属性的CHAR和VARCHAR数据列里的数据当作二进制值。
+非二进制字符串被视为一个连续排列的字符序列。与字符集有关。MySQL把TEXT列与不带BINARY属性的CHAR和VARCHAR数据列里的数据当作二进制值对待。
+在MySQL4.1以后的版本中，不同的数据列可以使用不同的字符集。在MySQL4.1版本以前，MySQL用服务器的字符集作为默认字符集。
+非二进制字符串，即我们通常所说的字符串，是按字符在字符集中先后次序进行比较和排序的。而二进制字符串因为与字符集无关，所以不以字符顺序排序，而是以字节的二进制值作为比较和排序的依据。下面介绍两种字符串的比较方式：
+二进制字符串的比较方式是一个字节一个字节进行的，比较的依据是两个字节的二进制值。也就是说它是区分大小写的，因为同一个字母的大小写的数值编码是不一样的。非二进制字符串的比较方式是一个字符一个字符进行的，比较的依据是两个字符在字符集中的先后顺序。在大多数字符集中，同一个字母的大小写往往有着相同的先后顺序，所以它不区分大小写。
+二进制字符串与字符集无关，所以无论按字符计算还是按字节计算，二进制字符串的长度都是一样的。所以VARCHAR(20)并不表示它最多能容纳20个字符，而是表示它最多只能容纳可以用20个字节表示出来的字符。对于单字节字符集，每个字符只占用一个字节，所以这两者的长度是一样的，但对于多字节字符集，它能容纳的字符个数肯定少于20个。
+
+1.2.2.1. CHAR和VARCHAR
+CHAR和VARCHAR是最常用的两种字符串类型，它们之间的区别是：
+CHAR是固定长度的，每个值占用相同的字节，不够的位数MySQL会在它的右边用空格字符补足。
+VARCHAR是一种可变长度的类型，每个值占用其刚好的字节数再加上一个用来记录其长度的字节即L+1字节。
+CHAR(0)和VARCHAR(0)都是合法的。VARCHAR(0)是从MySQL4.0.2版开始的。它们的作用是作为占位符或用来表示各种on/off开关值。
+
+如何选择CHAR和VARCHAR，这里给出两个原则：
+如果数据都有相同的长度，选用VARCHAR会多占用空间，因为有一位用来存储其长度。如果数据长短不一，选用VARCHAR能节省存储空间。而CHAR不论字符长短都需占用相同的空间，即使是空值也不例外。
+如果长度出入不大，而且是使用MyISAM或ISAM类型的表，则用CHAR会比VARCHAR好，因为MyISAM和ISAM类型的表对处理固定长度的行的效率高。
+在一个数据表里，只要有一个数据列的长度是可变的，则所有数据列的长度将是可变的。MySQL会进行自动地转换。一个例外，CHAR长度小于4的不会进行自动转换，因为MySQL会认为这样做没必要，节省不了多少空间。反而MySQL会把大量长度小的VARCHAR转换成CHAR，以减少空间占用量。
+
+1.2.2.2. BLOB和TEXT
+BLOB是二进制字符串，TEXT是非二进制字符串。两者都可存放大容量的信息。
+
+有关BLOB和TEXT索引的建立：
+BDB表类型和MySQL3.23.2以上版本的MyISAM表类型允许在BLOB和TEXT数据列上建立索引。
+ISAM、HEAP和InnoDB表不支持大对象列的索引。
+
+使用BLOB和TEXT应注意的问题：
+由于这两个列类型所存储的数据量大，所以删除和修改操作容易在数据表里产生大量的碎片，需定期运行OPTIMIZE TABLE以减少碎片和提高性能。
+如果使用的值非常巨大，就需对服务器进行相应的优化调整，增加max_allowed_packet参数的值。对那些可会用到变些巨大数据的客户程序，也需加大它们的数据包大小。
+
+1.2.2.3. ENUM和SET
+ENUM和SET都是比较特殊的字符串数据列类型，它们的取值范围是一个预先定义好的列表。ENUM或SET数据列的取值只能从这个列表中进行选择。ENUM和SET的主要区别是：
+ENUM只能取单值，它的数据列表是一个枚举集合。它的合法取值列表最多允许有65535个成员。例如：ENUM("N","Y")表示，该数据列的取值要么是"Y"，要么就是"N"。
+SET可取多值。它的合法取值列表最多允许有64个成员。空字符串也是一个合法的SET值。
+ENUM和SET的值是以字符串形式出现的，但在内部，MySQL以数值的形式存储它们。
+ENUM的合法取值列表中的字符串被按声明定义的顺序被编号，从1开始。
+SET的编号不是按顺序进行编号的，SET中每一个合法取值都对应着SET值里的一个位。第一个合法取值对应0位，第二个合法取值对应1位，以此类推，如果数值形式的SET值等于0,则说明它是一个空字符串，如果某个合法的取值出现在SET数据列里，与之对应的位就会被置位；如果某个合法的取值没有出现在SET数据列里，与之对应的位就会被清零。正因为SET值与位有这样的对应关系，所以SET数据列的多个合法取值才能同时出现并构成SET值。
+
+1.2.2.4. 字符串类型数据列的字符集属性
+在MySQL 4.1以前的版本，字符串数据列的字符集由服务器的字符决定，MySQL 4.1版以后的版本可对每个字符串数据列指定不同的字符串。如果按默认方式设置，可按数据列、数据表、数据库、服务器的顺序关联字符串的字符集，直到找一个明确定义的字符集。
+
+1.2.3. 日期,时间型数据列类型
+MySQL的日期时间类型有：DATE，DATETIME，TIME，TIMESTAMP和YEAR，下表是这些类型的取值范围和存储空间要求：
+
+Table 1.4. 日期，时间类型列
+类型        取值范围                    存储空间                零值表示法
+DATE        1000-01-01~9999-12-31            3字节(MySQL3.23版以前是4字节 )    0000-00-00
+TIME        -838:59:59~838:59:59            3字节                00:00:00
+DATETIME    1000-01-01 00:00:00~9999-12-31 23:59:59    8字节                0000-00-00 00:00:00
+TIMESTAMP    19700101000000~2037年的某个时刻        4字节                00000000000000
+YEAR        YEAR(4)：1901~2155 YEAR(2)：1970~2069    1字节                0000
+MySQL总是把日期和日期里的年份放在最前面，按年月日的顺序显示。
+
+1.2.3.1. DATE、TIME、DATATIME数据列类型
+DATE、TIME和DATATIME类型分别存放日期值、时间值、日期和时间值的组合。它们的格式分别是“CCYY-MM-DD”、“hh:mm:ss”、“CCYY-MM-DD hh:mm:ss”。
+DATATIME里的时间值和TIME值是有区别的，DATATIME里的时间值代表的是几点几分，TIME值代表的是所花费的时间。当向TIME数据列插值时，需用时间的完整写法，如12分30秒要写成“00:12:30”。
+
+1.2.3.2. TIMESTAMP数据列类型
+TIMESTAMP数据列的格式是CCYYMMDDhhmmss，取值范围从19700101000000开始，即1970年1月1号，最大到2037年。它的特点是能把数据行的创建或修改时间记录下来：
+如果把一个NULL值插入TIMESTAMP列，这个数据列就将自动取值为当前的日期和时间。
+在创建和修改数据行时，如果没有明确对TIMESTAMP数据列进行赋值，则它就会自动取值为当前的日期和时间。如果行中有多个TIMESTAMP列，只有第一个会自动取值。
+如果对TIMESTAMP设置一个确定的日期和时间值，则会使TIMESTAMP的自动取值功能失效。
+TIMESTAMP默认的列宽是14,可指定列宽，以改变显示效果。但不论你指定的列宽如何，MySQL都是以4字节来存储TIMESTAMP值，也总是以14位精度来计算。
+如果需要把创建时间和最近一次修改时间同时记录下来，可以用两个时间戳来记录，一个记录创建时间，一个记录修改时间。不过需记住两件事，一是要把记录修改时间的TIMESTAMP数据列放在最前面，这样才会自动取值；二是创建一条新记录时，要用now()函数来初始化创建时间TIMESTAMP数据列，这样，该TIMESTAMP数据列就不会再变化。
+
+1.2.3.3. YEAR
+YEAR是一种单字节的数据列类型，YEAR(4)的取值范围是1901~2155,YEAR(2)的取值范围是1970~2069,但只显示最后两位数。MySQL能自动把两位数字年份转换成四位数字的年份，如97和14分被转换成1997和2014。转换规则是这样的：
+年份值00~69将被转换成2000~2069；
+年份值70~99将被转换成1970~1999。

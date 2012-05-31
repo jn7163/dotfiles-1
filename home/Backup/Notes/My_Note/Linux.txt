@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2011-11-02T13:53:06+08:00
+
+====== Linux ======
+
+[[+Browser|Browser]]: [[+Browser:Firefox|firefox]], [[+Browser:Proxy|proxy]], [[+Browser:W3m|w3m]],
+
+[[+Distribution|Distribution]]: [[+Distribution:Arch|Arch]], [[+Distribution:Centos|Centos]], [[+Distribution:Freebsd|Freebsd]], [[+Distribution:Gentoo|Gentoo]], [[+Distribution:Slackware|Slackware]], 
+
+[[+Shell|Shell]]: [[:My Note:Linux:Shell:awk|awk]], [[+Shell:diff|diff]], [[+Shell:find|find]], [[+Shell:patch|patch]], [[+Shell:sed|sed]], 
+
+[[+Tips|Tips]]: [[+Tips:audio|audio]], [[+Tips:git|git]], [[+Tips:imagemagick|imagemagick]], [[+Tips:mbr|mbr]], [[+Tips:net|net]], [[+Tips:openssh|openssh]], [[+Tips:pptpclient|pptpclient]], [[+Tips:rtorrent|rtorrent]], [[+Tips:smbclient|smbclient]], [[+Tips:subversion|subversion]], [[+Tips:vim|vim]], [[+Tips:wifi加密破解|wifi加密破解]], 
+
+[[+Virtual|Virtual]]: [[+Virtual:VKM|KVM]],
