@@ -95,7 +95,8 @@ systemtools = {
     { "VirtualBox", "VirtualBox" },
     { "AlsaMixer", "xterm -e alsamixer" },
     { "Htop", "xterm -e htop" },
-    { "Fcitx Config", "fcitx-configtool" }
+    { "Fcitx Config", "fcitx-configtool" },
+    { "Python Shell", "idle3.2" }
 }
 
 mymainmenu = awful.menu({ items = { { "Accessories", accessories, beautiful.awesome_icon },
