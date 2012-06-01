@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-cn">
 <head>
-<title>vim - Havanna's wiki</title>
+<title>vim 使用小结 - Havanna's wiki</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link type="image/x-icon" rel="icon" href="../../css/favicon.ico" />
 <link type="image/x-icon" rel="shortcut icon" href="../../css/favicon.ico" />
@@ -32,8 +32,231 @@
 <div class="toc">
 <ul>
 <li><a href="#toc_1">vim 使用小结</a>
+<ul>
+<li><a href="#toc_1.1">删除相关</a>
+<li><a href="#toc_1.2">复制相关</a>
+<li><a href="#toc_1.3">搜索替换</a>
+<li><a href="#toc_1.4">窗口操作</a>
+<li><a href="#toc_1.5">其他</a>
+<li><a href="#toc_1.6">扩展阅读</a>
+</ul>
 </ul>
 </div>
+
+<h2 id="toc_1.1">删除相关</h2>
+<ul>
+<li>
+删除光标处的单个字符
+<pre>
+    x
+</pre>
+
+<li>
+删除光标所在行
+<pre>
+    dd
+</pre>
+
+<li>
+删除当前字符到单词尾包括空格的所有字符
+<pre>
+    dw
+</pre>
+
+<li>
+删除所有不包含字符的空行删除(空格也不包含)
+<pre>
+    :g/^\s*$/d
+</pre>
+
+<li>
+删除包含1的所有行
+<pre>
+    :g/1/d
+</pre>
+
+<li>
+删除不包含1的行
+<pre>
+    :v/1/d
+</pre>
+
+<li>
+删除不包含1或2或3或4的行
+<pre>
+    :v/1\|2\|3\|4/d
+</pre>
+
+<li>
+删除<sup><small>M（</small></sup>M要用ctrl_v ctrl_m来输入）
+<pre>
+    :%s/^M$//g
+</pre>
+
+</ul>
+<h2 id="toc_1.2">复制相关</h2>
+<ul>
+<li>
+命令复制当前整行的内容到vi缓冲区
+<pre>
+    yy
+</pre>
+
+<li>
+复制当前光标所在位置到单词尾字符的内容到vi缓存区，相当于复制一个单词
+<pre>
+    yw
+</pre>
+
+<li>
+复制光标所在位置到行尾内容到缓存区
+<pre>
+    y$
+</pre>
+
+</ul>
+<h2 id="toc_1.3">搜索替换</h2>
+<ul>
+<li>
+复制光标所在位置到行首内容到缓存区
+<pre>
+    y^
+</pre>
+
+<li>
+搜索，敲n向下搜索
+<pre>
+    /
+</pre>
+
+<li>
+搜索，敲n向上搜索
+<pre>
+    ?
+</pre>
+
+<li>
+当前行将1替换成2
+<pre>
+    :s/1/2
+</pre>
+
+<li>
+用2替换所有的1
+<pre>
+    :g/1/s//2/g
+</pre>
+
+<li>
+全文搜索1并替换成2
+<pre>
+    :%s/1/2
+</pre>
+
+</ul>
+<h2 id="toc_1.4">窗口操作</h2>
+<ul>
+<li>
+窗口间切换
+<pre>
+    ^w w
+</pre>
+
+<li>
+跳转到左边窗口
+<pre>
+    ^w h
+</pre>
+
+<li>
+跳转到下面窗口
+<pre>
+    ^w j
+</pre>
+
+<li>
+跳转到上面窗口
+<pre>
+    ^w k
+</pre>
+
+<li>
+跳转到右边窗口
+<pre>
+    ^w l
+</pre>
+
+<li>
+跳转到最顶上窗口
+<pre>
+    ^w t
+</pre>
+
+<li>
+跳转到最底下窗口
+<pre>
+    ^w b
+</pre>
+
+<li>
+增大或缩小当前窗口
+<pre>
+    ^w + -
+</pre>
+
+<li>
+上面打开新窗口
+<pre>
+    :split
+</pre>
+
+<li>
+上面打开窗口编辑新文件
+<pre>
+    :new
+</pre>
+
+<li>
+关闭当前窗口
+<pre>
+    :close
+</pre>
+
+<li>
+关闭除当前的所有窗口
+<pre>
+    :only
+</pre>
+
+<li>
+左边打开新窗口
+<pre>
+    :vsplit
+</pre>
+
+<li>
+左边打开窗口编辑新文件
+<pre>
+    :vnew
+</pre>
+
+</ul>
+<h2 id="toc_1.5">其他</h2>
+<ul>
+<li>
+设置bom格式
+<pre>
+    :set bomb
+</pre>
+
+<li>
+设置无bom格式
+<pre>
+    :set nobomb
+</pre>
+
+</ul>
+<h2 id="toc_1.6">扩展阅读</h2>
 <p>
 <a href="vimwiki-guide.html">用 vimwiki 搭建你自己的维基世界</a>
 </p>
