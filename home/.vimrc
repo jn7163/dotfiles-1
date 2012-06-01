@@ -264,9 +264,20 @@ let g:vimwiki_folding = 1
 " 是否在计算字串长度时考虑中文字符
 let g:vimwiki_CJK_length = 1
 " 标签
-let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1,h2,h3,h4,h5,h6,p'
+let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center,left,right,h1,h2,h3,h4,h5,h6,p,pre'
 let g:vimwiki_use_mouse = 1
-let g:vimwiki_list = [{'path':'~/Backup/wiki/', 'path_html': '~/Documents/html/', 'html_header': '~/.vim/autoload/vimwiki/header.tpl', 'html_footer': '~/.vim/autoload/vimwiki/footer.tpl', 'auto_export': 1,}]
+"let g:vimwiki_list = [{'path':'~/Backup/vimwiki/', 'path_html': '~/Backup/vimwiki/html/', 'html_header': '~/.vim/autoload/vimwiki/header.tpl', 'html_footer': '~/.vim/autoload/vimwiki/footer.tpl', 'auto_export': 1,}]
+
+let g:vimwiki_use_mouse = 1
+let g:vimwiki_list = [{
+            \ 'path': '~/Backup/vimwiki/',
+            \ 'path_html': '~/Documents/dotfiles/html/',
+            \ 'template_path': '~/.vim/autoload/vimwiki/',
+            \ 'template_ext': '.tpl',
+            \ 'css_name': 'style.css',
+            \ 'auto_export': 1,}]
+map <F3> :Vimwiki2HTML<cr>
+
 
 let g:vimrc_author='Havanna'
 let g:vimrc_email='havanna.sha#gmail.com'
