@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-cn">
+<head>
+<title>Arch常用包管理命令 - Havanna's wiki</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="image/x-icon" rel="icon" href="../../css/favicon.ico" />
+<link type="image/x-icon" rel="shortcut icon" href="../../css/favicon.ico" />
+<link rel="Stylesheet" type="text/css" href="../../css/style.css" />
+<script>var root_path = '../../';</script> 
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="../../index.html">首页</a>
+		</li>
+		<li>
+			<a href="http://ihavanna.org/">博客</a>
+		</li>
+		<li>
+			<a href="https://github.com/Havanna/">GitHub</a>
+		</li>
+	</ul>
+</div>
+<div id="cse"></div>
+<em>聪明难，难的是如何耍聪明，糊涂难，要想装糊涂难上加难。聪明人装糊涂，无非不就是耍聪明。</em>
+<div id="main">
+
+
+<h1 id="toc_1" class="justcenter">Arch常用包管理命令</h1>
+<div class="toc">
+<ul>
+<li><a href="#toc_1">Arch常用包管理命令</a>
+<ul>
+<li><a href="#toc_1.1">pacman与yaourt</a>
+<ul>
+<li><a href="#toc_1.1.1">pacman</a>
+<li><a href="#toc_1.1.2">yaourt</a>
+</ul>
+</ul>
+</ul>
+</div>
+<h2 id="toc_1.1">pacman与yaourt</h2>
+<h3 id="toc_1.1.1">pacman</h3>
+<ul>
+<li>
+列出无用的孤立的包
+<pre>
+    $ pacman -Qdt
+</pre>
+
+<li>
+清空cache
+<pre>
+    $ pacman -Scc
+</pre>
+
+<li>
+删除包及其依赖包和相关配置文件
+<pre>
+    $ pacman -Rsn package
+</pre>
+
+<li>
+安装本地的包
+<pre>
+    $ pacman -U package
+</pre>
+
+<li>
+升级系统
+<pre>
+    $ pacman -Syu
+</pre>
+
+<li>
+从源中安装包及其依赖包
+<pre>
+    $ pacman -S package
+</pre>
+
+<li>
+强制重新安装包
+<pre>
+    $ pacman -Sf package
+</pre>
+
+<li>
+列出安装包本地文件
+<pre>
+    $ pacman -Ql package
+</pre>
+
+<li>
+pacman {-h --help}                        //帮助
+
+<li>
+pacman {-V --version}                     //查看版本
+
+<li>
+pacman {-D --database} &lt;选项&gt; &lt;软件包&gt;    //pacman管理数据库选项
+<pre>
+$ pacman -D --help
+用法:  pacman {-D --database} &lt;选项&gt; &lt;软件包&gt;
+选项:
+ --asdeps                   标记为非单独指定安装的软件包
+ --asexplicit               标记为单独指定安装的软件包
+ --config &lt;路径&gt;            指定另外的配置文件
+ --logfile &lt;路径&gt;           指定另外的日志文件
+ --noconfirm                不询问确认
+ --noprogressbar            下载文件时不显示进度条
+ --noscriptlet              不执行安装小脚本
+ -v, --verbose              循环执行
+ --debug                    显示除错信息
+ -r, --root &lt;路径&gt;          指定另外的安装根目录
+ -b, --dbpath &lt;路径&gt;        指定另外的数据库位置
+ --cachedir &lt;目录&gt;          指定另外的软件包缓存位置
+ --arch &lt;架构&gt;              设定另外的架构
+</pre>
+
+<li>
+pacman {-Q --query}    [选项] [软件包]     //查询安装包
+<pre>
+$ pacman -Q --help
+用法:  pacman {-Q --query} [选项] [软件包]
+选项:
+ -c, --changelog            查看某软件包的更新日志
+ -d, --deps                 列出所有作为依赖关系安装的软件包 [过滤器]
+ -e, --explicit             列出所有单独指定安装的软件包 [过滤器]
+ -g, --groups               查看某软件包组所属的所有软件包
+ -i, --info                 查看软件包信息 (-ii 查看备份文件)
+ -k, --check                检查该软件包拥有的文件是否存在
+ -l, --list                 列出被查询软件包的内容
+ -m, --foreign              列出没有在同步数据库时找到的已安装软件包 [过滤器]
+ -o, --owns &lt;文件&gt;          查询哪个软件包拥有  &lt;文件&gt;
+ -p, --file &lt;软件包&gt;        从某个软件包而不是数据库查询
+ -s, --search &lt;regex&gt;       搜寻符合指定字符串的已安装本地的软件包
+ -t, --unrequired           列出所有不被其他软件包要求的软件包 [过滤器]
+ -u, --upgrades             列出所有可升级的软件包 [过滤器]
+ -q, --quiet                在查询或搜索时显示较少的信息
+ --config &lt;路径&gt;            指定另外的配置文件
+ --logfile &lt;路径&gt;           指定另外的日志文件
+ --noconfirm                不询问确认
+ --noprogressbar            下载文件时不显示进度条
+ --noscriptlet              不执行安装小脚本
+ -v, --verbose              循环执行
+ -- debug                   显示除错信息
+ -r, --root &lt;路径&gt;          指定另外的安装根目录
+ -b, --dbpath &lt;路径&gt;        指定另外的数据库位置
+ --cachedir &lt;目录&gt;          指定另外的软件包缓存位置
+ --arch &lt;架构&gt;              设定另外的架构
+</pre>
+
+<li>
+pacman {-R --remove}   [选项] &lt;软件包&gt;     //删除安装包
+<pre>
+$ pacman -R --help
+用法:  pacman {-R --remove} [选项] &lt;软件包&gt;
+选项:
+ -c, --cascade              删除软件包及所有的依赖于此的软件包
+ -d, --nodeps               略过依赖关系检查
+ -k, --dbonly               只删除数据库记录，不删除文件
+ -n, --nosave               同时删除配置文件
+ -s, --recursive            同时删除 (不会破坏其他软件包的) 依赖关系(-ss·也包括单独指定安装的依赖关系)
+ -u, --unneeded             同时删除不需要的 (且不会破坏其他软件包的) 依赖关系
+ --print                    仅打印目标而不执行操作
+ --print-format &lt;字符串&gt;    指定如何打印目标
+ --config &lt;路径&gt;            指定另外的配置文件
+ --logfile &lt;路径&gt;           指定另外的日志文件
+ --noconfirm                不询问确认
+ --noprogressbar            下载文件时不显示进度条
+ --noscriptlet              不执行安装小脚本
+ -v, --verbose              循环执行
+ -- debug                   显示除错信息
+ -r, --root &lt;路径&gt;          指定另外的安装根目录
+ -b, --dbpath &lt;路径&gt;        指定另外的数据库位置
+ --cachedir &lt;目录&gt;          指定另外的软件包缓存位置
+ --arch &lt;架构&gt;              设定另外的架构
+</pre>
+
+<li>
+pacman {-S --sync}     [选项] [软件包]     //安装安装包
+<pre>
+$ pacman -S --help
+用法:  pacman {-S --sync} [选项] [软件包]
+选项:
+ --asdeps                   作为非单独指定安装的软件包安装
+ --asexplicit               作为单独指定安装的软件包安装
+ -c, --clean                从缓存目录中删除旧软件包 (-cc 清除所有)
+ -d, --nodeps               略过依赖关系检查
+ -f,  -force                强制安装，覆盖存在冲突的文件
+ -g, --groups               查看某软件包组所属的所有软件包
+ -i, --info                 查看软件包信息
+ -l, --list &lt;软件库&gt;        查看在该软件库中的软件包清单
+ -s, --search &lt;regex表达式&gt; 按照指定字符串查询远端软件库
+ -u, --sysupgrade           升级所有已安装的软件包 (-uu 可启用降级)
+ -w, --downloadonly         下载但不安装/升级软件包
+ -y, --refresh              从服务器下载新的软件包数据库
+ --needed                   不重新安装已经为最新的软件包
+ --ignore &lt;软件包&gt;          升级时忽略某个软件包 (可多次使用)
+ --ignoregroup &lt;软件包组&gt;   升级时忽略某个软件包组 (可多次使用)
+ --print                    仅打印目标而不执行操作
+ --print-format &lt;字符串&gt;    指定如何打印目标
+ -q, --quiet                在查询或搜索时显示较少的信息
+ --config &lt;路径&gt;            指定另外的配置文件
+ --logfile &lt;路径&gt;           指定另外的日志文件
+ --noconfirm                不询问确认
+ --noprogressbar            下载文件时不显示进度条
+ --noscriptlet              不执行安装小脚本
+ -v, --verbose              循环执行
+ --debug                    显示除错信息
+ -r, --root &lt;路径&gt;          指定另外的安装根目录
+ -b, --dbpath &lt;路径&gt;        指定另外的数据库位置
+ --cachedir &lt;目录&gt;          指定另外的软件包缓存位置
+ --arch &lt;架构&gt;              设定另外的架构
+</pre>
+
+<li>
+pacman {-U --upgrade}  [选项] &lt;文件&gt;       //更新安装包
+<pre>
+$ pacman -U --help
+用法:  pacman {-U --upgrade} [选项] &lt;文件&gt;
+选项:
+ --asdeps                   作为非单独指定安装的软件包安装
+ --asexplicit               作为单独指定安装的软件包安装
+ -d, --nodeps               略过依赖关系检查
+ -f,  -force                强制安装，覆盖存在冲突的文件
+ -k, --dbonly               添加数据库记录，不安装或保持现存文件
+ --print                    仅打印目标而不执行操作
+ --print-format &lt;字符串&gt;    指定如何打印目标
+ --config &lt;路径&gt;            指定另外的配置文件
+ --logfile &lt;路径&gt;           指定另外的日志文件
+ --noconfirm                不询问确认
+ --noprogressbar            下载文件时不显示进度条
+ --noscriptlet              不执行安装小脚本
+ -v, --verbose              循环执行
+ -- debug                   显示除错信息
+ -r, --root &lt;路径&gt;          指定另外的安装根目录
+ -b, --dbpath &lt;路径&gt;        指定另外的数据库位置
+ --cachedir &lt;目录&gt;          指定另外的软件包缓存位置
+ --arch &lt;架构&gt;              设定另外的架构
+</pre>
+
+</ul>
+<h3 id="toc_1.1.2">yaourt</h3>
+<ul>
+<li>
+从AUR安装软件包
+<pre>
+    $ yaourt -S package
+</pre>
+
+<li>
+使用关键字搜索软件包
+<pre>
+    $ yaourt -Ss package
+</pre>
+
+<li>
+从AUR升级本地软件数据库并安装更新
+<pre>
+    $ yaourt -Syu –aur
+</pre>
+
+<li>
+更新devel软件包
+<pre>
+    $ yaourt -Su –devel
+</pre>
+
+<li>
+列出软件包信息
+<pre>
+    $ yaourt -Si package
+</pre>
+
+<li>
+从缓存中清楚旧的软件包
+<pre>
+    $ yaourt -Sc
+</pre>
+
+<li>
+安装AUR中的更新软件包
+<pre>
+    $ yaourt -Su
+</pre>
+
+<li>
+获取最新的AUR软件包数据库
+<pre>
+    $ yaourt -Sy
+</pre>
+
+<li>
+清除AUR软件包数据库
+<pre>
+    $ yaourt -Cd
+</pre>
+
+<li>
+删除软件包
+<pre>
+    $ yaourt -R package
+</pre>
+
+<li>
+查询aur上装的包
+<pre>
+    $ yaourt -Qmq
+</pre>
+
+</ul>
+
+
+</div>
+<div id="footer">
+    <p>&copy; 2012 <a href="http://ihavanna.org" target="_blank">Havanna</a> &nbsp;&nbsp; Driven by <a href="http://code.google.com/p/vimwiki/" target="_blank">Vimwiki</a></p>
+</div>
+</div>
+<script src="../../js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="../../js/vimwiki.js" type="text/javascript"></script>
+</body>
+</html>
