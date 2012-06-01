@@ -39,11 +39,20 @@
 </div>
 <h2 id="toc_1.1">places.sqlite清理</h2>
 <pre>
-sqlite3 pl.sqlite "DELETE FROM moz_historyvisits WHERE place_id IN (SELECT id FROM moz_places WHERE visit_count &lt;=2 );"
-sqlite3 pl.sqlite "DELETE FROM moz_pl WHERE (visit_count &lt;=2 AND hidden &lt;&gt; 1 AND id NOT IN (SELECT place_id FROM moz_annos UNION SELECT fk FROM moz_bookmarks));"
-sqlite3 pl.sqlite "DELETE FROM moz_inputhistory WHERE place_id NOT IN (SELECT id FROM moz_places);"
-sqlite3 pl.sqlite "DELETE FROM moz_favicons WHERE id NOT IN (SELECT favicon_id FROM moz_pl);"
-sqlite3 places.sqlite "VACUUM;"
+$ sqlite3 pl.sqlite "DELETE FROM moz_historyvisits WHERE place_id IN \
+    (SELECT id FROM moz_places WHERE visit_count &lt;=2 );"
+
+$ sqlite3 pl.sqlite "DELETE FROM moz_pl WHERE (visit_count &lt;=2 AND \
+    hidden &lt;&gt; 1 AND id NOT IN (SELECT place_id FROM moz_annos UNION \
+    SELECT fk FROM moz_bookmarks));"
+
+$ sqlite3 pl.sqlite "DELETE FROM moz_inputhistory WHERE place_id NOT IN \
+    (SELECT id FROM moz_places);"
+
+$ sqlite3 pl.sqlite "DELETE FROM moz_favicons WHERE id NOT IN \
+    (SELECT favicon_id FROM moz_pl);"
+
+$ sqlite3 places.sqlite "VACUUM;"
 </pre>
 
 
