@@ -32,7 +32,7 @@ layouts =
 }
 
 tags = {
-  names = { "Terminal", "Internet", "Mail", "Documents", "Media", "Virtual", "Misc",
+  names = { "Terminal", "Internet", "Program", "Documents", "Media", "Virtual", "Misc",
   },
   layout = {
     layouts[5], layouts[9], layouts[9], layouts[9], layouts[12], layouts[12], layouts[12],
@@ -70,6 +70,7 @@ internet = {
 
 editors = {
     { "Leafpad", "leafpad" },
+    { "Python Shell", "idle3.2" },
     { "Emacs", "emacs" }
 }
 
@@ -95,8 +96,7 @@ systemtools = {
     { "VirtualBox", "VirtualBox" },
     { "AlsaMixer", "xterm -e alsamixer" },
     { "Htop", "xterm -e htop" },
-    { "Fcitx Config", "fcitx-configtool" },
-    { "Python Shell", "idle3.2" }
+    { "Fcitx Config", "fcitx-configtool" }
 }
 
 mymainmenu = awful.menu({ items = { { "Accessories", accessories, beautiful.awesome_icon },
@@ -477,8 +477,9 @@ awful.rules.rules = {
      { rule = { class = "Firefox" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Opera" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Google-chrome" }, properties = { tag = tags[1][2] } },
+     { rule = { name = "Python Shell" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Emacs" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Leafpad" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "Emacs" }, properties = { tag = tags[1][4] } },
      { rule = { class = "Zim" }, properties = { tag = tags[1][4] } },
      { rule = { class = "MuPDF" }, properties = { tag = tags[1][4] } },
      { rule = { class = "Gnumeric" }, properties = { tag = tags[1][4] } },
