@@ -1,7 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2011-11-02T14:26:58+08:00
-
-====== Distribution ======
-
-[[+Arch|Arch]], [[+Centos|Centos]], [[+Gentoo|Gentoo]], [[+Slackware|Slackware]], [[+Freebsd|Freebsd]], [[My Note:Linux:Distribution:Ubuntu|Ubuntu]], 

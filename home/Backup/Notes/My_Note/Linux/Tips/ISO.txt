@@ -1,9 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2012-01-12T15:38:24+08:00
-
-====== ISO ======
-
-mount -t iso9660 -o loop xxx.iso / path / 
-
-cp / dev/ cdrom  xxx.iso		制作iso文件
