@@ -177,46 +177,60 @@ vicious.register(netwidget, netspeed, "${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 2)
 -- {{{ CPU
 cpu = widget({ type = 'textbox', name='cpu' })
 cpu.text = 'CPU:'
-
 cpugraph = awful.widget.graph()
-cpugraph:set_width (32):set_height (14)
+cpugraph:set_width (20):set_height (14)
 cpugraph:set_background_color ("#494B4F"):set_color ("#FF5656")
 cpugraph:set_gradient_colors ({ "#AECF96", "#88A175", "#FF5656" })
 vicious.register(cpugraph, vicious.widgets.cpu, "$1", 1)
-
 cputempwidget = widget({ type = "textbox", name = "thermalwidget", align = 'right' })
 vicious.register(cputempwidget, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
+cpugraph.widget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", true) end)
+))
 -- }}}
 
 -- {{{ MEM
 ramwidget = widget({ type = "textbox" })
 vicious.register(ramwidget, vicious.widgets.mem, "Ram: $1%", 1)
 rambar = awful.widget.progressbar()
-rambar:set_width (10):set_height (14)
+rambar:set_width (6):set_height (14)
 rambar:set_vertical(true)
 rambar:set_background_color ("#494B4F"):set_color ("#AECF96")
 rambar:set_border_color(nil)
 rambar:set_gradient_colors ({ "#AECF96", "#88A175", "#FF5656" })
---vicious.enable_caching(vicious.widgets.mem)
 vicious.register(rambar, vicious.widgets.mem, "$1", 13)
 -- }}}
 
 -- {{{ Filesystem info
-fsroot = widget({ type = "textbox" })
-vicious.register(fsroot, vicious.widgets.fs, "ROOT: ${/ used_gb}/${/ size_gb}GiB", 599)
-fsmedia = widget({ type = "textbox" })
-vicious.register(fsmedia, vicious.widgets.fs, "Media: ${/mnt/Media used_gb}/${/mnt/Media size_gb}GiB", 599)
-fshome = widget({ type = "textbox" })
-vicious.register(fshome, vicious.widgets.fs, "HOME: ${/home used_gb}/${/home size_gb}GiB", 599)
+fsroot = widget({ type = 'textbox', name='fsroot' })
+fsroot.text = 'ROOT:'
+fshome = widget({ type = 'textbox', name='fshome' })
+fshome.text = 'HOME:'
+fsmedia = widget({ type = 'textbox', name='fsmedia' })
+fsmedia.text = 'Media:'
+fs = {
+    r = awful.widget.progressbar(), h = awful.widget.progressbar(),
+    m = awful.widget.progressbar()
+}
+for _, w in pairs(fs) do
+    w:set_width(4):set_height(14):set_vertical(true)
+    w:set_background_color("#494B4F"):set_color("#AECF96")
+    w:set_border_color(nil)
+    w:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
+    --w.widget:buttons(awful.util.table.join(
+    --    awful.button({ }, 1, function () awful.util.spawn("pcmanfm", false) end)
+    --))
+end
+vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",             599)
+vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",         599)
+vicious.register(fs.m, vicious.widgets.fs, "${/mnt/Media used_p}",    599)
 -- }}}
 
 -- {{{ Battery
 batwidget = widget({ type = 'textbox', name = 'batwidget'})
 vicious.register(batwidget, vicious.widgets.bat, "Bat: $1", 60, "BAT0")
-
 batbar = awful.widget.progressbar()
-batbar:set_width(8):set_height(14)
-batbar:set_vertical(true)
+batbar:set_width(6):set_height(14):set_vertical(true)
 batbar:set_background_color("#494B4F"):set_color("#AECF96")
 batbar:set_border_color(nil)
 batbar:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
@@ -227,13 +241,11 @@ systray = widget({ type = "systray" })
 
 -- {{{ Volume
 volbar = awful.widget.progressbar()
-volbar:set_width(8):set_height(14)
-volbar:set_vertical(true)
+volbar:set_width(6):set_height(14):set_vertical(true)
 volbar:set_background_color("#494B4F"):set_color("#AECF96")
 volbar:set_border_color(nil)
 volbar:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
 vicious.register(volbar, vicious.widgets.volume, "$1", 1, "Master")
-
 volwidget = widget({ type = "textbox" })
 vicious.register(volwidget, vicious.widgets.volume, "Vol: $2", 1, "Master")
 
@@ -323,7 +335,9 @@ for s = 1, screen.count() do
                                 spacer, separator, spacer,
                                 volbar.widget, spacer, vol, volwidget,
                                 spacer, separator, spacer,
-                                oswidget,
+                                rambar.widget, spacer, ramwidget,
+                                spacer, separator, spacer,
+                                cputempwidget, spacer, cpugraph.widget, spacer, cpu,
                                 spacer, separator, spacer,
                                 s == 1 and systray or nil,
                                 mytasklist[s],
@@ -337,11 +351,9 @@ for s = 1, screen.count() do
                                     spacer, separator, spacer,
                                     uptimewidget,
                                     spacer, separator, spacer,
-                                    fsroot, spacer, fsmedia, spacer, fshome,
+                                    oswidget,
                                     spacer, separator, spacer,
-                                    rambar.widget, spacer, ramwidget,
-                                    spacer, separator, spacer,
-                                    cputempwidget, spacer, cpugraph.widget, spacer, cpu,
+                                    fs.r.widget, spacer, fsroot, spacer, fs.m.widget, spacer, fsmedia, spacer, fs.h.widget, spacer, fshome,
                                     spacer, separator, spacer,
                                     netwidget, spacer, wifiwidget,
                                     layout = awful.widget.layout.horizontal.rightleft
