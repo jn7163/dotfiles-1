@@ -193,12 +193,15 @@ cpugraph.widget:buttons(awful.util.table.join(
 ramwidget = widget({ type = "textbox" })
 vicious.register(ramwidget, vicious.widgets.mem, "Ram: $1%", 1)
 rambar = awful.widget.progressbar()
-rambar:set_width (6):set_height (14)
+rambar:set_width (8):set_height (14)
 rambar:set_vertical(true)
 rambar:set_background_color ("#494B4F"):set_color ("#AECF96")
 rambar:set_border_color(nil)
 rambar:set_gradient_colors ({ "#AECF96", "#88A175", "#FF5656" })
 vicious.register(rambar, vicious.widgets.mem, "$1", 13)
+rambar.widget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", true) end)
+))
 -- }}}
 
 -- {{{ Filesystem info
@@ -241,19 +244,18 @@ systray = widget({ type = "systray" })
 
 -- {{{ Volume
 volbar = awful.widget.progressbar()
-volbar:set_width(6):set_height(14):set_vertical(true)
+volbar:set_width(8):set_height(14):set_vertical(true)
 volbar:set_background_color("#494B4F"):set_color("#AECF96")
 volbar:set_border_color(nil)
 volbar:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
 vicious.register(volbar, vicious.widgets.volume, "$1", 1, "Master")
-volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "Vol: $2", 1, "Master")
-
 volbar.widget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
 ))
+volwidget = widget({ type = "textbox" })
+vicious.register(volwidget, vicious.widgets.volume, "Vol: $2", 1, "Master")
 -- }}}
 
 -- {{{ UPTime
@@ -262,8 +264,8 @@ vicious.register(uptimewidget, vicious.widgets.uptime, "UpTime: $1d $2h:$3m", 60
 -- }}}
 
 -- {{{ OS
-oswidget = widget({ type = "textbox" })
-vicious.register(oswidget, vicious.widgets.os, "$1 $2")
+--oswidget = widget({ type = "textbox" })
+--vicious.register(oswidget, vicious.widgets.os, "$1 $2")
 -- }}}
 
 -- {{{ Date
@@ -329,6 +331,8 @@ for s = 1, screen.count() do
     my_top_wibox[s] = awful.wibox({ position = "top", height = 14, screen = s })
     my_top_wibox[s].widgets = {
                                 { mylauncher, mytaglist[s], mypromptbox[s], layout = awful.widget.layout.horizontal.leftright },
+                                mylayoutbox[s],
+                                spacer, separator, spacer,
                                 datewidget,
                                 spacer, separator, spacer,
                                 batbar.widget, spacer, batwidget,
@@ -347,11 +351,7 @@ for s = 1, screen.count() do
     my_bottom_wibox[s] = awful.wibox({ position = "bottom", height = 14, screen = s })
     my_bottom_wibox[s].widgets = {
                                     { mpdwidget, layout = awful.widget.layout.horizontal.leftright },
-                                    mylayoutbox[s],
-                                    spacer, separator, spacer,
                                     uptimewidget,
-                                    spacer, separator, spacer,
-                                    oswidget,
                                     spacer, separator, spacer,
                                     fs.r.widget, spacer, fsroot, spacer, fs.m.widget, spacer, fsmedia, spacer, fs.h.widget, spacer, fshome,
                                     spacer, separator, spacer,
