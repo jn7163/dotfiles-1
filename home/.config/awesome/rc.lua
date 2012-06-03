@@ -524,6 +524,5 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 
 os.execute("fcitx -d")
 os.execute("conky &")
-os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
+os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
 --os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
---os.execute("xcompmgr -CcfF -I-.03 -D6 -t-1 -1-3 -r4.2 -o.5 &")
