@@ -6,9 +6,9 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-(set-default-font "DejaVu Sans Mono-10")
+(set-default-font "DejaVu Sans Mono-12")
 (set-fontset-font (frame-parameter nil 'font)
-	'han '("WenQuanYi Micro Hei" . "unicode-bmp"))
+				  'han '("WenQuanYi Micro Hei" . "unicode-bmp"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Linux环境下字体设置结束 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -20,18 +20,15 @@
 (set-cursor-color "gold1")
 (set-mouse-color "gold1")
 
-(set-scroll-bar-mode nil)
-;;取消滚动栏
+(set-scroll-bar-mode nil);取消滚动栏
 
-;;(customize-set-variable 'scroll-bar-mode 'right))
-;;设置滚动栏在窗口右侧，而默认是在左侧
+;;(customize-set-variable 'scroll-bar-mode 'right));设置滚动栏在窗口右侧，而默认是在左侧
 
-(tool-bar-mode nil)
-;;取消工具栏
+(tool-bar-mode nil);取消工具栏
 
 (setq default-frame-alist
-	'((height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))) 
-               
+	  '((height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))) 
+
 ;; 设置另外一些颜色：语法高亮显示的背景和主题，区域选择的背景和主题，二次选择的背景和选择
 (set-face-foreground 'highlight "white")
 (set-face-background 'highlight "blue")
@@ -40,12 +37,12 @@
 (set-face-foreground 'secondary-selection "skyblue")
 (set-face-background 'secondary-selection "darkblue")
 
-;在标题栏提示你目前在什么位置
-(setq frame-title-format "^_^ @%b")
+(setq frame-title-format "^_^ @%b");在标题栏提示你目前在什么位置
 
-(display-time-mode 1);显示时间，格式如下
-	(setq display-time-24hr-format t)
-	(setq display-time-day-and-date t)
+;; 显示时间，格式如下
+(display-time-mode 1)
+(setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置界面结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -62,7 +59,7 @@
 (global-linum-mode t);显示行号
 (column-number-mode t);显示列号
 (show-paren-mode t);显示括号匹配
-
+(setq default-tab-width 4);每次缩进4个空格
 
 ;(pc-selection-mode);shift选择
 ;(mouse-avoidance-mode 'animate);光标靠近鼠标指针时，让鼠标指针自动让开
@@ -72,6 +69,29 @@
 ;(setq default-fill-column 120);默认显示120列就换行
 (setq suggest-key-bindings t);若命令有组合键，则提示该组合键
 ;(set-selection-coding-system 'iso-2022-8bit-ss2-dos);网页复制乱码问题
+
+;; 格式化
+(dolist (command '(yank yank-pop))
+  (eval
+   `(defadvice ,command (after indent-region activate)
+      (and (not current-prefix-arg)
+           (member major-mode
+                   '(emacs-lisp-mode
+                     lisp-mode
+                     clojure-mode
+                     scheme-mode
+                     haskell-mode
+                     ruby-mode
+                     rspec-mode
+                     python-mode
+                     c-mode
+                     c++-mode
+                     objc-mode
+                     latex-mode
+                     js-mode
+                     plain-tex-mode))
+           (let ((mark-even-if-inactive transient-mark-mode))
+             (indent-region (region-beginning) (region-end) nil))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  emacs功能设置结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -89,16 +109,31 @@
 (global-set-key [f11] 'split-window-vertically);F11分割窗口
 (global-set-key [f12] 'delete-other-windows);F12 关闭其它窗口
 
+;; 鼠标滚轮缩放字体大小
+(global-set-key (kbd "<C-mouse-4>") 'text-scale-increase)
+(global-set-key (kbd "<C-mouse-5>") 'text-scale-decrease)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  快捷键配置结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;(require 'php-mode)
-;(add-hook 'php-mode-user-hook 'turn-on-font-lock)
+;;;;;;;;;;;;;;;;;;;;;;;;;;; 各类mode使用 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; PKGBUILD
-;(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
-;(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist)
+;; mode加载路径
+(add-to-list 'load-path "~/emacs.d/elisp")
 
-;lua
-;(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-;(setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
+;; php mode
+(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+
+;; lua mode
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
+
+;; cmake mode
+(setq load-path (cons (expand-file-name "/opt/emacs_plugins") load-path))
+(require 'cmake-mode)
+(setq auto-mode-alist
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+                ("\\.cmake\\'" . cmake-mode))
+              auto-mode-alist))
