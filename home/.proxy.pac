@@ -25,7 +25,6 @@ var WHITELIST = new Array(
 ".8535.org",
 ".5i01.com",
 ".opera.com",
-".archlinux.org",
 ".gravatar.com",
 ".chinagfw.org");
 
