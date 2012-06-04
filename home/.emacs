@@ -25,9 +25,16 @@
 ;;(customize-set-variable 'scroll-bar-mode 'right));设置滚动栏在窗口右侧，而默认是在左侧
 
 (tool-bar-mode nil);取消工具栏
+(menu-bar-mode nil);关闭菜单
 
-(setq default-frame-alist
-	  '((height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))) 
+;; 启动时窗口最大化
+;(when window-system
+;  (my-maximized))
+
+;; 启动窗口大小
+(when window-system
+  (setq default-frame-alist
+		'((height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))))
 
 ;; 设置另外一些颜色：语法高亮显示的背景和主题，区域选择的背景和主题，二次选择的背景和选择
 (set-face-foreground 'highlight "white")
@@ -43,6 +50,23 @@
 (display-time-mode 1)
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
+
+;;全屏
+(defun my-fullscreen ()
+  (interactive)
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+
+;最大化
+(defun my-maximized ()
+  (interactive)
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置界面结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -93,6 +117,29 @@
            (let ((mark-even-if-inactive transient-mark-mode))
              (indent-region (region-beginning) (region-end) nil))))))
 
+;; shell,gdb退出后，自动关闭该buffer  
+(defun kill-buffer-when-shell-command-exit ()
+  "Close current buffer when `shell-command' exit."
+  (let ((process (ignore-errors (get-buffer-process (current-buffer)))))
+    (when process
+      (set-process-sentinel process
+                            (lambda (proc change)
+                              (when (string-match "\\(finished\\|exited\\)" change)
+                                (kill-buffer (process-buffer proc))))))))
+  
+(add-hook 'gdb-mode-hook 'kill-buffer-when-shell-command-exit);退出gdb时关闭gdb对应的buffer
+(add-hook 'term-mode-hook 'kill-buffer-when-shell-command-exit);退出ter时关闭term对应的buffer
+
+;; 编译成功后自动关闭*compilation* 函数
+(defun kill-buffer-when-compile-success (process)
+  "Close current buffer when `shell-command' exit."
+  (set-process-sentinel process
+                        (lambda (proc change)
+                          (when (string-match "finished" change)
+                            (delete-windows-on (process-buffer proc))))))
+  
+(add-hook 'compilation-start-hook 'kill-buffer-when-compile-success);编译成功后自动关闭*compilation* buffer
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  emacs功能设置结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -106,8 +153,9 @@
 (global-set-key [f7] 'do-compile);F7编译文件
 (global-set-key [f8] 'other-window);F8窗口间跳转
 (global-set-key [C-return] 'kill-this-buffer);C-return关闭当前buffer
-(global-set-key [f11] 'split-window-vertically);F11分割窗口
-(global-set-key [f12] 'delete-other-windows);F12 关闭其它窗口
+(global-set-key [f10] 'split-window-vertically);F10分割buffer
+(global-set-key [f12] 'delete-other-windows);F11 关闭其他buffer
+(global-set-key [f12] 'my-fullscreen);F12 全屏
 
 ;; 鼠标滚轮缩放字体大小
 (global-set-key (kbd "<C-mouse-4>") 'text-scale-increase)
@@ -138,4 +186,18 @@
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 
+;; 中文日历
+(setq calendar-chinese-all-holidays-flag t)
+(setq calendar-mark-holidays-flag t)
+;设置日历表的中文天干地支，在日期上按 `p C' 就可以显示农历和干支。
+(setq chinese-calendar-celestial-stem
+["甲" "乙" "丙" "丁" "戊" "已" "庚" "辛" "壬" "癸"])
+(setq chinese-calendar-terrestrial-branch
+["子" "丑" "寅" "卯" "辰" "巳" "午" "未" "申" "酉" "戌" "亥"])
+
+(setq calendar-latitude 31.22)
+(setq calendar-longitude 121.48)
+(setq calendar-location-name "Shanghai")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; 各类mode使用结束 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
