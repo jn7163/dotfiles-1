@@ -25,7 +25,7 @@
 ;;(customize-set-variable 'scroll-bar-mode 'right));设置滚动栏在窗口右侧，而默认是在左侧
 
 (tool-bar-mode nil);取消工具栏
-(menu-bar-mode nil);关闭菜单
+;;(menu-bar-mode nil);关闭菜单
 
 ;; 启动时窗口最大化
 ;(when window-system
@@ -154,7 +154,7 @@
 (global-set-key [f8] 'other-window);F8窗口间跳转
 (global-set-key [C-return] 'kill-this-buffer);C-return关闭当前buffer
 (global-set-key [f10] 'split-window-vertically);F10分割buffer
-(global-set-key [f12] 'delete-other-windows);F11 关闭其他buffer
+(global-set-key [f11] 'delete-other-windows);F11 关闭其他buffer
 (global-set-key [f12] 'my-fullscreen);F12 全屏
 
 ;; 鼠标滚轮缩放字体大小
