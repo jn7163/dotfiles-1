@@ -13,6 +13,7 @@ endif
 set incsearch
 
 if has("autocmd")
+    " 自动不同文件类型特有的缩进
     filetype plugin indent on
     augroup vimrcEx
     au!
@@ -24,14 +25,9 @@ if has("autocmd")
                 \ endif
 augroup END
 else
+    " 自动缩进
     set autoindent
 endif
-
-" 自动缩进
-set autoindent
-
-" 打开不同类型文件特有的缩近
-filetype plugin indent on
 
 " 文件编码
 " set fencs=utf-8,gbk
