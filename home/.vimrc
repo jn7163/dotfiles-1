@@ -243,6 +243,7 @@ autocmd FileType php setlocal errorformat=%f(line\ %l):\ %m
 autocmd BufNewFile,BufRead *.sh set ft=sh
 autocmd BufNewFile,BufRead *.lua set ft=lua
 autocmd BufNewFile,BufRead *.py set ft=py
+autocmd BufNewFile,BufRead *.tex set ft=tex
 
 let Tlist_Use_Right_Window=1
 let Tlist_File_Fold_Auto_Close=1
@@ -253,6 +254,10 @@ map <C-X><C-x> :WMToggle<cr>
 map ca :Calendar<cr>
 
 "let s:vimimdata = '.vim/plugin/pinyin/'
+
+" vim-latexsuite
+set grepprg=grep\ -nH\ $*
+"set g:tex_flavor ="latex"
 
 " vimwiki
 " 关闭驼峰英文成为维基词条
