@@ -257,7 +257,6 @@ map ca :Calendar<cr>
 
 " vim-latexsuite
 set grepprg=grep\ -nH\ $*
-"set g:tex_flavor ="latex"
 
 " vimwiki
 " 关闭驼峰英文成为维基词条
@@ -302,6 +301,8 @@ au BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in,*.ctest,*.ctest.in set f
 " GNU Compile with gcc
 au BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
 au BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
+au BufRead,BufNewFile *.tex set makeprg=xelatex\ %<.tex
+
 " 在C注释中高亮字符串
 let c_comment_strings=1
 

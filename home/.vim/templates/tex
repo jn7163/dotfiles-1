@@ -1,9 +1,12 @@
 % !Mode:: "TeX:UTF-8"
 \documentclass[11pt,a4paper]{report}
 \usepackage{fontspec,xltxtra,xunicode}
-\usepackage[slantfont,boldfont]{xeCJK}
+\usepackage[slantfont,boldfont,CJKnumber]{xeCJK}
 \usepackage{indentfirst}%首行缩进
 \setlength{\parskip}{0.5em}%段落间距
+\usepackage{geometry}
+\geometry{left=5.0em,right=5.0em,top=3.5em,bottom=3.5em}
+\usepackage{xcolor}
 %--------
 \defaultfontfeatures{Scale=MatchLowercase}
 \setmainfont[Mapping=tex-text]{DejaVu Sans}
