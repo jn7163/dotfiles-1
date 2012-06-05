@@ -1,8 +1,3 @@
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-finish
-endif
-
 " 当终端支持颜色或者运行着gui版本时打开高亮及搜索关键词高亮
 if &t_Co > 2 || has("gui_running")
     syntax on
@@ -214,32 +209,16 @@ set laststatus=2
 " 去掉windows系统文件中的^M
 se ff=unix
 
-" 限制mutt文本宽度在72个字符
-au BufRead ~/.mutt/.tmp/mutt-* set tw=72
-
 " 自动补全符号
 ":inoremap ( ()<LEFT>
 ":inoremap [ []<LEFT>
 ":inoremap { {}<LEFT>
 
+" 在C注释中高亮字符串
+let c_comment_strings=1
+
 "常用快捷键定义
 "map <C-a> ggVG
-
-let g:WC_min_len=2
-:autocmd BufEnter * call DoWordComplete() 
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
-autocmd FileType php setlocal makeprg=zca\ %<.php
-autocmd FileType php setlocal errorformat=%f(line\ %l):\ %m
-
-autocmd BufNewFile,BufRead *.sh set ft=sh
-autocmd BufNewFile,BufRead *.lua set ft=lua
-autocmd BufNewFile,BufRead *.py set ft=py
-autocmd BufNewFile,BufRead *.tex set ft=tex
 
 let Tlist_Use_Right_Window=1
 let Tlist_File_Fold_Auto_Close=1
@@ -284,25 +263,41 @@ let g:vimrc_email='havanna.sha#gmail.com'
 let g:vimrc_homepage='http://ihavanna.org'
 nmap <F4> :AuthorInfoDetect<cr>
 
+" 限制mutt文本宽度在72个字符
+autocmd BufRead ~/.mutt/.tmp/mutt-* set tw=72
+
+let g:WC_min_len=2
+:autocmd BufEnter * call DoWordComplete() 
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+autocmd FileType php setlocal makeprg=zca\ %<.php
+autocmd FileType php setlocal errorformat=%f(line\ %l):\ %m
+
+autocmd BufNewFile,BufRead *.sh set ft=sh
+autocmd BufNewFile,BufRead *.lua set ft=lua
+autocmd BufNewFile,BufRead *.py set ft=py
+
 " use cmake-syntax.vim & cmake-indent.vim
 :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake-indent.vim 
 :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
 :autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
 
 " filetype
-au BufRead,BufNewFile *.go set filetype=go
-au BufRead,BufNewFile *.c set filetype=c
-au BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in,*.ctest,*.ctest.in set filetype=cmake
+autocmd BufRead,BufNewFile *.go set filetype=go
+autocmd BufRead,BufNewFile *.c set filetype=c
+autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in,*.ctest,*.ctest.in set filetype=cmake
 
-" GNU Compile with gcc
-au BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
-au BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
-au BufRead,BufNewFile *.tex set makeprg=xelatex\ %<.tex
+" Compile
+autocmd BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
+autocmd BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
+autocmd FileType python setlocal makeprg=python2\ %
+autocmd BufRead,BufNewFile *.tex set ft=tex makeprg=xelatex\ -synctex=1\ -interaction=nonstopmode\ %<.tex
 
-" 在C注释中高亮字符串
-let c_comment_strings=1
-
-"Save and make current file.o
+"Save and make
 function! Make()
     let curr_dir = expand('%:h')
     if curr_dir == ''
@@ -313,4 +308,4 @@ function! Make()
     execute 'make'
     execute 'lcd -'
 endfunction
-nmap <F7> :update<CR>:call Make()<CR>
+nmap <F8> :update<CR>:call Make()<CR>
