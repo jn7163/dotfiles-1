@@ -13,5 +13,5 @@
 PS1='\[\e[1;36m\]^_^\[\e[m\] \[\e[0;32m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
 
 function hello() {
-    [[ -x /usr/bin/cowsay ]] && cowsay Hello, Havanna!
+    [[ "-x /usr/bin/cowsay" && "-x /usr/bin/fortune" ]] && fortune | cowsay
 }
