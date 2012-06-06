@@ -18,3 +18,7 @@ fi
 # Put your fun stuff here.
 #XSESSION='gnome-session'
 
+[[ -f ~/.bash_alias ]] && . .bash_alias
+
+PS1='\[\e[1;36m\]^_^\[\e[m\] \[\e[0;32m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
+
