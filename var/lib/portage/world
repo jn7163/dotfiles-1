@@ -2,10 +2,11 @@ app-admin/conky
 app-admin/sudo
 app-admin/syslog-ng
 app-arch/p7zip
-app-editors/emacs
 app-editors/leafpad
 app-editors/nano
 app-editors/vim
+app-emacs/emacs-w3m
+app-emacs/emacs-wget
 app-emulation/virtualbox-bin
 app-i18n/fcitx
 app-i18n/fcitx-configtool
@@ -20,8 +21,10 @@ app-portage/layman
 app-portage/pfl
 app-shells/bash-completion
 app-text/mupdf
+app-text/texlive
 app-text/wgetpaste
 app-text/xchm
+app-vim/vim-latex
 dev-db/mysql
 dev-db/phpmyadmin
 dev-lang/go
@@ -49,6 +52,7 @@ media-video/cheese
 media-video/mplayer2
 net-dialup/rp-pppoe
 net-firewall/iptables
+net-ftp/ftp
 net-ftp/lftp
 net-ftp/vsftpd
 net-im/freetalk
@@ -84,7 +88,7 @@ sys-power/pm-utils
 sys-process/htop
 sys-process/iotop
 sys-process/vixie-cron
-virtual/jre
+virtual/emacs
 virtual/w3m
 www-client/firefox
 www-client/links

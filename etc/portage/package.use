@@ -10,12 +10,13 @@ app-portage/eix sqlite
 app-portage/layman cvs git mercurial subversion
 app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
+app-text/texlive dvipdffm xetex
 app-text/wv tools
 dev-db/mysql perl ssl
 dev-db/sqlite secure-delete unlock-notify
 dev-java/icedtea-bin nsplugin
 dev-lang/php apache2 cgi cli curl fpm ftp gd imap ldap mysql mysqlnd mhash pdo sockets sqlite3 xml xmlreader xmlwriter zip
-dev-lang/python sqlite
+dev-lang/python sqlite tk
 dev-libs/libxml2 icu python
 dev-libs/nettle gmp
 dev-libs/protobuf python
