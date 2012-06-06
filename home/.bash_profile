@@ -11,9 +11,7 @@ if [ $(tty) == /dev/tty1 ]; then
     mpd
 fi
 
-export PATH=$PATH:$HOME/Bash
-
-[[ -d '$HOME/Bash' ]] && export PATH=$PATH:$HOME/Bash
+[[ -d ~/Bash ]] && export PATH=$PATH:$HOME/Bash
 
 [[ -x /usr/bin/vim ]] && export EDITOR=vim
 
