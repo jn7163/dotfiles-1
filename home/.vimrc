@@ -277,10 +277,6 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType php setlocal makeprg=zca\ %<.php
 autocmd FileType php setlocal errorformat=%f(line\ %l):\ %m
 
-autocmd BufNewFile,BufRead *.sh set ft=sh
-autocmd BufNewFile,BufRead *.lua set ft=lua
-autocmd BufNewFile,BufRead *.py set ft=py
-
 " use cmake-syntax.vim & cmake-indent.vim
 :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake-indent.vim 
 :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
@@ -290,12 +286,15 @@ autocmd BufNewFile,BufRead *.py set ft=py
 autocmd BufRead,BufNewFile *.go set filetype=go
 autocmd BufRead,BufNewFile *.c set filetype=c
 autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in,*.ctest,*.ctest.in set filetype=cmake
+autocmd BufNewFile,BufRead *.sh set filetype=sh
+autocmd BufNewFile,BufRead *.lua set filetype=lua
+autocmd BufNewFile,BufRead *.py set filetype=py
 
 " Compile
 autocmd BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
 autocmd BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
 autocmd FileType python setlocal makeprg=python2\ %
-autocmd BufRead,BufNewFile *.tex set ft=tex makeprg=xelatex\ -synctex=1\ -interaction=nonstopmode\ %<.tex
+autocmd BufRead,BufNewFile *.tex set filetype=tex makeprg=xelatex\ -synctex=1\ -interaction=nonstopmode\ %<.tex
 
 "Save and make
 function! Make()
