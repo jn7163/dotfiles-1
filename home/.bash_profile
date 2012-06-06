@@ -15,6 +15,6 @@ export PATH=$PATH:$HOME/Bash
 
 [[ -x /usr/bin/vim ]] && export EDITOR=vim
 
-complete -cf sudo
+[[ -f /usr/bin/sudo ]] && complete -cd sudo
 
 [[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
