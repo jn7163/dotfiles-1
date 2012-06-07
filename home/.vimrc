@@ -295,6 +295,7 @@ autocmd BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
 autocmd BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
 autocmd FileType python setlocal makeprg=python2\ %
 autocmd BufRead,BufNewFile *.tex set filetype=tex makeprg=xelatex\ -synctex=1\ -interaction=nonstopmode\ %<.tex et sta sw=2 ts=2 sts=2
+autocmd FileType tex map <F9> :!mupdf %<.pdf<CR>
 
 "Save and make
 function! Make()
