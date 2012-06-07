@@ -209,6 +209,9 @@ set laststatus=2
 " 去掉windows系统文件中的^M
 se ff=unix
 
+" 编辑.vimrc后，重新加载
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
 " 自动补全符号
 ":inoremap ( ()<LEFT>
 ":inoremap [ []<LEFT>
@@ -245,9 +248,6 @@ let g:vimwiki_CJK_length = 1
 " 标签
 let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center,left,right,h1,h2,h3,h4,h5,h6,p,pre'
 let g:vimwiki_use_mouse = 1
-"let g:vimwiki_list = [{'path':'~/Backup/vimwiki/', 'path_html': '~/Backup/vimwiki/html/', 'html_header': '~/.vim/autoload/vimwiki/header.tpl', 'html_footer': '~/.vim/autoload/vimwiki/footer.tpl', 'auto_export': 1,}]
-
-let g:vimwiki_use_mouse = 1
 let g:vimwiki_list = [{
             \ 'path': '~/Backup/vimwiki/',
             \ 'path_html': '~/Documents/dotfiles/html/',
@@ -269,16 +269,16 @@ autocmd BufRead ~/.mutt/.tmp/mutt-* set tw=72
 let g:WC_min_len=2
 :autocmd BufEnter * call DoWordComplete() 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags et sta sw=2 ts=2 sts=2
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS et sta sw=2 ts=2 sts=2
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP et sta sw=2 ts=2 sts=2
 
 autocmd FileType php setlocal makeprg=zca\ %<.php
 autocmd FileType php setlocal errorformat=%f(line\ %l):\ %m
 
 " use cmake-syntax.vim & cmake-indent.vim
-:autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake-indent.vim 
+:autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake-indent.vim
 :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
 :autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
 
@@ -294,7 +294,7 @@ autocmd BufNewFile,BufRead *.py set filetype=py
 autocmd BufRead,BufNewFile *.go set makeprg=gccgo\ -Wall\ -o\ %<\ %
 autocmd BufRead,BufNewFile *.c set makeprg=gcc\ -Wall\ -o\ %<\ %
 autocmd FileType python setlocal makeprg=python2\ %
-autocmd BufRead,BufNewFile *.tex set filetype=tex makeprg=xelatex\ -synctex=1\ -interaction=nonstopmode\ %<.tex
+autocmd BufRead,BufNewFile *.tex set filetype=tex makeprg=xelatex\ -synctex=1\ -interaction=nonstopmode\ %<.tex et sta sw=2 ts=2 sts=2
 
 "Save and make
 function! Make()
