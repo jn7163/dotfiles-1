@@ -7,9 +7,7 @@
 [[ -f ~/.bash_alias ]] && . ~/.bash_alias
 
 if [ $(tty) == /dev/tty1 ]; then
-    if which mpd > /dev/null; then
-        mpd --kill
-    fi
+    [[ -f ~/.mpd/mpd.pid ]] && mpd --kill
     mpd
 fi
 
