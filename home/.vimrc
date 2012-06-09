@@ -46,7 +46,8 @@ if $TERM =~ '^\(xterm\|screen\)' || $TERM =~ '256color$' || has("gui_running")
     if !has("gui_running")
         set t_Co=256
     endif
-    colorscheme default
+    "colorscheme default
+    colorscheme pablo
 else
     colorscheme slate
 endif
