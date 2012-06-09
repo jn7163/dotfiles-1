@@ -5,8 +5,6 @@ app-arch/p7zip
 app-editors/leafpad
 app-editors/nano
 app-editors/vim
-app-emacs/emacs-w3m
-app-emacs/emacs-wget
 app-emulation/virtualbox-bin
 app-i18n/fcitx
 app-i18n/fcitx-configtool
@@ -23,7 +21,6 @@ app-shells/bash-completion
 app-text/mupdf
 app-text/texlive
 app-text/wgetpaste
-app-text/xchm
 app-vim/vim-latex
 dev-db/mysql
 dev-db/phpmyadmin
@@ -31,6 +28,8 @@ dev-lang/go
 dev-lang/php
 dev-util/cmake
 games-action/chromium-bsu
+games-misc/cowsay
+games-misc/fortune-mod-zh
 mail-client/mutt
 mail-mta/postfix
 media-fonts/wqy-microhei
@@ -72,7 +71,6 @@ net-wireless/wireless-tools
 net-wireless/wpa_supplicant
 sys-apps/dbus
 sys-apps/iproute2
-sys-apps/man
 sys-apps/pciutils
 sys-apps/portage
 sys-boot/grub
@@ -91,7 +89,6 @@ sys-process/vixie-cron
 virtual/emacs
 virtual/w3m
 www-client/firefox
-www-client/links
 www-client/opera
 www-plugins/adobe-flash
 www-plugins/aliedit
@@ -99,7 +96,6 @@ www-plugins/mozplugger
 www-servers/apache
 www-servers/lighttpd
 www-servers/nginx
-x11-apps/xbacklight
 x11-apps/xprop
 x11-libs/cairo
 x11-libs/libnotify

@@ -35,8 +35,8 @@ media-sound/easytag flac mp3 wavpack
 media-sound/moc ffmpeg flac mad wavpack
 media-sound/mpd cue flac lame wavpack
 media-sound/shntool flac mac wavpack
-media-video/ffmpeg dirac faac faad mp3 sdl theora threads v4l2 vorbis x264 xvid
-media-video/libav -qt-faststart cpudetection dirac faac mp3 schroedinger sdl theora threads v4l vaapi vorbis x264 xvid
+media-video/ffmpeg dirac faac faad mp3 sdl theora threads v4l2 vorbis vpx x264 xvid
+media-video/libav -qt-faststart cpudetection dirac faac mp3 schroedinger sdl theora threads v4l vaapi vorbis vpx x264 xvid
 media-video/mplayer2 dga dvb fbcon ggi mad mpeg123 nas openal sdl v4l2
 net-libs/loudmouth debug
 net-misc/curl threads
@@ -64,3 +64,4 @@ x11-terms/rxvt-unicode 256-color pixbuf xft
 dev-libs/libgcrypt static-libs
 dev-libs/libgpg-error static-libs
 dev-libs/lzo static-libs
+media-gfx/ffcast vpx
