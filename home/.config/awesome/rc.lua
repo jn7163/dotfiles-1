@@ -10,6 +10,7 @@ beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 
 terminal = "xterm"
 browser = "firefox"
+screenshot = "deepin-screenshot"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
@@ -181,7 +182,8 @@ cpugraph = awful.widget.graph()
 cpugraph:set_width (20):set_height (14)
 cpugraph:set_background_color ("#494B4F"):set_color ("#FF5656")
 cpugraph:set_gradient_colors ({ "#AECF96", "#88A175", "#FF5656" })
-vicious.register(cpugraph, vicious.widgets.cpu, "$1", 1)
+cpugraph:set_gradient_angle (180):set_scale (true)
+vicious.register(cpugraph, vicious.widgets.cpu, "$1", 2)
 cputempwidget = widget({ type = "textbox", name = "thermalwidget", align = 'right' })
 vicious.register(cputempwidget, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
 cpugraph.widget:buttons(awful.util.table.join(
@@ -191,7 +193,7 @@ cpugraph.widget:buttons(awful.util.table.join(
 
 -- {{{ MEM
 ramwidget = widget({ type = "textbox" })
-vicious.register(ramwidget, vicious.widgets.mem, "Ram: $1%", 1)
+vicious.register(ramwidget, vicious.widgets.mem, "Ram: $1%", 2)
 rambar = awful.widget.progressbar()
 rambar:set_width (8):set_height (14)
 rambar:set_vertical(true)
@@ -248,14 +250,14 @@ volbar:set_width(8):set_height(14):set_vertical(true)
 volbar:set_background_color("#494B4F"):set_color("#AECF96")
 volbar:set_border_color(nil)
 volbar:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
-vicious.register(volbar, vicious.widgets.volume, "$1", 1, "Master")
+vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 volbar.widget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
 ))
 volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "Vol: $2", 1, "Master")
+vicious.register(volwidget, vicious.widgets.volume, "Vol: $2", 2, "Master")
 -- }}}
 
 -- {{{ UPTime
@@ -270,7 +272,7 @@ vicious.register(uptimewidget, vicious.widgets.uptime, "UpTime: $1d $2h:$3m", 60
 
 -- {{{ Date
 datewidget = widget({ type = "textbox", align = "right" })
-vicious.register(datewidget, vicious.widgets.date, "%a, %D, <span color='moccasin'>%R:%S</span>", 1)
+vicious.register(datewidget, vicious.widgets.date, "%a, %D, <span color='moccasin'>%R</span>", 60)
 -- }}}
 
 calendar2.addCalendarToWidget(datewidget, "<span color='moccasin'>%s</span>")
@@ -370,9 +372,11 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",                                awful.tag.viewprev  ),
     awful.key({ modkey,           }, "Right",                               awful.tag.viewnext  ),
-    awful.key({ modkey,           }, "Escape",                              awful.tag.history.restore   ),
-    awful.key({ "Mod1", "Control" }, "a",                       function () awful.util.spawn("deepin-screenshot")   end),
-    awful.key({ modkey,           }, "F3",                      function () awful.util.spawn("firefox") end),
+    awful.key({ modkey,           }, "Escape",                              awful.tag.history.restore ),
+    awful.key({ "Mod1", "Control" }, "a",                       function () awful.util.spawn(screenshot) end),
+    awful.key({                   }, "F1",                      function () awful.util.spawn(terminal) end),
+    awful.key({                   }, "F3",                      function () awful.util.spawn("emacs") end),
+    awful.key({                   }, "F2",                      function () awful.util.spawn(browser) end),
     awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB-" ) end),
     awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB+" ) end),
     awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle" ) end),
@@ -391,12 +395,12 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show(true)        end),
+    awful.key({ modkey,           }, "w",   function () mymainmenu:show(true)        end),
 
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey, "Shift"   }, "j",   function () awful.client.swap.byidx(  1)    end),
+    awful.key({ modkey, "Shift"   }, "k",   function () awful.client.swap.byidx( -1)    end),
+    awful.key({ modkey, "Control" }, "j",   function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey, "Control" }, "k",   function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -406,21 +410,21 @@ globalkeys = awful.util.table.join(
             end
         end),
 
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey,           }, "F2", function () awful.util.spawn(browser) end),
+    awful.key({ modkey,           }, "Return",  function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "F2",      function () awful.util.spawn(browser) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey,           }, "l",       function () awful.tag.incmwfact( 0.05)    end),
+    awful.key({ modkey,           }, "h",       function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ modkey, "Shift"   }, "h",       function () awful.tag.incnmaster( 1)      end),
+    awful.key({ modkey, "Shift"   }, "l",       function () awful.tag.incnmaster(-1)      end),
+    awful.key({ modkey, "Control" }, "h",       function () awful.tag.incncol( 1)         end),
+    awful.key({ modkey, "Control" }, "l",       function () awful.tag.incncol(-1)         end),
+    awful.key({ modkey,           }, "space",   function () awful.layout.inc(layouts,  1) end),
+    awful.key({ modkey, "Shift"   }, "space",   function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey },            "F1",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },"F1",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
