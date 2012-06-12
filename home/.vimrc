@@ -251,7 +251,7 @@ let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,cent
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_list = [{
             \ 'path': '~/Backup/vimwiki/',
-            \ 'path_html': '~/Documents/dotfiles/html/',
+            \ 'path_html': '~/Documents/wiki.ihavanna.org/',
             \ 'template_path': '~/.vim/autoload/vimwiki/',
             \ 'template_ext': '.tpl',
             \ 'css_name': 'style.css',
