@@ -8,6 +8,14 @@
     email = skykiss_2000@163.com
 [diff]
     tool = diff
+[alias]
+    ll= log --graph --all --pretty=oneline --abbrev-commit --max-count=20
+    l = log --stat --abbrev-commit
+    # git svn asliases
+    si = git si
+    sr = git svn rebase
+    sp = git svn dcommit
+    sf = git svn fetch
 [color]
     branch = auto
     diff = auto
