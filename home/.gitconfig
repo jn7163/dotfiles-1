@@ -1,3 +1,30 @@
+[core]
+    legacyheaders = false
+    quotepath = false
+    pager = less -+$LESS -FRX
+    #pager = less -r
 [user]
-	name = Havanna
-	email = skykiss_2000@163.com
+    name = Havanna
+    email = skykiss_2000@163.com
+[diff]
+    tool = diff
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    grep = auto
+    ui = auto
+    interactive = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    old = red
+    new = green
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
