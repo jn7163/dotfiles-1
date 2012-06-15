@@ -9,8 +9,8 @@
 [diff]
     tool = diff
 [alias]
-    ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --abbrev-commit --max-count=20
-    l = log --stat --abbrev-commit
+    ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=20
+    l = log --stat --decorate --abbrev-commit --max-count=3
     # git svn asliases
     si = git si
     sr = git svn rebase
