@@ -6,6 +6,17 @@
 [user]
     name = Havanna
     email = skykiss_2000@163.com
+[remote "overlay"]
+    url = git@github.com:Ihavanna/overlay.git
+    url = git@bitbucket.org:Havanna/overlay.git
+    url = git@gitorious.org:ihavanna/overlay.git
+[remote "dotfiles"]
+    url = git@github.com:Ihavanna/dotfiles.git
+    url = git@bitbucket.org:Havanna/dotfiles.git
+    url = git@gitorious.org:ihavanna/dotfiles.git
+[remote "wiki"]
+    url = git@github.com:Ihavanna/wiki.ihavanna.org.git
+    url = git@bitbucket.org:Havanna/wiki.ihavanna.org.git
 [diff]
     tool = diff
 [alias]
