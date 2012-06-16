@@ -1,6 +1,8 @@
 app-admin/conky curl mpd
 app-arch/file-roller nautilus
 app-arch/p7zip rar
+app-arch/unzip natspec
+app-arch/zip natspec
 app-editors/emacs xft
 app-i18n/fcitx cairo gtk gtk3 pango table
 app-office/abiword plugins
@@ -15,7 +17,7 @@ app-text/wv tools
 dev-db/mysql perl ssl
 dev-db/sqlite secure-delete unlock-notify
 dev-java/icedtea-bin nsplugin
-dev-lang/php apache2 cgi cli curl fpm ftp gd imap ldap mysql mysqlnd mhash pdo sockets sqlite3 xml xmlreader xmlwriter zip
+dev-lang/php apache2 cgi cli curl fpm ftp gd ldap mysql mysqlnd mhash pdo sockets sqlite3 xml xmlreader xmlwriter
 dev-lang/python sqlite tk
 dev-libs/libxml2 icu python
 dev-libs/nettle gmp
@@ -30,6 +32,7 @@ media-libs/freetype auto-hinter
 media-libs/libass enca
 media-libs/libpng apng
 media-libs/mesa osmesa
+media-gfx/ffcast vpx
 media-sound/deadbeef dts flac gtk gtk3 m3u ape mp3 sndfile wavpack shn linguas_zh_CN
 media-sound/easytag flac mp3 wavpack
 media-sound/moc ffmpeg flac mad wavpack
@@ -54,8 +57,8 @@ sys-fs/udev extras gudev
 virtual/ffmpeg mp3 sdl theora threads vaapi x264
 www-client/firefox -linguas_en -crashreporter pgo system-sqlite
 www-client/opera -gstreamer gtk gtk3
-www-servers/lighttpd minimal mysql php uploadprogress webdav
-www-servers/nginx fastcgui status
+www-servers/lighttpd minimal mysql php webdav zlib
+www-servers/nginx fastcgi
 x11-base/xorg-server kdrive
 x11-libs/cairo xcb
 x11-misc/cairo-dock xcomposite
@@ -64,4 +67,3 @@ x11-terms/rxvt-unicode 256-color pixbuf xft
 dev-libs/libgcrypt static-libs
 dev-libs/libgpg-error static-libs
 dev-libs/lzo static-libs
-media-gfx/ffcast vpx
