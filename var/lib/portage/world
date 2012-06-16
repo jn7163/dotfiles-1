@@ -88,6 +88,7 @@ sys-process/iotop
 sys-process/vixie-cron
 virtual/emacs
 virtual/w3m
+www-apache/mod_fastcgi_handler
 www-client/firefox
 www-client/opera
 www-plugins/adobe-flash
@@ -105,4 +106,5 @@ x11-misc/xcompmgr
 x11-misc/zim
 x11-plugins/vicious
 x11-terms/xterm
+x11-themes/zukitwo
 x11-wm/awesome
