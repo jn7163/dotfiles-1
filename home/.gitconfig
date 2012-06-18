@@ -6,9 +6,6 @@
 [user]
     name = Havanna
     email = skykiss_2000@163.com
-[remote "wiki"]
-    url = git@github.com:Ihavanna/wiki.ihavanna.org.git
-    url = git@bitbucket.org:Havanna/wiki.ihavanna.org.git
 [diff]
     tool = diff
 [alias]
@@ -39,3 +36,9 @@
     added = yellow
     changed = green
     untracked = cyan
+[gist]
+    private = no
+    browse = no
+[github]
+    user = username
+    password=password
