@@ -1,0 +1,61 @@
+
+[default]
+vo=vdpau,vaapi,xv,fbdev2, 		#视频驱动选择
+#vo=gl2,xv,fbdev2,
+#vo=xv,fbdev2,
+#vc=vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+#fs=yes
+#vm=yes
+zoom=1				#允许视频缩放
+ao=alsa,				#音频驱动选择
+#ac=mad,ac3
+cache=8192			#播放在线广播mms，cache设为64为宜
+cache-min=20.0
+cache-seek-min=50
+stop-xscreensaver=yes		#不允许播放视频时出现屏保
+framedrop=yes			#允许掉帧，可以解决RMVB快进后声音字幕不同步的问题
+nojoystick=yes
+nomouseinput=yes
+unicode=yes
+sub-fuzziness=1 		#设定字幕自动加载的识别，播放时可以通过j键切换
+subcp=enca:zh:cp936			#设置字幕编码
+#sub-bg-alpha=200
+#sub-bg-color=0
+subfont-blur=1			#设置字体模糊半径，范围为0~8
+subfont-outline=3		#设置字体边框的宽度
+subfont-autoscale=3		#设置按什么方法来进行自动缩放字幕，0－不自动缩放，1－按电影高度缩放，2－按电影宽度缩放，3－按电影对角线缩放(默认值)
+subfont-text-scale=5		#设置字幕文本的自动缩放系数(屏幕尺寸的百分比)，值范围为 0～100，默认值为5
+subfont-osd-scale=2		#OSD字幕的自动缩放系统(屏幕尺寸的百分比)，值范围为0～100，默认值为6
+overlapsub=1			#对所有字幕格式启用重叠字幕支持
+subpos=0			#设置字幕在屏幕上显示的位置，参数表示字幕的垂直位置位于屏幕的百分比
+subalign=2			#设置字幕相对于subpos如何对齐，0表示顶部对齐(最初的/默认的行为), 1表示中央对齐, 而2标识底部对齐
+#font="LiHei Pro"
+font="FZWeiBei-S03"
+osdlevel=3
+ass=1
+#ass-styles=$HOME/.mplayer/my.ass
+ass-font-scale=1		# use up style file no need this scale param
+ass-color=FFFF8000
+ass-border-color=00FF80H0
+ass-bottom-margin=0
+vf=screenshot=expand=:::::16/9:2
+#vf=ass,expand=osd=1
+#vf=expand=:::::16/9:2
+#vf=screenshot
+#vf=expand=0:-50:0:0:0
+#monitoraspect=1366:768		#识别桌面分辨率
+#autosync=0			#解决FLV播放同步问题
+#mc=0				#解决FLV播放同步问题
+nolirc=yes
+#mouse−movements=yes
+#mixer-channel=PCM,0
+mixer-channel=Master,0
+#use-filename-title=yes
+
+[gnome-mplayer]
+vo=xv
+ao=alsa
+msglevel=all=5
+alang=Chinese,chi,zh
+slang=Chinese,chi,zh
+vf=eq2

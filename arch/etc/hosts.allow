@@ -1,0 +1,8 @@
+#
+# /etc/hosts.allow
+#
+vsftpd: ALL
+sshd: ALL
+nginx: ALL
+#vsftpd: 192.168.0.0/255.255.255.0
+# End of file

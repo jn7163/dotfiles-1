@@ -1,0 +1,6 @@
+[Script Info]
+ScriptType:v4.00+
+
+[V4+ Styles]
+Format: Name , Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default , WenQuanYi Micro Hei, 10, &H00FFFFFF, &HF0000000, &H00000000, &HF0000000, 0, 0, 0, 0, 100, 100, 0, 0.00, 1, 1, 0, 2, 30, 30, 10, 1
