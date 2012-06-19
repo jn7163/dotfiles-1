@@ -25,7 +25,7 @@
 ;;(customize-set-variable 'scroll-bar-mode 'right));设置滚动栏在窗口右侧，而默认是在左侧
 
 (tool-bar-mode nil);取消工具栏
-;;(menu-bar-mode nil);关闭菜单
+(menu-bar-mode nil);关闭菜单
 
 ;; 启动时窗口最大化
 ;(when window-system
