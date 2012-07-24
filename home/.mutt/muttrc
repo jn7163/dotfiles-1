@@ -3,10 +3,6 @@
 
 #charset-hook !utf-8 gb2312
 
-
-set collapse_unread=no
-folder-hook . 'push <collapse-all>'
-
 auto_view application/zip
 auto_view application/x-gzip
 auto_view application/x-gunzip
