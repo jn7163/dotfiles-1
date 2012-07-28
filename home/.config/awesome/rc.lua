@@ -60,6 +60,7 @@ accessories = {
 
 internet = {
     { "Mozilla Firefox", "firefox" },
+    { "Chromium","chromium" },
     { "Opera", "opera" },
     { "Canto", "xterm -e canto -u" },
     { "GtkQQ", "gtkqq" },
@@ -97,7 +98,8 @@ systemtools = {
     { "VirtualBox", "VirtualBox" },
     { "AlsaMixer", "xterm -e alsamixer" },
     { "Htop", "xterm -e htop" },
-    { "Fcitx Config", "fcitx-configtool" }
+    { "Fcitx Config", "fcitx-configtool" },
+    { "Qt Configuration", "qtconfig" }
 }
 
 mymainmenu = awful.menu({ items = { { "Accessories", accessories, beautiful.awesome_icon },
@@ -500,7 +502,7 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
      { rule = { class = "Firefox" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Opera" }, properties = { tag = tags[1][2] } },
-     { rule = { class = "Google-chrome" }, properties = { tag = tags[1][2] } },
+     { rule = { class = "Chromium-browser" }, properties = { tag = tags[1][2] } },
      { rule = { name = "Python Shell" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Emacs" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Leafpad" }, properties = { tag = tags[1][4] } },
@@ -524,6 +526,8 @@ awful.rules.rules = {
      { rule = { class = "Xarchiver" }, properties = { tag = tags[1][7] } },
      { rule = { class = "Openfetion" }, properties = { tag = tags[1][7] } },
      { rule = { class = "Gtkqq" }, properties = { tag = tags[1][7] } },
+     { rule = { class = "Gtconfig" }, properties = { tag = tags[1][7] } },
+     { rule = { class = "Abp" }, properties = { tag = tags[1][7] } },
 }
 
 client.add_signal("manage", function (c, startup)
