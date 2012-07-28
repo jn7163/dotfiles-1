@@ -2,6 +2,7 @@ app-admin/conky
 app-admin/sudo
 app-admin/syslog-ng
 app-arch/p7zip
+app-cdr/poweriso
 app-editors/leafpad
 app-editors/nano
 app-editors/vim
@@ -19,13 +20,12 @@ app-portage/layman
 app-portage/pfl
 app-shells/bash-completion
 app-text/mupdf
-app-text/texlive
 app-text/wgetpaste
-app-vim/vim-latex
 dev-db/mysql
 dev-db/phpmyadmin
 dev-lang/go
 dev-lang/php
+dev-util/android-sdk-update-manager
 dev-util/cmake
 games-action/chromium-bsu
 games-misc/cowsay
@@ -49,7 +49,9 @@ media-sound/mpd
 media-sound/shntool
 media-video/cheese
 media-video/mplayer2
+net-analyzer/mtr
 net-dialup/rp-pppoe
+net-dns/bind-tools
 net-firewall/iptables
 net-ftp/ftp
 net-ftp/lftp
@@ -73,11 +75,13 @@ sys-apps/dbus
 sys-apps/iproute2
 sys-apps/pciutils
 sys-apps/portage
+sys-apps/usbutils
 sys-boot/grub
 sys-devel/bc
 sys-devel/gcc
 sys-fs/ntfs3g
 sys-kernel/gentoo-sources
+sys-kernel/gentoo-sources:3.4.5
 sys-kernel/module-rebuild
 sys-libs/glibc
 sys-power/acpid
@@ -90,6 +94,7 @@ virtual/emacs
 virtual/w3m
 www-apache/mod_fastcgi_handler
 www-client/firefox
+www-client/google-chrome:stable
 www-client/opera
 www-plugins/adobe-flash
 www-plugins/aliedit
@@ -98,6 +103,9 @@ www-servers/apache
 www-servers/lighttpd
 www-servers/nginx
 x11-apps/xprop
+x11-drivers/xf86-input-evdev
+x11-drivers/xf86-input-synaptics
+x11-drivers/xf86-video-intel
 x11-libs/cairo
 x11-libs/libnotify
 x11-misc/compton
