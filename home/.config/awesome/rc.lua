@@ -60,7 +60,7 @@ accessories = {
 
 internet = {
     { "Mozilla Firefox", "firefox" },
-    { "Chromium","chromium" },
+    { "Google-Chrome","google-chrome" },
     { "Opera", "opera" },
     { "Canto", "xterm -e canto -u" },
     { "GtkQQ", "gtkqq" },
@@ -502,7 +502,7 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
      { rule = { class = "Firefox" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Opera" }, properties = { tag = tags[1][2] } },
-     { rule = { class = "Chromium-browser" }, properties = { tag = tags[1][2] } },
+     { rule = { class = "Google-chrome" }, properties = { tag = tags[1][2] } },
      { rule = { name = "Python Shell" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Emacs" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Leafpad" }, properties = { tag = tags[1][4] } },
