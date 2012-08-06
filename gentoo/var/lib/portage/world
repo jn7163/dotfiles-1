@@ -29,7 +29,6 @@ dev-util/android-sdk-update-manager
 dev-util/cmake
 games-action/chromium-bsu
 games-misc/cowsay
-games-misc/fortune-mod-zh
 mail-client/mutt
 mail-mta/postfix
 media-fonts/wqy-microhei
@@ -57,7 +56,6 @@ net-ftp/ftp
 net-ftp/lftp
 net-ftp/vsftpd
 net-im/freetalk
-net-im/gtkqq
 net-im/gtmess
 net-im/openfetion
 net-irc/irssi
@@ -77,11 +75,12 @@ sys-apps/pciutils
 sys-apps/portage
 sys-apps/usbutils
 sys-boot/grub
+sys-boot/syslinux
 sys-devel/bc
 sys-devel/gcc
+sys-fs/dosfstools
 sys-fs/ntfs3g
 sys-kernel/gentoo-sources
-sys-kernel/gentoo-sources:3.4.5
 sys-kernel/module-rebuild
 sys-libs/glibc
 sys-power/acpid

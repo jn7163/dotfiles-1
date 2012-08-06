@@ -33,7 +33,7 @@ mail-client/mutt imap mbox nntp pop smime smtp sasl
 media-libs/freetype auto-hinter
 media-libs/libass enca
 media-libs/libpng apng
-media-libs/mesa openvg xorg
+media-libs/mesa openvg
 media-gfx/ffcast vpx
 media-sound/deadbeef dts flac gtk gtk3 m3u ape mp3 sndfile wavpack shn linguas_zh_CN
 media-sound/easytag flac mp3 wavpack
@@ -56,13 +56,13 @@ sys-auth/consolekit policykit
 sys-block/parted device-mapper
 sys-devel/gcc graphite go
 sys-fs/ntfs3g -ntfsprogs
-sys-fs/udev extras gudev
+sys-fs/udev extras hwdb gudev
 virtual/ffmpeg mp3 sdl theora threads vaapi x264
 www-client/firefox -linguas_en -crashreporter pgo system-sqlite
 www-client/opera -gstreamer gtk gtk3
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi
-x11-base/xorg-server kdrive
+x11-base/xorg-server kdrive xvfb
 x11-libs/cairo xcb
 x11-libs/libdrm libkms
 x11-libs/qt-gui gtkstyle
