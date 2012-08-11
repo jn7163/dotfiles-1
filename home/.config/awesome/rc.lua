@@ -213,8 +213,8 @@ fsroot = widget({ type = 'textbox', name='fsroot' })
 fsroot.text = 'ROOT:'
 fshome = widget({ type = 'textbox', name='fshome' })
 fshome.text = 'HOME:'
-fsmedia = widget({ type = 'textbox', name='fsmedia' })
-fsmedia.text = 'Media:'
+fswindows = widget({ type = 'textbox', name='fswindows' })
+fswindows.text = 'Windows:'
 fs = {
     r = awful.widget.progressbar(), h = awful.widget.progressbar(),
     m = awful.widget.progressbar()
@@ -230,7 +230,7 @@ for _, w in pairs(fs) do
 end
 vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",             599)
 vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",         599)
-vicious.register(fs.m, vicious.widgets.fs, "${/mnt/Media used_p}",    599)
+vicious.register(fs.m, vicious.widgets.fs, "${/mnt/windows used_p}",    599)
 -- }}}
 
 -- {{{ Battery
@@ -274,7 +274,7 @@ vicious.register(uptimewidget, vicious.widgets.uptime, "UpTime: $1d $2h:$3m", 60
 
 -- {{{ Date
 datewidget = widget({ type = "textbox", align = "right" })
-vicious.register(datewidget, vicious.widgets.date, "%a, %D, <span color='moccasin'>%R</span>", 60)
+vicious.register(datewidget, vicious.widgets.date, "%a, %D, <span color='moccasin'>%R:%S</span>", 1)
 -- }}}
 
 calendar2.addCalendarToWidget(datewidget, "<span color='moccasin'>%s</span>")
@@ -357,7 +357,7 @@ for s = 1, screen.count() do
                                     { mpdwidget, layout = awful.widget.layout.horizontal.leftright },
                                     uptimewidget,
                                     spacer, separator, spacer,
-                                    fs.r.widget, spacer, fsroot, spacer, fs.m.widget, spacer, fsmedia, spacer, fs.h.widget, spacer, fshome,
+                                    fs.r.widget, spacer, fsroot, spacer, fs.m.widget, spacer, fswindows, spacer, fs.h.widget, spacer, fshome,
                                     spacer, separator, spacer,
                                     netwidget, spacer, wifiwidget,
                                     layout = awful.widget.layout.horizontal.rightleft
