@@ -77,7 +77,6 @@ editors = {
 }
 
 office = {
-    { "Leafpad", "leafpad" },
     { "WPS Writer", "wps" },
     { "WPS Presentation", "wpp" },
     { "Gnumeric", "gnumeric" }
