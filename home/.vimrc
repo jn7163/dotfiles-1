@@ -32,9 +32,9 @@ endif
 "set encoding=cp936
 " UNIX 简体中文
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,gb18030
-set fileencoding=utf-8
 set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,big5,gb18030
 
 " 去掉utf-8 bom
 " set nobomb
@@ -272,7 +272,7 @@ let g:WC_min_len=2
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags et sta sw=2 ts=2 sts=2
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS et sta sw=2 ts=2 sts=2
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags et sta sw=2 ts=2 sts=2
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP et sta sw=2 ts=2 sts=2
 
 autocmd FileType php setlocal makeprg=zca\ %<.php
