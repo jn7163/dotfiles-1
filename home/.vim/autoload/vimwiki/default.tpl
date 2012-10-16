@@ -1,11 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <title>%title% - Havanna's wiki</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="image/x-icon" rel="icon" href="%root_path%css/favicon.ico" />
-<link type="image/x-icon" rel="shortcut icon" href="%root_path%css/favicon.ico" />
-<link rel="Stylesheet" type="text/css" href="%root_path%css/%css%" />
+<meta charset="UTF-8" />
+<link rel="shortcut icon" href="%root_path%css/favicon.ico" />
+<link rel="Stylesheet" href="%root_path%css/%css%" />
 <script>var root_path = '%root_path%';</script> 
 </head>
 <body>
@@ -19,7 +18,7 @@
 			<a href="http://ihavanna.org/">博客</a>
 		</li>
 		<li>
-			<a href="https://github.com/Havanna/">GitHub</a>
+			<a href="https://github.com/IHavanna/">GitHub</a>
 		</li>
 	</ul>
 </div>
