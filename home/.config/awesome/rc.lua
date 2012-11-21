@@ -3,8 +3,12 @@ require("awful.autofocus")
 require("awful.rules")
 require("beautiful")
 require("naughty")
-require("vicious")
+--require("vicious")
 require('calendar2')
+--vicious.contrib = require("vicious")
+vicious = require("vicious")
+--vicious.contrib = require("vicious.contrib")
+--vicious.helpers = require("vicious.helpers")
 
 beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 
@@ -60,7 +64,7 @@ accessories = {
 
 internet = {
     { "Mozilla Firefox", "firefox" },
-    { "Google-Chrome","google-chrome" },
+    { "Google Chrome","google-chrome-proxy" },
     { "Opera", "opera" },
     { "Canto", "xterm -e canto -u" },
     { "GtkQQ", "gtkqq" },
@@ -145,17 +149,17 @@ vicious.register(wifiwidget, vicious.widgets.wifi,
 -- }}}
 
 -- {{{ ip
---ipwidget = widget({ type = "textbox" })
---vicious.register(ipwidget, vicious.widgets.wifi,
---    function (widget, args)
---        function ip_addr()
---            local ip = io.popen("ip addr show wlan0 | grep 'inet '")
---            local addr = ip:read("*a")
---            ip:close()
---            addr = string.match(addr, "%d+.%d+.%d+.%d+")
---            return addr
---            end
---    end, 5, "wlan0")
+ipwidget = widget({ type = "textbox" })
+vicious.register(ipwidget, vicious.widgets.wifi,
+    function (widget, args)
+        function ip_addr()
+            local ip = io.popen("ip addr show wlan0 | grep 'inet '")
+            local addr = ip:read("*a")
+            ip:close()
+            addr = string.match(addr, "%d+.%d+.%d+.%d+")
+            return addr
+            end
+    end, 5, "wlan0")
 -- }}}
 
 -- {{{ Net
@@ -513,11 +517,13 @@ awful.rules.rules = {
      { rule = { class = "Wpp" }, properties = { tag = tags[1][4] } },
      { rule = { class = "Xchm" }, properties = { tag = tags[1][4] } },
      { rule = { class = "mplayer2" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Gnome-mplayer" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Display" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Deadbeef" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Cheese" }, properties = { tag = tags[1][5] } },
      { rule = { class = "MyPaint" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Gimp" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Rrip_gui" }, properties = { tag = tags[1][5] } },
      { rule = { class = "VirtualBox" }, properties = { tag = tags[1][6] } },
      { rule = { class = "Xephyr" }, properties = { tag = tags[1][6] } },
      { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][7] } },
@@ -551,5 +557,5 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 
 os.execute("fcitx -d")
 os.execute("conky &")
-os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
+--os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
 --os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
