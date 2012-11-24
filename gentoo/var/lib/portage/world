@@ -3,6 +3,7 @@ app-admin/sudo
 app-admin/syslog-ng
 app-arch/p7zip
 app-cdr/poweriso
+app-crypt/gnupg
 app-editors/leafpad
 app-editors/nano
 app-editors/vim
@@ -23,7 +24,6 @@ app-text/mupdf
 app-text/wgetpaste
 dev-db/mysql
 dev-db/phpmyadmin
-dev-lang/go
 dev-lang/php
 dev-util/android-sdk-update-manager
 dev-util/cmake
@@ -32,6 +32,7 @@ games-misc/cowsay
 mail-client/mutt
 mail-mta/postfix
 media-fonts/wqy-microhei
+media-gfx/aucdtect
 media-gfx/deepin-screenshot
 media-gfx/feh
 media-gfx/ffcast
@@ -39,12 +40,14 @@ media-gfx/gimp
 media-gfx/gpicview
 media-gfx/scrot
 media-libs/mesa
+media-libs/win32codecs
 media-sound/alsa-utils
 media-sound/deadbeef
 media-sound/easytag
 media-sound/moc
 media-sound/mpc
 media-sound/mpd
+media-sound/rubyripper
 media-sound/shntool
 media-video/cheese
 media-video/mplayer2
@@ -71,6 +74,7 @@ net-wireless/wireless-tools
 net-wireless/wpa_supplicant
 sys-apps/dbus
 sys-apps/iproute2
+sys-apps/lm_sensors
 sys-apps/pciutils
 sys-apps/portage
 sys-apps/usbutils
@@ -80,6 +84,7 @@ sys-devel/bc
 sys-devel/gcc
 sys-fs/dosfstools
 sys-fs/ntfs3g
+sys-fs/udisks
 sys-kernel/gentoo-sources
 sys-kernel/module-rebuild
 sys-libs/glibc
@@ -101,6 +106,8 @@ www-plugins/mozplugger
 www-servers/apache
 www-servers/lighttpd
 www-servers/nginx
+www-servers/tomcat
+x11-apps/xinput
 x11-apps/xprop
 x11-drivers/xf86-input-evdev
 x11-drivers/xf86-input-synaptics
