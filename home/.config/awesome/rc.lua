@@ -217,7 +217,7 @@ vicious.register(mygmail, vicious.widgets.gmail, "<span color='moccasin'>GMail:<
 
 -- {{{ CPU
 cpu = wibox.widget.textbox()
-cpu:set_markup("CPU:")
+cpu:set_markup("CPU: ")
 cpugraph = awful.widget.graph()
 cpugraph:set_width (20):set_height (14)
 cpugraph:set_background_color ("#494B4F"):set_color ("#FF5656")
