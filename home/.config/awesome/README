@@ -1,4 +1,4 @@
-require awesome 3.4
+require awesome 3.5
 require vicious
 #require xcompmgr
-require compon
+#require compon
