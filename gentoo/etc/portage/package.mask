@@ -1,2 +1,6 @@
 #>www-client/chromium-17.0.963.46-r1
 media-video/ffmpeg
+www-client/google-chrome:beta
+www-client/google-chrome:unstable
+>=www-client/firefox-18
+#>=x11-wm/awesome-3.5_rc1
