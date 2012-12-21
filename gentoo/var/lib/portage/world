@@ -25,6 +25,7 @@ app-text/wgetpaste
 dev-db/mysql
 dev-db/phpmyadmin
 dev-lang/php
+dev-lua/lgi
 dev-util/android-sdk-update-manager
 dev-util/cmake
 games-action/chromium-bsu
@@ -49,7 +50,6 @@ media-sound/mpc
 media-sound/mpd
 media-sound/rubyripper
 media-sound/shntool
-media-video/cheese
 media-video/mplayer2
 net-analyzer/mtr
 net-dialup/rp-pppoe
