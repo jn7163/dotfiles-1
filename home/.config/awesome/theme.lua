@@ -4,9 +4,9 @@
 
 theme = {}
 
-theme.font          = "sans 9"
+theme.font          = "sans 10"
 
-theme.bg_normal     = "#222222"
+theme.bg_normal     = "#222222aa"
 theme.bg_focus      = "#535d6c"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
@@ -40,8 +40,8 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
-theme.menu_height = 15
-theme.menu_width  = 130
+theme.menu_height = 16
+theme.menu_width  = 170
 
 -- You can add as many variables as
 -- you wish and access them by using

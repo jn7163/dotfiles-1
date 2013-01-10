@@ -7,7 +7,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
-require('calendar2')
+--local calendar2 = require('calendar2')
 
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
@@ -65,10 +65,10 @@ if beautiful.wallpaper then
 end
 
 tags = {
-  names = { "Terminal", "Internet", "Program", "Documents", "Media", "Virtual", "Misc",
+  names = { "Terminal", "Internet", "Documents", "Media", "Misc",
   },
   layout = {
-    layouts[5], layouts[9], layouts[9], layouts[9], layouts[12], layouts[12], layouts[12],
+    layouts[5], layouts[9], layouts[9], layouts[12], layouts[12],
 }}
 
 for s = 1, screen.count() do
@@ -94,7 +94,6 @@ accessories = {
 
 internet = {
     { "Mozilla Firefox", "firefox" },
-    { "Google Chrome","google-chrome-proxy" },
     { "Opera", "opera" },
     { "Canto", "xterm -e canto -u" },
     { "GtkQQ", "gtkqq" },
@@ -111,9 +110,9 @@ editors = {
 }
 
 office = {
-    { "WPS Writer", "wps" },
-    { "WPS Presentation", "wpp" },
-    { "Gnumeric", "gnumeric" }
+    { "Kingsoft Writer", "wps" },
+    { "Kingsoft Spreadsheets", "et" },
+    { "Kingsoft Presentation", "wpp" }
 }
 
 media = {
@@ -154,9 +153,13 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 separator = wibox.widget.textbox()
-separator:set_markup(" | ")
+separator:set_markup (' | ')
+separator:set_align (center)
+separator:set_wrap (char)
 space = wibox.widget.textbox()
-space:set_markup(" ")
+space:set_text (' ')
+separator:set_align (center)
+space:set_wrap (word)
 
 -- {{{ MPD
 mpd = wibox.widget.textbox()
@@ -217,12 +220,14 @@ vicious.register(mygmail, vicious.widgets.gmail, "<span color='moccasin'>GMail:<
 
 -- {{{ CPU
 cpu = wibox.widget.textbox()
-cpu:set_markup("CPU: ")
+cpu:set_text ('CPU: ')
+separator:set_align (left)
+cpu:set_wrap (word_char)
 cpugraph = awful.widget.graph()
 cpugraph:set_width (20):set_height (14)
-cpugraph:set_background_color ("#494B4F"):set_color ("#FF5656")
---cpugraph:set_gradient_colors ({ "#AECF96", "#88A175", "#FF5656" })
---cpugraph:set_gradient_angle (180):set_scale (true)
+cpugraph:set_background_color ("#494B4F"):set_color ("#FF5656"):set_scale (true)
+--cpugraph:set_gradient_colors ({ "#AECF96", "#88A175", "#FF5656" }):set_scale (true)
+--cpugraph:set_stack (true):set_stack_colors ( { "#AECF96", "#88A175", "#FF5656" } ):set_color ("#FF5656")
 vicious.register(cpugraph, vicious.widgets.cpu, "$1", 2)
 cputemp = wibox.widget.textbox({ name = "thermalwidget", align = 'right' })
 vicious.register(cputemp, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
@@ -265,8 +270,10 @@ vicious.register(uptime, vicious.widgets.uptime, "UpTime: $1d $2h:$3m", 60)
 -- }}}
 
 -- {{{ mytextclock
-mytextclock = wibox.widget.textbox()
-vicious.register(mytextclock, vicious.widgets.date, "%a, %D, <span color='moccasin'>%R:%S</span>", 1)
+mytextclock = awful.widget.textclock()
+--mytextclock:buttons(awful.util.table.join(
+--    awful.button({ }, 1, function () awful.util.spawn("xterm -e ccal -u", true) end)
+--))
 --calendar2.addCalendarToWidget(mytextclock, "<span color='moccasin'>%s</span>")
 -- }}}
 
@@ -355,6 +362,7 @@ for s = 1, screen.count() do
     top_right_layout:add(separator)
     top_right_layout:add(cpu)
     top_right_layout:add(cpugraph)
+    top_right_layout:add(space)
     top_right_layout:add(cputemp)
     top_right_layout:add(separator)
     top_right_layout:add(ram)
@@ -549,31 +557,32 @@ awful.rules.rules = {
      { rule = { class = "Google-chrome" }, properties = { tag = tags[1][2] } },
      { rule = { name = "Python Shell" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Emacs" }, properties = { tag = tags[1][3] } },
-     { rule = { class = "Leafpad" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "Zim" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "MuPDF" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "Gnumeric" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "Gpicview" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "Wps" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "Wpp" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "Xchm" }, properties = { tag = tags[1][4] } },
-     { rule = { class = "mplayer2" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Gnome-mplayer" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Display" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Deadbeef" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Cheese" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "MyPaint" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Gimp" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Rrip_gui" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "VirtualBox" }, properties = { tag = tags[1][6] } },
-     { rule = { class = "Xephyr" }, properties = { tag = tags[1][6] } },
-     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][7] } },
-     { rule = { class = "chromium-bsu" }, properties = { tag = tags[1][7] } },
-     { rule = { class = "Xarchiver" }, properties = { tag = tags[1][7] } },
-     { rule = { class = "Openfetion" }, properties = { tag = tags[1][7] } },
-     { rule = { class = "Gtkqq" }, properties = { tag = tags[1][7] } },
-     { rule = { class = "Gtconfig" }, properties = { tag = tags[1][7] } },
-     { rule = { class = "Abp" }, properties = { tag = tags[1][7] } },
+     { rule = { class = "Leafpad" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Zim" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "MuPDF" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Gnumeric" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Gpicview" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Wps" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Wpp" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Et" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Xchm" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "mplayer2" }, properties = { tag = tags[1][4] } },
+     { rule = { class = "Gnome-mplayer" }, properties = { tag = tags[1][4] } },
+     { rule = { class = "Display" }, properties = { tag = tags[1][4] } },
+     { rule = { class = "Deadbeef" }, properties = { tag = tags[1][4] } },
+     { rule = { class = "Cheese" }, properties = { tag = tags[1][4] } },
+     { rule = { class = "MyPaint" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Gimp" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "Rrip_gui" }, properties = { tag = tags[1][3] } },
+     { rule = { class = "VirtualBox" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Xephyr" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "chromium-bsu" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Xarchiver" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Openfetion" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Gtkqq" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Gtconfig" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Abp" }, properties = { tag = tags[1][5] } },
 }
 -- }}}
 
