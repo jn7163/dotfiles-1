@@ -96,11 +96,9 @@ internet = {
     { "Mozilla Firefox", "firefox" },
     { "Opera", "opera" },
     { "Canto", "xterm -e canto -u" },
-    { "GtkQQ", "gtkqq" },
     { "Openfetion", "openfetion" },
     { "Irssi", "xterm -e screen irssi" },
-    { "Mutt", "xterm -e mutt" },
-    { "Gtmess", "xterm -e gtmess" }
+    { "Mutt", "xterm -e mutt" }
 }
 
 editors = {
@@ -580,7 +578,6 @@ awful.rules.rules = {
      { rule = { class = "chromium-bsu" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Xarchiver" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Openfetion" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Gtkqq" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Gtconfig" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Abp" }, properties = { tag = tags[1][5] } },
 }
