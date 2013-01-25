@@ -234,12 +234,6 @@ cpugraph:buttons(awful.util.table.join(
 
 -- {{{ MEM
 ram = wibox.widget.textbox()
-vicious.register(ram, vicious.widgets.mem, "Ram: $1%", 2)
-ram:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
-))
-
-ram = wibox.widget.textbox()
 ram:set_text ('Ram:')
 rambar = awful.widget.progressbar()
 rambar:set_width (8):set_height (14)
@@ -275,7 +269,6 @@ volbar:buttons(awful.util.table.join(
 ))
 vol = wibox.widget.textbox()
 vicious.register(vol, vicious.widgets.volume, "Vol: $2", 2, "Master")
---vicious.register(vol, vicious.widgets.volume, "Vol: $2 $1%", 2, "Master")
 -- }}}
 
 -- {{{ UPTime
