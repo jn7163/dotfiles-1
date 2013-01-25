@@ -182,17 +182,18 @@ vicious.register(wifi, vicious.widgets.wifi,
 -- }}}
 
 -- {{{ ip
---ip = wibox.widget.textbox()
---vicious.register(ip, vicious.widgets.wifi,
---    function (widget, args)
---        function ip_addr()
---            local ip = io.popen("ip addr show wlan0 | grep 'inet '")
---            local addr = ip:read("*a")
---            ip:close()
---            addr = string.match(addr, "%d+.%d+.%d+.%d+")
---            return addr
---            end
---    end, 5, "wlan0")
+--[[ip = wibox.widget.textbox()
+vicious.register(ip, vicious.widgets.wifi,
+    function (widget, args)
+        function ip_addr()
+            local ip = io.popen("ip addr show wlan0 | grep 'inet '")
+            local addr = ip:read("*a")
+            ip:close()
+            addr = string.match(addr, "%d+.%d+.%d+.%d+")
+            return addr
+            end
+    end, 5, "wlan0")
+--]]
 -- }}}
 
 -- {{{ Net
@@ -216,7 +217,7 @@ vicious.register(mygmail, vicious.widgets.gmail, "<span color='moccasin'>GMail:<
 
 -- {{{ CPU
 cpu = wibox.widget.textbox()
-cpu:set_text ('CPU: ')
+cpu:set_text ('CPU:')
 separator:set_align (left)
 cpu:set_wrap (word_char)
 cpugraph = awful.widget.graph()
@@ -237,11 +238,27 @@ vicious.register(ram, vicious.widgets.mem, "Ram: $1%", 2)
 ram:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
 ))
+
+ram = wibox.widget.textbox()
+ram:set_text ('Ram:')
+rambar = awful.widget.progressbar()
+rambar:set_width (8):set_height (14)
+rambar:set_vertical(true)
+rambar:set_background_color ("#494B4F"):set_color ("#AECF96")
+rambar:set_border_color(nil)
+rambar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
+vicious.register(rambar, vicious.widgets.mem, "$1", 2)
 -- }}}
 
 -- {{{ Battery
 bat = wibox.widget.textbox()
-vicious.register(bat, vicious.widgets.bat, "Bat: $2%", 60, "BAT0")
+vicious.register(bat, vicious.widgets.bat, "Bat: $1", 60, "BAT0")
+batbar = awful.widget.progressbar()
+batbar:set_width(6):set_height(14):set_vertical(true)
+batbar:set_background_color("#494B4F"):set_color("#AECF96")
+batbar:set_border_color(nil)
+batbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
+vicious.register(batbar, vicious.widgets.bat, "$2", 60, "BAT0")
 -- }}}
 
 -- {{{ Volume
@@ -250,7 +267,6 @@ volbar:set_width(8):set_height(14):set_vertical(true)
 volbar:set_background_color("#494B4F"):set_color("#AECF96")
 volbar:set_border_color(nil)
 volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
---volbar:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
 vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 volbar:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle", false) end),
@@ -361,23 +377,29 @@ for s = 1, screen.count() do
     if s == 1 then top_right_layout:add(wibox.widget.systray()) end
     top_right_layout:add(separator)
     top_right_layout:add(cpu)
+    top_right_layout:add(space)
     top_right_layout:add(cpugraph)
     top_right_layout:add(space)
     top_right_layout:add(cputemp)
     top_right_layout:add(separator)
     top_right_layout:add(ram)
+    top_right_layout:add(space)
+    top_right_layout:add(rambar)
     top_right_layout:add(separator)
     top_right_layout:add(vol)
     top_right_layout:add(space)
     top_right_layout:add(volbar)
     top_right_layout:add(separator)
     top_right_layout:add(bat)
+    top_right_layout:add(space)
+    top_right_layout:add(batbar)
     top_right_layout:add(separator)
     top_right_layout:add(mytextclock)
     top_right_layout:add(separator)
     top_right_layout:add(mylayoutbox[s])
     local bottom_right_layout = wibox.layout.fixed.horizontal()
     bottom_right_layout:add(wifi)
+    --bottom_right_layout:add(ip)
     bottom_right_layout:add(net)
     bottom_right_layout:add(separator)
     bottom_right_layout:add(uptime)
