@@ -7,7 +7,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
---local calendar2 = require('calendar2')
+local cal = require('cal')
 
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
@@ -35,7 +35,6 @@ beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
 browser = "firefox"
-screenshot = "deepin-screenshot"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
@@ -96,7 +95,6 @@ internet = {
     { "Mozilla Firefox", "firefox" },
     { "Opera", "opera" },
     { "Canto", "xterm -e canto -u" },
-    { "Openfetion", "openfetion" },
     { "Irssi", "xterm -e screen irssi" },
     { "Mutt", "xterm -e mutt" }
 }
@@ -151,12 +149,12 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 separator = wibox.widget.textbox()
-separator:set_markup (' | ')
+separator:set_text (" | ")
 separator:set_align (center)
-separator:set_wrap (char)
+separator:set_wrap (word)
 space = wibox.widget.textbox()
 space:set_text (' ')
-separator:set_align (center)
+space:set_align (center)
 space:set_wrap (word)
 
 -- {{{ MPD
@@ -223,14 +221,13 @@ separator:set_align (left)
 cpu:set_wrap (word_char)
 cpugraph = awful.widget.graph()
 cpugraph:set_width (20):set_height (14)
-cpugraph:set_background_color ("#494B4F"):set_color ("#FF5656"):set_scale (true)
---cpugraph:set_gradient_colors ({ "#AECF96", "#88A175", "#FF5656" }):set_scale (true)
---cpugraph:set_stack (true):set_stack_colors ( { "#AECF96", "#88A175", "#FF5656" } ):set_color ("#FF5656")
+cpugraph:set_background_color ("#494B4F"):set_scale (true)
+cpugraph:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 vicious.register(cpugraph, vicious.widgets.cpu, "$1", 2)
-cputemp = wibox.widget.textbox({ name = "thermalwidget", align = 'right' })
+cputemp = wibox.widget.textbox()
 vicious.register(cputemp, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
 cpugraph:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", true) end)
+    awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
 ))
 -- }}}
 
@@ -238,7 +235,7 @@ cpugraph:buttons(awful.util.table.join(
 ram = wibox.widget.textbox()
 vicious.register(ram, vicious.widgets.mem, "Ram: $1%", 2)
 ram:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", true) end)
+    awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
 ))
 -- }}}
 
@@ -248,13 +245,21 @@ vicious.register(bat, vicious.widgets.bat, "Bat: $2%", 60, "BAT0")
 -- }}}
 
 -- {{{ Volume
-vol = wibox.widget.textbox()
-vicious.register(vol, vicious.widgets.volume, "Vol: $2 $1%", 2, "Master")
-vol:buttons(awful.util.table.join(
-   awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle") end),
-   awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
-   awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
+volbar = awful.widget.progressbar()
+volbar:set_width(8):set_height(14):set_vertical(true)
+volbar:set_background_color("#494B4F"):set_color("#AECF96")
+volbar:set_border_color(nil)
+volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
+--volbar:set_gradient_colors({ "#AECF96", "#88A175", "#FF5656" })
+vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
+volbar:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle", false) end),
+    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
+    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
 ))
+vol = wibox.widget.textbox()
+vicious.register(vol, vicious.widgets.volume, "Vol: $2", 2, "Master")
+--vicious.register(vol, vicious.widgets.volume, "Vol: $2 $1%", 2, "Master")
 -- }}}
 
 -- {{{ UPTime
@@ -269,10 +274,7 @@ vicious.register(uptime, vicious.widgets.uptime, "UpTime: $1d $2h:$3m", 60)
 
 -- {{{ mytextclock
 mytextclock = awful.widget.textclock()
---mytextclock:buttons(awful.util.table.join(
---    awful.button({ }, 1, function () awful.util.spawn("xterm -e ccal -u", true) end)
---))
---calendar2.addCalendarToWidget(mytextclock, "<span color='moccasin'>%s</span>")
+cal.register(mytextclock, "<span color='moccasin'>%s</span>")
 -- }}}
 
 
@@ -366,6 +368,8 @@ for s = 1, screen.count() do
     top_right_layout:add(ram)
     top_right_layout:add(separator)
     top_right_layout:add(vol)
+    top_right_layout:add(space)
+    top_right_layout:add(volbar)
     top_right_layout:add(separator)
     top_right_layout:add(bat)
     top_right_layout:add(separator)
@@ -405,17 +409,17 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-    awful.key({ "Mod1", "Control" }, "a", function () awful.util.spawn(screenshot) end),
-    awful.key({                   }, "F1",function () awful.util.spawn(terminal) end),
-    awful.key({                   }, "F2",function () awful.util.spawn(browser) end),
-    awful.key({                   }, "F3",function () awful.util.spawn("emacs") end),
-    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB-" ) end),
-    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB+" ) end),
-    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle" ) end),
-    awful.key({                   }, "XF86AudioNext",           function () awful.util.spawn( "mpc next" ) end),
-    awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev" ) end),
-    awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play" ) end),
-    awful.key({                   }, "XF86AudioStop",           function () awful.util.spawn( "mpc stop" ) end),
+    awful.key({                   }, "F1",                      function () awful.util.spawn(terminal) end),
+    awful.key({                   }, "F2",                      function () awful.util.spawn(browser) end),
+    awful.key({                   }, "F3",                      function () awful.util.spawn("emacs") end),
+    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB-", false ) end),
+    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB+",false ) end),
+    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle",false ) end),
+    awful.key({                   }, "XF86AudioNext",           function () awful.util.spawn( "mpc next", false ) end),
+    awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev", false ) end),
+    awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play", false ) end),
+    awful.key({                   }, "XF86AudioStop",           function () awful.util.spawn( "mpc stop", false ) end),
+    awful.key({                   }, "Print",                   function () awful.util.spawn( "screenshot", false ) end),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -577,7 +581,6 @@ awful.rules.rules = {
      { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][5] } },
      { rule = { class = "chromium-bsu" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Xarchiver" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Openfetion" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Gtconfig" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Abp" }, properties = { tag = tags[1][5] } },
 }

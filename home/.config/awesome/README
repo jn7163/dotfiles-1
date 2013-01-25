@@ -1,4 +1,5 @@
-require awesome 3.5
+require awesome >= 3.5
 require vicious
+require cal.lua
 #require xcompmgr
 #require compon
