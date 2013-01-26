@@ -225,11 +225,11 @@ cpugraph:set_width (20):set_height (14)
 cpugraph:set_background_color ("#494B4F"):set_scale (true)
 cpugraph:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 vicious.register(cpugraph, vicious.widgets.cpu, "$1", 2)
-cputemp = wibox.widget.textbox()
-vicious.register(cputemp, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
 cpugraph:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
 ))
+cputemp = wibox.widget.textbox()
+vicious.register(cputemp, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
 -- }}}
 
 -- {{{ MEM
@@ -252,7 +252,15 @@ batbar:set_width(6):set_height(14):set_vertical(true)
 batbar:set_background_color("#494B4F"):set_color("#AECF96")
 batbar:set_border_color(nil)
 batbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
-vicious.register(batbar, vicious.widgets.bat, "$2", 60, "BAT0")
+--vicious.register(batbar, vicious.widgets.bat, "$2", 60, "BAT0")
+vicious.register(batbar, vicious.widgets.bat, function (widget, args)
+    batbar_t = wibox.widget.textbox()
+    batbar_t:set_text(" State: " .. args[1] .. " | Charge: " .. args[2] .. "% | Remaining: " .. args[3])
+    if args[2] <= 10 then
+        naughty.notify({ text="Battery is low! " .. args[2] .. " percent remaining." })
+    end
+    return args[2]
+end , 60, "BAT0")
 -- }}}
 
 -- {{{ Volume
