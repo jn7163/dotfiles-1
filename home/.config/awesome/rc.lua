@@ -166,7 +166,7 @@ vicious.register(mpd, vicious.widgets.mpd,
         else
             return ' <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
         end
-    end, 2)
+    end, 5)
 -- }}}
 
 -- {{{ Wifi
@@ -225,6 +225,13 @@ cpugraph:set_width (20):set_height (14)
 cpugraph:set_background_color ("#494B4F"):set_scale (true)
 cpugraph:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 vicious.register(cpugraph, vicious.widgets.cpu, "$1", 2)
+cputip = awful.tooltip({ objects = { cpugraph }, timer_function = function ()
+    cmd = io.popen("ps -aux --cols 110 --sort=-%cpu | head -6")
+    top = cmd:read("*a")
+    return string.gsub(top,"\n$","")
+end
+})
+--cputip:connect_signal("mouse::enter",tooltip.update)
 cpugraph:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
 ))
