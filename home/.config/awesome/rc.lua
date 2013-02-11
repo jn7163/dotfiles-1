@@ -34,7 +34,7 @@ beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
-browser = "firefox"
+browser = "chromium-browser-proxy"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
@@ -93,6 +93,7 @@ accessories = {
 
 internet = {
     { "Mozilla Firefox", "firefox" },
+    { "Chromium", "chromium-browser" },
     { "Opera", "opera" },
     { "Canto", "xterm -e canto -u" },
     { "Irssi", "xterm -e screen irssi" },
@@ -586,6 +587,7 @@ awful.rules.rules = {
      { rule = { class = "Firefox" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Opera" }, properties = { tag = tags[1][2] } },
      { rule = { class = "Google-chrome" }, properties = { tag = tags[1][2] } },
+     { rule = { class = "Chromium-browser" }, properties = { tag = tags[1][2] } },
      { rule = { name = "Python Shell" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Emacs" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Leafpad" }, properties = { tag = tags[1][3] } },

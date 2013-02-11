@@ -30,6 +30,7 @@ dev-util/android-sdk-update-manager
 dev-util/cmake
 games-action/chromium-bsu
 games-misc/cowsay
+lxde-base/lxappearance
 mail-client/mutt
 mail-mta/postfix
 media-fonts/wqy-microhei
@@ -45,7 +46,6 @@ media-libs/win32codecs
 media-sound/alsa-utils
 media-sound/deadbeef
 media-sound/easytag
-media-sound/moc
 media-sound/mpc
 media-sound/mpd
 media-sound/rubyripper
@@ -59,8 +59,6 @@ net-ftp/ftp
 net-ftp/lftp
 net-ftp/vsftpd
 net-im/freetalk
-net-im/gtmess
-net-im/openfetion
 net-irc/irssi
 net-misc/aria2
 net-misc/dhcpcd
@@ -97,12 +95,13 @@ sys-process/vixie-cron
 virtual/emacs
 virtual/w3m
 www-apache/mod_fastcgi_handler
+www-client/chromium
 www-client/firefox
-www-client/google-chrome:stable
 www-client/opera
 www-plugins/adobe-flash
 www-plugins/aliedit
 www-plugins/mozplugger
+www-plugins/upeditor
 www-servers/apache
 www-servers/lighttpd
 www-servers/nginx
@@ -120,5 +119,5 @@ x11-misc/xcompmgr
 x11-misc/zim
 x11-plugins/vicious
 x11-terms/xterm
-x11-themes/zukitwo
 x11-wm/awesome
+x11-wm/awesome::gentoo
