@@ -87,7 +87,7 @@ accessories = {
    { "Xterm", "xterm" },
    { "Pcmanfm", "pcmanfm" },
    { "Gpicview", "gpicview" },
-   { "BC", "xterm -e bc" },
+   { "BC", terminal .. " -e bc" },
    { "Zim", "zim" }
 }
 
@@ -95,9 +95,9 @@ internet = {
     { "Mozilla Firefox", "firefox" },
     { "Chromium", "chromium-browser" },
     { "Opera", "opera" },
-    { "Canto", "xterm -e canto -u" },
-    { "Irssi", "xterm -e screen irssi" },
-    { "Mutt", "xterm -e mutt" }
+    { "Canto", terminal .. " -e canto -u" },
+    { "Irssi", terminal .. " -e screen irssi" },
+    { "Mutt", terminal .. " -e mutt" }
 }
 
 editors = {
@@ -116,11 +116,12 @@ media = {
     { "Gimp", "gimp" },
     { "Cheese", "cheese" },
     { "Deadbeef", "deadbeef" },
-    { "Moc", "xterm -e mocp" }
+    { "Moc", terminal .. " -e mocp" }
 }
 
 games = {
     { "Chromium B.S.U", "chromium-bsu" },
+    { "Steam", "steam" }
 }
 
 systemtools = {
@@ -226,12 +227,12 @@ cpugraph:set_width (20):set_height (14)
 cpugraph:set_background_color ("#494B4F"):set_scale (true)
 cpugraph:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 vicious.register(cpugraph, vicious.widgets.cpu, "$1", 2)
-cputip = awful.tooltip({ objects = { cpugraph }, timer_function = function ()
+--[[cputip = awful.tooltip({ objects = { cpugraph }, timer_function = function ()
     cmd = io.popen("ps -aux --cols 110 --sort=-%cpu -c | head -6")
     top = cmd:read("*a")
     return string.gsub(top,"\n$","")
 end
-})
+})]]--
 --cputip:connect_signal("mouse::enter",tooltip.update)
 cpugraph:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
@@ -278,9 +279,9 @@ volbar:set_border_color(nil)
 volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 volbar:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle", false) end),
-    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
-    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
+    awful.button({ }, 1, function () awful.util.spawn("amixer -D pulse -q sset Master toggle", false) end),
+    awful.button({ }, 4, function () awful.util.spawn("amixer -D pulse -q sset Master 1dB+", false) end),
+    awful.button({ }, 5, function () awful.util.spawn("amixer -D pulse -q sset Master 1dB-", false) end)
 ))
 vol = wibox.widget.textbox()
 vicious.register(vol, vicious.widgets.volume, "Vol: $2", 2, "Master")
@@ -442,9 +443,9 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "F1",                      function () awful.util.spawn(terminal) end),
     awful.key({                   }, "F2",                      function () awful.util.spawn(browser) end),
     awful.key({                   }, "F3",                      function () awful.util.spawn("emacs") end),
-    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB-", false ) end),
-    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 1dB+",false ) end),
-    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle",false ) end),
+    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -D pulse -q sset Master 1dB-", false ) end),
+    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -D pulse -q sset Master 1dB+",false ) end),
+    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -D pulse -q sset Master toggle",false ) end),
     awful.key({                   }, "XF86AudioNext",           function () awful.util.spawn( "mpc next", false ) end),
     awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev", false ) end),
     awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play", false ) end),
@@ -614,6 +615,7 @@ awful.rules.rules = {
      { rule = { class = "Xarchiver" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Gtconfig" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Abp" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Steam" }, properties = { tag = tags[1][5] } },
 }
 -- }}}
 
