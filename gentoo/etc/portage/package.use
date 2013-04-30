@@ -1,13 +1,16 @@
 app-admin/conky curl mpd
+app-admin/eselect-php fpm apache2
 app-arch/file-roller nautilus
 app-arch/p7zip rar
 app-arch/unzip natspec
 app-arch/zip natspec
 app-editors/emacs xft -gconf
-app-i18n/fcitx cairo gtk gtk3 pango qt4
+app-emulation/qemu sdl usbredir vde
+app-i18n/fcitx cairo gtk gtk3 pango qt4 -table
 app-office/abiword plugins
 app-office/libreoffice-l10n linguas_zh_CN
 app-office/libreoffice-bin java
+app-office/wps-office -sharedfonts
 app-portage/eix sqlite
 app-portage/layman cvs git mercurial subversion
 app-text/ghostscript-gpl cups
@@ -16,10 +19,12 @@ app-text/texlive dvipdffm xetex
 app-text/texlive-core xetex
 app-text/wv tools
 dev-db/mysql perl ssl
+dev-db/MariaDB perl ssl
 dev-db/sqlite secure-delete unlock-notify
 dev-java/icedtea-bin nsplugin -cjk
 dev-java/swt cairo
-dev-lang/php apache2 cgi cli curl fpm ftp gd ldap mysql mysqlnd mhash pdo sockets sqlite3 xml xmlreader xmlwriter
+#dev-lang/php apache2 cgi curl fpm ftp gd mysql mysqli mysqlnd mhash pdo sockets sqlite3 threads xml xmlreader xmlwriter cli
+dev-lang/php apache2 cgi curl fpm ftp gd mysql mysqli mysqlnd mhash pdo sqlite threads xml xmlreader xmlwriter cli
 dev-lang/python sqlite tk
 dev-libs/libdbusmenu gtk
 dev-libs/libgcrypt static-libs
@@ -33,20 +38,21 @@ dev-vcs/subversion perl -dso
 gnome-base/gvfs udisks
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
 media-libs/freetype auto-hinter
+media-libs/gst-plugins-base theora
 media-libs/libass enca
 media-libs/libpng apng
-media-libs/mesa openvg osmesa xorg
+media-libs/mesa gbm gles2 openvg osmesa xorg
 media-gfx/ffcast vpx
-media-sound/deadbeef ape dts ffmpeg m3u sndfile wavpack shn linguas_zh_CN
+media-sound/deadbeef ape dts -ffmpeg m3u sndfile wavpack shn linguas_zh_CN
 media-sound/easytag wavpack
 media-sound/moc ffmpeg mad wavpack
 media-sound/mpd cue lame wavpack
 media-sound/rubyripper cdrdao normalize wav
 media-sound/shntool wavpack
 media-video/ffmpeg dirac sdl theora threads vorbis
-media-video/libav -qt-faststart dirac schroedinger sdl theora threads vaapi vorbis
-media-video/mplayer2 bl bluray cddb dga dvb fbcon ggi mad mpeg123 nas openal real sdl win32codecs
-media-video/vlc bluray dirac directfb dts dvd libass live matroska mpegogg rtsp sid speex sqlite xv
+media-video/libav -qt-faststart dirac schroedinger opus sdl theora threads vorbis vpx
+media-video/mplayer2 bl bluray cddb dga dvb fbcon ggi mad mpeg123 nas openal real sdl vcd win32codecs
+media-video/vlc bluray dirac directfb dts dvd libass live matroska mpegogg rtsp sid speex sqlite xv xml qt4
 net-analyzer/mtr -gtk
 net-nds/openldap -gnutls
 net-libs/loudmouth debug
@@ -63,18 +69,25 @@ sys-devel/gcc graphite
 sys-fs/ntfs3g -ntfsprogs
 sys-fs/udev extras hwdb gudev
 sys-libs/zlib minizip
-virtual/ffmpeg mp3 sdl theora threads vaapi x264
+virtual/ffmpeg mp3 sdl theora threads x264
 virtual/udev gudev hwdb
 www-client/firefox -linguas_en -crashreporter pgo system-sqlite system-jpeg
 www-client/opera -gstreamer gtk
+www-servers/apache threads
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi -nginx_modules_http_geo
 x11-base/xorg-server kdrive xvfb
 x11-libs/cairo xcb
 x11-libs/libdrm libkms
-x11-libs/qt-gui gtkstyle
+dev-qt/qtgui gtkstyle
 x11-misc/cairo-dock xcomposite
 x11-misc/cairo-dock-plugins compiz gmenu
 x11-terms/rxvt-unicode 256-color pixbuf xft
 x11-plugins/vicious contrib
-app-office/wps-office -sharedfonts
+#media-libs/libsdl abi_x86_32
+#games-util/steam-games-meta s3tc
+#media-libs/libtxc_dxtn abi_x86_32
+#x11-libs/libXft abi_x86_32
+#net-fs/samba -client
+net-fs/cifs-utils -acl
+app-cdr/graveman dvdr
