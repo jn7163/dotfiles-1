@@ -4,6 +4,7 @@ app-arch/file-roller nautilus
 app-arch/p7zip rar
 app-arch/unzip natspec
 app-arch/zip natspec
+app-cdr/graveman dvdr
 app-editors/emacs xft -gconf
 app-emulation/qemu sdl usbredir vde
 app-i18n/fcitx cairo gtk gtk3 pango qt4 -table
@@ -32,6 +33,7 @@ dev-libs/libgpg-error static-libs
 dev-libs/libxml2 icu python
 dev-libs/lzo static-libs
 dev-libs/nettle gmp
+dev-libs/nss utils
 dev-libs/protobuf python
 dev-vcs/git cvs subversion highlight
 dev-vcs/subversion perl -dso
@@ -39,26 +41,29 @@ gnome-base/gvfs udisks
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
 media-libs/freetype auto-hinter
 media-libs/gst-plugins-base theora
+media-libs/harfbuzz icu
 media-libs/libass enca
 media-libs/libpng apng
-media-libs/mesa gbm gles2 openvg osmesa xorg
+media-libs/mesa bindist gbm gles2 openvg osmesa xorg
 media-gfx/ffcast vpx
 media-sound/deadbeef ape dts -ffmpeg m3u sndfile wavpack shn linguas_zh_CN
 media-sound/easytag wavpack
-media-sound/moc ffmpeg mad wavpack
+media-sound/moc ffmpeg mad sndfile wavpack
 media-sound/mpd cue lame wavpack
 media-sound/rubyripper cdrdao normalize wav
 media-sound/shntool wavpack
 media-video/ffmpeg dirac sdl theora threads vorbis
 media-video/libav -qt-faststart dirac schroedinger opus sdl theora threads vorbis vpx
-media-video/mplayer2 bl bluray cddb dga dvb fbcon ggi mad mpeg123 nas openal real sdl vcd win32codecs
-media-video/vlc bluray dirac directfb dts dvd libass live matroska mpegogg rtsp sid speex sqlite xv xml qt4
+media-video/mplayer2 bl cddb dga dvb fbcon ggi mad mpeg123 nas openal real sdl vcd yuv4mpeg
+media-video/vlc dirac directfb dts dvd libass live matroska mpegogg rtsp sid speex sqlite xv xml qt4
 net-analyzer/mtr -gtk
+net-fs/cifs-utils -acl
 net-nds/openldap -gnutls
 net-libs/loudmouth debug
 net-misc/curl threads
 net-misc/ntp openntpd
 net-misc/rdesktop -alsa
+net-misc/openssh -ldap
 net-misc/wicd -nls
 net-p2p/rtorrent xmlrpc color
 net-print/cups -usb
@@ -68,10 +73,12 @@ sys-block/parted device-mapper
 sys-devel/gcc graphite
 sys-fs/ntfs3g -ntfsprogs
 sys-fs/udev extras hwdb gudev
+sys-kernel/linux-firmware savedconfig
 sys-libs/zlib minizip
 virtual/ffmpeg mp3 sdl theora threads x264
 virtual/udev gudev hwdb
-www-client/firefox -linguas_en -crashreporter pgo system-sqlite system-jpeg
+www-client/chromium -system-ffmpeg
+www-client/firefox -crashreporter system-sqlite system-jpeg system-cairo custom-optimization
 www-client/opera -gstreamer gtk
 www-servers/apache threads
 www-servers/lighttpd minimal mysql php webdav zlib
@@ -89,5 +96,4 @@ x11-plugins/vicious contrib
 #media-libs/libtxc_dxtn abi_x86_32
 #x11-libs/libXft abi_x86_32
 #net-fs/samba -client
-net-fs/cifs-utils -acl
-app-cdr/graveman dvdr
+sys-libs/talloc python
