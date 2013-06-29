@@ -34,7 +34,8 @@ beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
-browser = "chromium-browser-proxy"
+--browser = "chromium-browser-proxy"
+browser = "chromium-browser"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
@@ -63,15 +64,27 @@ if beautiful.wallpaper then
     end
 end
 
-tags = {
-  names = { "Terminal", "Internet", "Documents", "Media", "Misc",
-  },
-  layout = {
-    layouts[5], layouts[9], layouts[9], layouts[12], layouts[12],
-}}
+--tags = {
+--  names = { "Terminal", "Internet", "Documents", "Media", "Virtio", "Misc", },
+--  layout = { layouts[5], layouts[9], layouts[9], layouts[12], layouts[12], layouts[12], }
+--}
 
+--for s = 1, screen.count() do
+--    tags[s] = awful.tag(tags.names, s, tags.layout)
+--end
+
+-- {{{ Tags
+tags = {
+    settings = {
+        { names = { "Terminal", "Internet", "Documents", "Media", "Virtio", "Misc", },
+            layout = { layouts[5], layouts[9], layouts[9], layouts[12], layouts[12], layouts[12], }
+        },
+        { names = { "Terminal", "Internet", "Documents", "Media", "Virtio", "Misc", },
+            layout = { layouts[5], layouts[9], layouts[9], layouts[12], layouts[12], layouts[12], }
+    }}
+}
 for s = 1, screen.count() do
-    tags[s] = awful.tag(tags.names, s, tags.layout)
+    tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
 end
 
 -- {{{ Menu
@@ -94,6 +107,7 @@ accessories = {
 internet = {
     { "Mozilla Firefox", "firefox" },
     { "Chromium", "chromium-browser" },
+    { "Google-chrome", "google-chrome" },
     { "Opera", "opera" },
     { "Canto", terminal .. " -e canto -u" },
     { "Irssi", terminal .. " -e screen irssi" },
@@ -127,9 +141,11 @@ games = {
 systemtools = {
     { "VirtualBox", "VirtualBox" },
     { "AlsaMixer", "xterm -e alsamixer" },
-    { "Htop", "xterm -e htop" },
+    { "Htop", terminal .. " -e htop" },
     { "Fcitx Config", "fcitx-configtool" },
-    { "Qt Configuration", "qtconfig" }
+    { "Qt Configuration", "qtconfig" },
+    { "Goagent", "goagent-gtk" },
+    { "Android SDK Manager", "android" }
 }
 
 mymainmenu = awful.menu({ items = { { "Accessories", accessories, beautiful.awesome_icon },
@@ -166,13 +182,13 @@ vicious.register(mpd, vicious.widgets.mpd,
         if args["{state}"] == ("Stop" or "N/A") then
             return ""
         else
-            return ' <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
+            return '| <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
         end
     end, 5)
 -- }}}
 
 -- {{{ Wifi
-wifi = wibox.widget.textbox()
+--[[wifi = wibox.widget.textbox()
 vicious.register(wifi, vicious.widgets.wifi,
     function (widget, args)
         if args["{ssid}"] == "N/A" then
@@ -180,7 +196,7 @@ vicious.register(wifi, vicious.widgets.wifi,
         else
             return "<span color='moccasin'>" .. args["{ssid}"] .. ": </span>"
         end
-    end, 5, "wlan0")
+    end, 5, "wlan0")--]]
 -- }}}
 
 -- {{{ ip
@@ -203,11 +219,11 @@ net = wibox.widget.textbox()
     function netspeed(format)
         args = vicious.widgets.net(format)
         netspeed_tab = {}
-        netspeed_tab['{down_kb}'] = args['{eth0 down_kb}'] + args['{wlan0 down_kb}']
-        netspeed_tab['{up_kb}'] = args['{eth0 up_kb}'] + args['{wlan0 up_kb}']
+        netspeed_tab['{down_kb}'] = args['{enp3s0 down_kb}']
+        netspeed_tab['{up_kb}'] = args['{enp3s0 up_kb}']
         return netspeed_tab
     end
-vicious.register(net, netspeed, "${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 2)
+vicious.register(net, netspeed, "Net: ${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)
 -- }}}
 
 -- {{{ GMAIL
@@ -217,13 +233,18 @@ vicious.register(mygmail, vicious.widgets.gmail, "<span color='moccasin'>GMail:<
 --]]
 -- }}}
 
+-- {{{ Disk IO
+diskio = wibox.widget.textbox()
+vicious.register(diskio, vicious.widgets.dio, 'IO Read: ${sda read_mb}MiB/s | IO Write: ${sda write_mb}MiB/s', 1)
+-- }}}
+
 -- {{{ CPU
 cpu = wibox.widget.textbox()
 cpu:set_text ('CPU:')
 separator:set_align (left)
 cpu:set_wrap (word_char)
 cpugraph = awful.widget.graph()
-cpugraph:set_width (20):set_height (14)
+cpugraph:set_width (20):set_height (16)
 cpugraph:set_background_color ("#494B4F"):set_scale (true)
 cpugraph:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 vicious.register(cpugraph, vicious.widgets.cpu, "$1", 2)
@@ -237,15 +258,20 @@ end
 cpugraph:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("xterm -e htop", false) end)
 ))
+cpuinf = wibox.widget.textbox()
+--cpuinf:fit (200, 0)
+--cpuinf:set_align (left)
+vicious.register(cpuinf, vicious.widgets.cpuinf, "(${cpu0 ghz}:${cpu1 ghz}:${cpu2 ghz}:${cpu3 ghz})GHz")
 cputemp = wibox.widget.textbox()
-vicious.register(cputemp, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
+--vicious.register(cputemp, vicious.widgets.thermal, "$1℃", 5, "thermal_zone0")
+vicious.register(cputemp, vicious.widgets.thermal, "$1℃", 5, { "coretemp.0", "core"})
 -- }}}
 
 -- {{{ MEM
 ram = wibox.widget.textbox()
 ram:set_text ('Ram:')
 rambar = awful.widget.progressbar()
-rambar:set_width (8):set_height (14)
+rambar:set_width (8):set_height (16)
 rambar:set_vertical(true)
 rambar:set_background_color ("#494B4F"):set_color ("#AECF96")
 rambar:set_border_color(nil)
@@ -254,10 +280,10 @@ vicious.register(rambar, vicious.widgets.mem, "$1", 2)
 -- }}}
 
 -- {{{ Battery
-bat = wibox.widget.textbox()
+--[[bat = wibox.widget.textbox()
 vicious.register(bat, vicious.widgets.bat, "Bat: $1", 60, "BAT0")
 batbar = awful.widget.progressbar()
-batbar:set_width(6):set_height(14):set_vertical(true)
+batbar:set_width(6):set_height(16):set_vertical(true)
 batbar:set_background_color("#494B4F"):set_color("#AECF96")
 batbar:set_border_color(nil)
 batbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
@@ -268,20 +294,20 @@ vicious.register(batbar, vicious.widgets.bat, function (widget, args)
         naughty.notify({ text="Battery is low! " .. args[2] .. " percent remaining." })
     end
     return args[2]
-end , 60, "BAT0")
+end , 60, "BAT0")--]]
 -- }}}
 
 -- {{{ Volume
 volbar = awful.widget.progressbar()
-volbar:set_width(8):set_height(14):set_vertical(true)
+volbar:set_width(8):set_height(16):set_vertical(true)
 volbar:set_background_color("#494B4F"):set_color("#AECF96")
 volbar:set_border_color(nil)
 volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 volbar:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn("amixer -D pulse -q sset Master toggle", false) end),
-    awful.button({ }, 4, function () awful.util.spawn("amixer -D pulse -q sset Master 5%+", false) end),
-    awful.button({ }, 5, function () awful.util.spawn("amixer -D pulse -q sset Master 5%-", false) end)
+    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle", false) end),
+    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 2dB+", false) end),
+    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 2dB-", false) end)
 ))
 vol = wibox.widget.textbox()
 vicious.register(vol, vicious.widgets.volume, "Vol: $2", 2, "Master")
@@ -370,24 +396,31 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
-    my_top_wibox[s] = awful.wibox({ position = "top", height= 14, screen = s })
-    my_bottom_wibox[s] = awful.wibox({ position = "bottom", height= 14, screen = s })
+    my_top_wibox[s] = awful.wibox({ position = "top", height= 16, screen = s })
+    --my_bottom_wibox[s] = awful.wibox({ position = "bottom", height= 16, screen = s })
 
     -- Widgets that are aligned to the left
     local top_left_layout = wibox.layout.fixed.horizontal()
     top_left_layout:add(mylauncher)
     top_left_layout:add(mytaglist[s])
     top_left_layout:add(mypromptbox[s])
-    local bottom_left_layout = wibox.layout.fixed.horizontal()
-    bottom_left_layout:add(mpd)
+    --local bottom_left_layout = wibox.layout.fixed.horizontal()
+    --bottom_left_layout:add(mpd)
 
     -- Widgets that are aligned to the right
     local top_right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then top_right_layout:add(wibox.widget.systray()) end
+    top_right_layout:add(mpd)
+    top_right_layout:add(separator)
+    top_right_layout:add(net)
+    top_right_layout:add(separator)
+    top_right_layout:add(diskio)
     top_right_layout:add(separator)
     top_right_layout:add(cpu)
     top_right_layout:add(space)
     top_right_layout:add(cpugraph)
+    top_right_layout:add(space)
+    top_right_layout:add(cpuinf)
     top_right_layout:add(space)
     top_right_layout:add(cputemp)
     top_right_layout:add(separator)
@@ -399,31 +432,24 @@ for s = 1, screen.count() do
     top_right_layout:add(space)
     top_right_layout:add(volbar)
     top_right_layout:add(separator)
-    top_right_layout:add(bat)
-    top_right_layout:add(space)
-    top_right_layout:add(batbar)
+    top_right_layout:add(uptime)
     top_right_layout:add(separator)
     top_right_layout:add(mytextclock)
     top_right_layout:add(separator)
     top_right_layout:add(mylayoutbox[s])
-    local bottom_right_layout = wibox.layout.fixed.horizontal()
-    bottom_right_layout:add(wifi)
-    --bottom_right_layout:add(ip)
-    bottom_right_layout:add(net)
-    bottom_right_layout:add(separator)
-    bottom_right_layout:add(uptime)
+    --local bottom_right_layout = wibox.layout.fixed.horizontal()
 
     -- Now bring it all together (with the tasklist in the middle)
     local top_layout = wibox.layout.align.horizontal()
     top_layout:set_left(top_left_layout)
     top_layout:set_middle(mytasklist[s])
     top_layout:set_right(top_right_layout)
-    local bottom_layout = wibox.layout.align.horizontal()
-    bottom_layout:set_left(bottom_left_layout)
-    bottom_layout:set_right(bottom_right_layout)
+    --local bottom_layout = wibox.layout.align.horizontal()
+    --bottom_layout:set_left(bottom_left_layout)
+    --bottom_layout:set_right(bottom_right_layout)
 
     my_top_wibox[s]:set_widget(top_layout)
-    my_bottom_wibox[s]:set_widget(bottom_layout)
+    --my_bottom_wibox[s]:set_widget(bottom_layout)
 end
 -- }}}
 
@@ -443,9 +469,9 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "F1",                      function () awful.util.spawn(terminal) end),
     awful.key({                   }, "F2",                      function () awful.util.spawn(browser) end),
     awful.key({                   }, "F3",                      function () awful.util.spawn("emacs") end),
-    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -D pulse -q sset Master 5%-", false ) end),
-    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -D pulse -q sset Master 5%+",false ) end),
-    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -D pulse -q sset Master toggle",false ) end),
+    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 2dB-", false ) end),
+    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 2dB+",false ) end),
+    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle",false ) end),
     awful.key({                   }, "XF86AudioNext",           function () awful.util.spawn( "mpc next", false ) end),
     awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev", false ) end),
     awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play", false ) end),
@@ -609,13 +635,18 @@ awful.rules.rules = {
      { rule = { class = "Gimp" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Rrip_gui" }, properties = { tag = tags[1][3] } },
      { rule = { class = "VirtualBox" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "qemu-system-x86_64" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "rdesktop" }, properties = { tag = tags[1][5] } },
      { rule = { class = "Xephyr" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "chromium-bsu" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Xarchiver" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Gtconfig" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Abp" }, properties = { tag = tags[1][5] } },
-     { rule = { class = "Steam" }, properties = { tag = tags[1][5] } },
+     { rule = { class = "Pcmanfm" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "chromium-bsu" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "Xarchiver" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "Gtconfig" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "Abp" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "Graveman" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "Steam" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "Android SDK Manager" }, properties = { tag = tags[1][6] } },
+     { rule = { class = "Goagent-gtk.py" }, properties = { tag = tags[1][6] } },
 }
 -- }}}
 
@@ -686,7 +717,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 os.execute("fcitx -d")
-os.execute("conky &")
+os.execute("goagent-gtk &")
+os.execute("/usr/libexec/polkit-gnome-authentication-agent-1 &")
+--os.execute("conky &")
 --os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
 --os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
 
