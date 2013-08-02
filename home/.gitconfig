@@ -4,8 +4,8 @@
     pager = less -+$LESS -FRX
     #pager = less -r
 [user]
-    name = Havanna
-    email = skykiss_2000@163.com
+    name = Bardon
+    email = bardon.cn@gmail.com
 [diff]
     tool = diff
 [alias]
@@ -15,6 +15,7 @@
     si = git si
     sr = git svn rebase
     sp = git svn dcommit
+    update = pull --recurse-submodules
     sf = git svn fetch
 [color]
     branch = auto
@@ -42,3 +43,5 @@
 [github]
     user = username
     password=password
+[push]
+    default = matching
