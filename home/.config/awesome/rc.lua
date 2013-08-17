@@ -106,6 +106,7 @@ accessories = {
 
 internet = {
     { "Mozilla Firefox", "firefox" },
+    { "Google Chrome", "google-chrome" },
     { "Canto", terminal .. " -e canto -u" },
     { "Irssi", terminal .. " -e screen irssi" },
     { "Mutt", terminal .. " -e mutt" }
@@ -124,6 +125,8 @@ office = {
 }
 
 media = {
+    { "Mplayer", terminal .. " -e mplayer2" },
+    { "VLC Media Player", "vlc" },
     { "Gimp", "gimp" },
     { "Cheese", "cheese" },
     { "Deadbeef", "deadbeef" },
@@ -628,6 +631,7 @@ awful.rules.rules = {
      { rule = { class = "Display" }, properties = { tag = tags[1][4] } },
      { rule = { class = "Deadbeef" }, properties = { tag = tags[1][4] } },
      { rule = { class = "Cheese" }, properties = { tag = tags[1][4] } },
+     { rule = { class = "Vlc" }, properties = { tag = tags[1][4] } },
      { rule = { class = "MyPaint" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Gimp" }, properties = { tag = tags[1][3] } },
      { rule = { class = "Rrip_gui" }, properties = { tag = tags[1][3] } },
@@ -714,7 +718,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 os.execute("fcitx -d")
-os.execute("goagent-gtk &")
+--os.execute("goagent-gtk &")
 os.execute("/usr/libexec/polkit-gnome-authentication-agent-1 &")
 --os.execute("conky &")
 --os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
