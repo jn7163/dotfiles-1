@@ -9,7 +9,7 @@
 [diff]
     tool = diff
 [alias]
-    ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=20
+    ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=15
     l = log --stat --decorate --abbrev-commit --max-count=3
     # git svn asliases
     si = git si
