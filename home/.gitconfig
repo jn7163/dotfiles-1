@@ -11,12 +11,10 @@
 [alias]
     ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=15
     l = log --stat --decorate --abbrev-commit --max-count=3
-    # git svn asliases
-    si = git si
-    sr = git svn rebase
-    sp = git svn dcommit
-    update = pull --recurse-submodules
-    sf = git svn fetch
+    sbi = submodule init
+    sbu = submodule update
+    sbp = submodule foreach git pull
+    sbc = submodule foreach git checkout master
 [color]
     branch = auto
     diff = auto
@@ -42,6 +40,6 @@
     browse = no
 [github]
     user = username
-    password=password
+    password= password
 [push]
     default = matching
