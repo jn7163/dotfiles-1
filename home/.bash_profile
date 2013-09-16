@@ -11,12 +11,12 @@
 #    mpd
 #fi
 
-[[ -d ~/Bash ]] && export PATH=$PATH:$HOME/Bash
+#[[ -d ~/Bash ]] && export PATH=$PATH:$HOME/Bash
 
 [[ -x /usr/bin/vim ]] && export EDITOR=vim
 
-[[ -f /usr/bin/sudo ]] && complete -cf sudo
+#[[ -f /usr/bin/sudo ]] && complete -cf sudo
 
-[[ -f /usr/bin/man ]] && complete -cf man
+#[[ -f /usr/bin/man ]] && complete -cf man
 
-[[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
+#[[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh

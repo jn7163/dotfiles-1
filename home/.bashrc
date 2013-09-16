@@ -1,11 +1,19 @@
-#
+
 # ~/.bashrc
 #
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -r /etc/bash_completion ]] && . /etc/bash_completion
+[[ -f /etc/profile.d/bash-completion.sh ]] && . /etc/profile.d/bash-completion.sh
+
+[[ -f /usr/bin/sudo ]] && complete -cf sudo
+
+[[ -f /usr/bin/man ]] && complete -cf man
+
+[[ -d ~/.bash ]] && export PATH=$PATH:$HOME/.bash
+
+export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
 
 [[ -f ~/.bash_alias ]] && . ~/.bash_alias
 
