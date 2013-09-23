@@ -40,7 +40,6 @@ editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 altkey = "Mod1"
-modkey = "Mod4"
 
 local layouts =
 {
@@ -92,8 +91,8 @@ end
 myawesomemenu = {
    { "Manual", terminal .. " -e man awesome" },
    { "Edit Config", editor_cmd .. " " .. awesome.conffile },
-   { "Restart", awesome.restart },
-   { "Quit", awesome.quit }
+   { "Restart Awesome", awesome.restart },
+   { "Quit Awesome", awesome.quit }
 }
 
 accessories = {
@@ -176,15 +175,16 @@ space:set_align (center)
 space:set_wrap (word)
 
 -- {{{ MPD
-mpd = wibox.widget.textbox()
+--[[mpd = wibox.widget.textbox()
 vicious.register(mpd, vicious.widgets.mpd,
     function (widget, args)
         if args["{state}"] == ("Stop" or "N/A") then
             return ""
         else
             return '| <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
+            --naughty.notify({ text='<span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>' })
         end
-    end, 5)
+    end, 5)--]]
 -- }}}
 
 -- {{{ Wifi
@@ -215,7 +215,7 @@ vicious.register(ip, vicious.widgets.wifi,
 -- }}}
 
 -- {{{ Net
-net = wibox.widget.textbox()
+--[[net = wibox.widget.textbox()
     function netspeed(format)
         args = vicious.widgets.net(format)
         netspeed_tab = {}
@@ -223,7 +223,7 @@ net = wibox.widget.textbox()
         netspeed_tab['{up_kb}'] = args['{enp3s0 up_kb}']
         return netspeed_tab
     end
-vicious.register(net, netspeed, "Net: ${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)
+vicious.register(net, netspeed, "Net: ${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)--]]
 -- }}}
 
 -- {{{ GMAIL
@@ -398,6 +398,7 @@ for s = 1, screen.count() do
     -- Create the wibox
     my_top_wibox[s] = awful.wibox({ position = "top", height= 16, screen = s })
     --my_bottom_wibox[s] = awful.wibox({ position = "bottom", height= 16, screen = s })
+    my_bottom_wibox = awful.wibox({ position = "bottom", screen = 1, ontop = false, width = 1, height = 14 })
 
     -- Widgets that are aligned to the left
     local top_left_layout = wibox.layout.fixed.horizontal()
@@ -410,10 +411,10 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local top_right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then top_right_layout:add(wibox.widget.systray()) end
-    top_right_layout:add(mpd)
-    top_right_layout:add(separator)
-    top_right_layout:add(net)
-    top_right_layout:add(separator)
+    --top_right_layout:add(mpd)
+    --top_right_layout:add(separator)
+    --top_right_layout:add(net)
+    --top_right_layout:add(separator)
     top_right_layout:add(diskio)
     top_right_layout:add(separator)
     top_right_layout:add(cpu)
@@ -468,8 +469,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
     awful.key({                   }, "F1",                      function () awful.util.spawn(terminal) end),
     awful.key({                   }, "F2",                      function () awful.util.spawn(browser) end),
-    awful.key({                   }, "F3",                      function () awful.util.spawn("chromium") end),
-    awful.key({                   }, "F4",                      function () awful.util.spawn("emacs") end),
+    awful.key({                   }, "F3",                      function () awful.util.spawn( "chromium" ) end),
+    awful.key({                   }, "F4",                      function () awful.util.spawn( "emacs" ) end),
     awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 2dB-", false ) end),
     awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 2dB+",false ) end),
     awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle",false ) end),
@@ -477,7 +478,7 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev", false ) end),
     awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play", false ) end),
     awful.key({                   }, "XF86AudioStop",           function () awful.util.spawn( "mpc stop", false ) end),
-    awful.key({                   }, "Print",                   function () awful.util.spawn( "screenshot", false ) end),
+    awful.key({                   }, "Print", false,            function () awful.util.spawn( "screenshot", false ) end),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -721,7 +722,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 os.execute("fcitx -d")
 --os.execute("goagent-gtk &")
 os.execute("/usr/libexec/polkit-gnome-authentication-agent-1 &")
---os.execute("conky &")
+os.execute("conky &")
 --os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
 --os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
 
