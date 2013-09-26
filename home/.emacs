@@ -6,12 +6,11 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-(set-default-font "DejaVu Sans Mono-12")
+(set-default-font "DejaVu Sans Mono-10")
 (set-fontset-font (frame-parameter nil 'font)
 									'han '("WenQuanYi Micro Hei" . "unicode-bmp"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Linux环境下字体设置结束 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置窗口界面开始 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -34,7 +33,64 @@
 ;; 启动窗口大小
 (when window-system
 	(setq default-frame-alist
-				'((height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))))
+				'((left . 5) (top . 5) (height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))))
+
+;; 设置另外一些颜色：语法高亮显示的背景和主题，区域选择的背景和主题，二次选择的背景和选择
+(set-face-foreground 'highlight "white")
+(set-face-background 'highlight "blue")
+(set-face-foreground 'region "cyan")
+(set-face-background 'region "blue")
+(set-face-foreground 'secondary-selection "skyblue")
+(set-face-background 'secondary-selection "darkblue")
+
+(setq frame-title-format "^_^ @%b");在标题栏提示你目前在什么位置
+
+;; 显示时间，格式如下
+(display-time-mode 1)
+(setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
+
+;;全屏
+(defun my-fullscreen ()
+	(interactive)
+	(x-send-client-message
+		nil 0 nil "_NET_WM_STATE" 32
+		'(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+
+;最大化
+(defun my-maximized ()
+	(interactive)
+	(x-send-client-message
+		nil 0 nil "_NET_WM_STATE" 32
+		'(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+	(x-send-client-message
+		nil 0 nil "_NET_WM_STATE" 32
+		'(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置界面结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置窗口界面开始 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(set-foreground-color "grey")
+(set-background-color "black")
+(set-cursor-color "gold1")
+(set-mouse-color "gold1")
+
+(set-scroll-bar-mode nil);取消滚动栏
+
+;;(customize-set-variable 'scroll-bar-mode 'right));设置滚动栏在窗口右侧，而默认是在左侧
+
+(tool-bar-mode nil);取消工具栏
+(menu-bar-mode nil);关闭菜单
+
+;; 启动时窗口最大化
+;(when window-system
+;  (my-maximized))
+
+;; 启动窗口大小
+(when window-system
+	(setq default-frame-alist
+				'((left . 5) (top . 5) (height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))))
 
 ;; 设置另外一些颜色：语法高亮显示的背景和主题，区域选择的背景和主题，二次选择的背景和选择
 (set-face-foreground 'highlight "white")
