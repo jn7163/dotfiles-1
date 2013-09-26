@@ -18,8 +18,10 @@
 
 ;; 启动窗口大小
 (when window-system
-	(setq default-frame-alist
-				'((left . 5) (top . 5) (height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))))
+  (setq default-frame-alist
+        '((left . 0) (top . 0)
+                     ;(height . 20) (width . 20)
+                     (menu-bar-lines . 20) (tool-bar-lines . 0))))
 
 ;; 设置另外一些颜色：语法高亮显示的背景和主题，区域选择的背景和主题，二次选择的背景和选择
 (set-face-foreground 'highlight "white")
@@ -38,20 +40,20 @@
 
 ;;全屏
 (defun my-fullscreen ()
-	(interactive)
-	(x-send-client-message
-		nil 0 nil "_NET_WM_STATE" 32
-		'(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+  (interactive)
+  (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 
 ;最大化
 (defun my-maximized ()
-	(interactive)
-	(x-send-client-message
-		nil 0 nil "_NET_WM_STATE" 32
-		'(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
-	(x-send-client-message
-		nil 0 nil "_NET_WM_STATE" 32
-		'(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+  (interactive)
+  (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+  (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置界面结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -75,8 +77,8 @@
 
 ;; 启动窗口大小
 (when window-system
-	(setq default-frame-alist
-				'((left . 5) (top . 5) (height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))))
+  (setq default-frame-alist
+        '((left . 5) (top . 5) (height . 42) (width . 120) (menu-bar-lines . 20) (tool-bar-lines . 0))))
 
 ;; 设置另外一些颜色：语法高亮显示的背景和主题，区域选择的背景和主题，二次选择的背景和选择
 (set-face-foreground 'highlight "white")
@@ -95,20 +97,20 @@
 
 ;;全屏
 (defun my-fullscreen ()
-	(interactive)
-	(x-send-client-message
-		nil 0 nil "_NET_WM_STATE" 32
-		'(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+  (interactive)
+  (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 
 ;最大化
 (defun my-maximized ()
-	(interactive)
-	(x-send-client-message
-		nil 0 nil "_NET_WM_STATE" 32
-		'(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
-	(x-send-client-message
-		nil 0 nil "_NET_WM_STATE" 32
-		'(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+  (interactive)
+  (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+  (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置界面结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

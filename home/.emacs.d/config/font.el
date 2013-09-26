@@ -8,6 +8,6 @@
 (prefer-coding-system 'utf-8)
 (set-default-font "DejaVu Sans Mono-10")
 (set-fontset-font (frame-parameter nil 'font)
-									'han '("WenQuanYi Micro Hei" . "unicode-bmp"))
+                  'han '("WenQuanYi Micro Hei" . "unicode-bmp"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Linux环境下字体设置结束 ;;;;;;;;;;;;;;;;;;;;;;;;;;;

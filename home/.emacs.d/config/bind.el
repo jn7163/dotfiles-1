@@ -5,6 +5,7 @@
 (global-set-key [f2] 'shell);F2进入Shell
 (global-set-key [f5] 'gdb);F5调试程序
 (setq compile-command "make -f Makefile")
+(global-set-key [f6] 'calendar);打开日历
 (global-set-key [f7] 'do-compile);F7编译文件
 (global-set-key [f8] 'other-window);F8窗口间跳转
 (global-set-key [C-return] 'kill-this-buffer);C-return关闭当前buffer
