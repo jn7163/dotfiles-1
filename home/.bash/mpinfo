@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mplayer -identify "$1" -ao null -vo null -ss 03:00:00 -really-quiet -frames 0 2>/dev/null | grep ^ID_

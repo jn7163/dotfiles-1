@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#可以下載http://,ftp://,ed2k://, -d(dllinks的意思)
+
+share="/usr/local/share/jstc"
+address_file="$share/address"
+
+look ()
+{
+		echo -e "vd\nq" | nc localhost 4000 | grep --binary-file=text -e "\[D" | wc -l
+		echo -e "bw_stats\nq" | nc localhost 4000 | grep --binary-file=text -e "Down:"
+}
+
+if test $# -lt 1; then
+		look
+		#telnet localhost 4000
+elif test $# -eq 1 -a $(echo "$1" | grep http://) != ""; then
+		address="$1"
+		echo -e "http ""$address""\nq" | nc localhost 4000
+		look
+elif test $# -eq 1 -a $(echo "$1" | grep -e -d) != ""; then
+		echo -e "dllinks $address_file\nq" | nc localhost 4000
+		look
+elif test $# -eq 1 -a $(echo "$1" | grep -e -k) != ""; then
+		echo -e "kill\nq" | nc localhost 4000
+		look
+elif test $# -eq 1 -a $(echo "$1" | grep ed2k://) != ""; then
+		address="$1"
+		echo -e "dllink ""$address""\nq" | nc localhost 4000
+		look
+fi

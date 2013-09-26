@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+echo "Choose instance:"
+echo "1. Xephyr -noreset"
+echo "2. Xephyr -reset -terminate"
+
+read num
+
+case $num in
+		1)
+				echo "OK,start Xephyr -noreset"
+				Xephyr :1 -host-cursor -screen 1024x600x24 \
+						-dpi 96 -ac -noreset 2> /dev/null &
+				;;
+		2)
+				echo "OK,start Xephyr -reset -terminate"
+				Xephyr :1 -host-cursor -screen 1024x600x24 \
+						-dpi 96 -ac -reset -terminate 2> /dev/null &
+				;;
+		*)
+				echo "Wrong number, please re-run and choose again"
+				;;
+esac
+
+exit 0

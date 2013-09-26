@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+URL=http://www.ip.cn/getip2.php?action
+
+if [ "$1" == "" ]; then
+  curl http://ifconfig.me/ip
+else
+  w3m -dump "$URL=queryip&ip_url=$1" 2>/dev/null
+fi

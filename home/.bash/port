@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+NOW=`date '+%Y-%m-%d-%H-%M-%S'`
+
+if [ -z $2 ]; then
+  FNAME=screenshot-${NOW}
+else
+  FNAME="[$2]-${NOW}"
+fi
+
+EXT=png
+SCRDIR=${HOME}/
+
+if [ ! -d "${SCRDIR}" ]; then
+  mkdir -p "${SCRDIR}"
+fi
+
+if [ -z $1 ]; then
+  cmd="import -repage -frame ${SCRDIR}${FNAME}.${EXT}"
+else
+  cmd="import -repage -frame -window $1 ${SCRDIR}${FNAME}.${EXT}"
+fi
+
+eval $cmd
+
+echo ${SCRDIR}${FNAME}.${EXT}

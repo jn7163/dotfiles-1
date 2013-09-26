@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+echo "Choose instance:"
+echo "1. Windows XP Background"
+echo "2. Windows 7"
+echo "3. Gentoo"
+echo "4. Arch"
+echo "5. Ubuntu"
+echo "6. Slackware"
+echo "7. CentOS"
+echo "8. Freebsd"
+
+read num
+
+case $num in
+		1)
+				echo "OK,start Windows XP Background"
+				qemu-system-x86_64 -ctrl-grab -cpu core2duo -m 512 -smp 2 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw es1370 -daemonize \
+				-drive media=disk,if=virtio,cache=writeback,file=/home/havanna/Virtual/winxp.img \
+				-net user -net nic,model=virtio -redir tcp:3389::3389 -vnc 127.0.0.1:0
+				;;
+		2)
+				echo "OK,start Windows 7"
+				kvm -ctrl-grab -cpu core2duo -m 768 -smp 2 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw es1370 --daemonize -net user \
+				-drive file=/home/havanna/Virtual/win7.img,cache=writeback,media=disk \
+				-net nic,model=virtio -redir tcp:3389::3389
+				;;
+		3)
+				echo "OK, start Gentoo"
+				kvm -ctrl-grab -cpu core2duo -m 512 -smp 2 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw hda -daemonize \
+				-drive file=/home/havanna/Virtual/gentoo.img,cache=writeback,media=disk \
+				-drive file=/home/havanna/Virtual/tmp.img,cache=writeback,media=disk \
+				-net nic,model=virtio \
+				-net user,hostfwd=tcp::1080-:80,hostfwd=tcp::10000-:22
+				;;
+		4)
+				echo "OK, start Arch"
+				kvm -ctrl-grab -cpu core2duo -m 512 -smp 1 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw hda -daemonize \
+				-drive file=/home/havanna/Virtual/arch.img,cache=writeback,media=disk \
+				-net nic,model=virtio \
+				-net user,hostfwd=tcp::1080-:80,hostfwd=tcp::10001-:22
+				;;
+		5)
+				echo "OK, start Ubuntu"
+				kvm -ctrl-grab -cpu core2duo -m 512 -smp 1 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw hda -daemonize \
+				-drive file=/home/havanna/Virtual/ubuntu.img,cache=writeback,media=disk \
+				-net nic,model=virtio \
+				-net user,hostfwd=tcp::10002-:22
+				;;
+		6)
+				echo "OK, start Slackware"
+				kvm -ctrl-grab -cpu core2duo -m 512 -smp 1 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw hda -daemonize \
+				-drive file=/home/havanna/Virtual/slackware.img,cache=writeback,media=disk \
+				-net nic,model=virtio \
+				-net user,hostfwd=tcp::10003-:22
+				;;
+		7)
+				echo "OK, start CentOS"
+				kvm -ctrl-grab -cpu core2duo -m 512 -smp 1 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw hda -daemonize \
+				-drive file=/home/havanna/Virtual/centos.img,cache=writeback,media=disk \
+				-net nic,model=virtio \
+				-net user,hostfwd=tcp::10004-:22
+				;;
+		8)
+				echo "OK, start Freebsd"
+				kvm -ctrl-grab -cpu core2duo -m 512 -smp 1 -vga std -localtime \
+				-usb -usbdevice tablet -soundhw hda -daemonize \
+				-drive file=/home/havanna/Virtual/freebsd.img,cache=writeback,media=disk
+				#-net nic,model=virtio \
+				#-net user,hostfwd=tcp::10005-:22
+				;;
+		*)
+				echo "Wrong number, please re-run and choose again"
+				;;
+esac
+
+exit 0
