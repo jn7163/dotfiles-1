@@ -1,3 +1,6 @@
 [submodule "home/.vim"]
 	path = home/.vim
 	url = git://github.com/Havanna/.vim.git
+[submodule "home/.bash"]
+	path = home/.bash
+	url = git://github.com/Ihavanna/.bash.git
