@@ -4,3 +4,6 @@
 [submodule "home/.bash"]
 	path = home/.bash
 	url = git://github.com/Ihavanna/.bash.git
+[submodule "home/.emacs.d"]
+	path = home/.emacs.d
+	url = git://github.com/Ihavanna/.emacs.d.git
