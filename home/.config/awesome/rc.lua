@@ -234,8 +234,8 @@ vicious.register(mygmail, vicious.widgets.gmail, "<span color='moccasin'>GMail:<
 -- }}}
 
 -- {{{ Disk IO
-diskio = wibox.widget.textbox()
-vicious.register(diskio, vicious.widgets.dio, 'IO Read: ${sda read_mb}MiB/s | IO Write: ${sda write_mb}MiB/s', 1)
+--[[diskio = wibox.widget.textbox()
+vicious.register(diskio, vicious.widgets.dio, 'IO Read: ${sda read_mb}MiB/s | IO Write: ${sda write_mb}MiB/s', 1)--]]
 -- }}}
 
 -- {{{ CPU
@@ -398,7 +398,7 @@ for s = 1, screen.count() do
     -- Create the wibox
     my_top_wibox[s] = awful.wibox({ position = "top", height= 16, screen = s })
     --my_bottom_wibox[s] = awful.wibox({ position = "bottom", height= 16, screen = s })
-    my_bottom_wibox = awful.wibox({ position = "bottom", screen = 1, ontop = false, width = 1, height = 14 })
+    my_bottom_wibox[s] = awful.wibox({ position = "bottom", screen = 1, ontop = false, width = 1, height = 14 })
 
     -- Widgets that are aligned to the left
     local top_left_layout = wibox.layout.fixed.horizontal()
@@ -415,8 +415,8 @@ for s = 1, screen.count() do
     --top_right_layout:add(separator)
     --top_right_layout:add(net)
     --top_right_layout:add(separator)
-    top_right_layout:add(diskio)
-    top_right_layout:add(separator)
+    --top_right_layout:add(diskio)
+    --top_right_layout:add(separator)
     top_right_layout:add(cpu)
     top_right_layout:add(space)
     top_right_layout:add(cpugraph)
@@ -478,7 +478,7 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev", false ) end),
     awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play", false ) end),
     awful.key({                   }, "XF86AudioStop",           function () awful.util.spawn( "mpc stop", false ) end),
-    awful.key({                   }, "Print", false,            function () awful.util.spawn( "screenshot", false ) end),
+    awful.key({                   }, "Print", false,            function () awful.util.spawn( "port", false ) end),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -723,6 +723,7 @@ os.execute("fcitx -d")
 --os.execute("goagent-gtk &")
 os.execute("/usr/libexec/polkit-gnome-authentication-agent-1 &")
 os.execute("conky &")
+--os.execute("numlockx &")
 --os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
 --os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
 
