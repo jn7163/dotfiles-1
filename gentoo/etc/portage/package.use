@@ -5,13 +5,13 @@ app-arch/p7zip rar
 app-arch/unzip natspec
 app-arch/zip natspec
 app-cdr/graveman dvdr
-app-editors/emacs xft -gconf
-app-emulation/qemu sdl usbredir vde
+app-editors/emacs xft -gconf gtk
+app-emulation/qemu -fdt sdl usbredir vde
 app-i18n/fcitx cairo gtk gtk3 pango qt4 -table
 app-office/abiword plugins
 app-office/libreoffice-l10n linguas_zh_CN
 app-office/libreoffice-bin java
-app-office/wps-office -sharedfonts
+#app-office/kingsoft-office -sharedfonts
 app-portage/eix sqlite
 app-portage/layman cvs git mercurial subversion
 app-text/ghostscript-gpl cups
@@ -22,10 +22,10 @@ app-text/wv tools
 dev-db/mysql perl ssl
 dev-db/MariaDB perl ssl
 dev-db/sqlite secure-delete unlock-notify
-dev-java/icedtea-bin nsplugin -cjk
+dev-java/icedtea-bin -nsplugin -cjk
 dev-java/swt cairo
 #dev-lang/php apache2 cgi curl fpm ftp gd mysql mysqli mysqlnd mhash pdo sockets sqlite3 threads xml xmlreader xmlwriter cli
-dev-lang/php apache2 cgi curl fpm ftp gd mysql mysqli mysqlnd mhash pdo sqlite threads xml xmlreader xmlwriter cli
+dev-lang/php apache2 cgi curl fpm ftp gd mysql mysqli mysqlnd mhash pdo sqlite threads xml xmlreader xmlwriter
 dev-lang/python sqlite tk
 dev-libs/libdbusmenu gtk
 dev-libs/libgcrypt static-libs
@@ -40,6 +40,7 @@ dev-vcs/subversion perl -dso
 gnome-base/gvfs udisks
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
 media-libs/freetype auto-hinter
+media-libs/gegl -raw
 media-libs/gst-plugins-base theora
 media-libs/harfbuzz icu
 media-libs/libass enca
@@ -49,25 +50,26 @@ media-gfx/ffcast vpx
 media-sound/deadbeef ape dts -ffmpeg m3u sndfile wavpack shn linguas_zh_CN
 media-sound/easytag wavpack
 media-sound/moc ffmpeg mad sndfile wavpack
-media-sound/mpd cue lame wavpack
+media-sound/mpd cue lame wavpack -soup
 media-sound/rubyripper cdrdao normalize wav
 media-sound/shntool wavpack
 media-video/ffmpeg dirac sdl theora threads vorbis
 media-video/libav -qt-faststart dirac schroedinger opus sdl theora threads vorbis vpx
-media-video/mplayer2 bl cddb dga dvb fbcon ggi mad mpeg123 nas openal real sdl vcd yuv4mpeg
+media-video/mplayer2  vcd yuv4mpeg
 media-video/vlc dirac directfb dts dvd libass live matroska mpegogg rtsp sid speex sqlite xv xml qt4
 net-analyzer/mtr -gtk
 net-fs/cifs-utils -acl
 net-nds/openldap -gnutls
 net-libs/loudmouth debug
 net-misc/curl threads
-net-misc/ntp openntpd
+#net-misc/ntp openntpd
 net-misc/rdesktop -alsa
 net-misc/openssh -ldap
 net-misc/wicd -nls
 net-p2p/rtorrent xmlrpc color
 net-print/cups -usb
 sys-apps/help2man -nls
+sys-apps/portage python3
 sys-auth/consolekit policykit
 sys-block/parted device-mapper
 sys-devel/gcc graphite
@@ -77,8 +79,7 @@ sys-kernel/linux-firmware savedconfig
 sys-libs/zlib minizip
 virtual/ffmpeg mp3 sdl theora threads x264
 virtual/udev gudev hwdb
-www-client/chromium -system-ffmpeg
-www-client/firefox -crashreporter system-sqlite system-jpeg system-cairo custom-optimization
+www-client/firefox -crashreporter libnotifyi system-sqlite system-jpeg system-cairo custom-optimization system-icu
 www-client/opera -gstreamer gtk
 www-servers/apache threads
 www-servers/lighttpd minimal mysql php webdav zlib
