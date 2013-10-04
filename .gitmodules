@@ -10,3 +10,6 @@
   path = home/.emacs.d
   url = git://github.com/Ihavanna/.emacs.d.git
   ignore = dirty
+[submodule "home/.mutt"]
+	path = home/.mutt
+	url = git://github.com/Ihavanna/.mutt.git
