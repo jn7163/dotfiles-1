@@ -1,15 +1,20 @@
 [submodule "home/.vim"]
-  path = home/.vim
-  url = git://github.com/Ihavanna/.vim.git
-  ignore = dirty
+	path = home/.vim
+	url = git://github.com/Ihavanna/.vim.git
+	branch = master
+	ignore = dirty
 [submodule "home/.bash"]
-  path = home/.bash
-  url = git://github.com/Ihavanna/.bash.git
-  ignore = dirty
+	path = home/.bash
+	url = git://github.com/Ihavanna/.bash.git
+	branch = master
+	ignore = dirty
 [submodule "home/.emacs.d"]
-  path = home/.emacs.d
-  url = git://github.com/Ihavanna/.emacs.d.git
-  ignore = dirty
+	path = home/.emacs.d
+	url = git://github.com/Ihavanna/.emacs.d.git
+	branch = master
+	ignore = dirty
 [submodule "home/.mutt"]
 	path = home/.mutt
 	url = git://github.com/Ihavanna/.mutt.git
+	branch = master
+	ignore = dirty
