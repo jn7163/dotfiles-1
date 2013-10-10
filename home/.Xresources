@@ -1,9 +1,9 @@
 !xterm -xrm "xterm*background: blue" = xterm -bg blue
 
 !look and feel
-xterm.termName: xterm
-xterm*geometry: 120x24
-xterm*VT100l.geometry: 120x24
+xterm.termName: xterm-256color
+xterm*geometry: 80x24
+xterm*VT100l.geometry: 80x24
 xterm*scrollBar: false
 xterm*rightScrollBar: true
 xterm*loginshell: true

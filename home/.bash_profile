@@ -6,12 +6,14 @@
 
 [[ -f ~/.bash_alias ]] && . ~/.bash_alias
 
-#if [ $(tty) == /dev/tty1 ]; then
-#    [[ -f ~/.mpd/mpd.pid ]] && mpd --kill
-#    mpd
-#fi
+if [ $(tty) == /dev/tty1 ]; then
+    [[ -f ~/.mpd/mpd.pid ]] && mpd --kill
+    mpd
+fi
 
-#[[ -d ~/Bash ]] && export PATH=$PATH:$HOME/Bash
+[[ -d ~/.bash ]] && export PATH=$PATH:$HOME/.bash
+
+[[ -d ~/.gem ]] && export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
 
 [[ -x /usr/bin/vim ]] && export EDITOR=vim
 
