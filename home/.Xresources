@@ -63,14 +63,6 @@ xTerm*color15: white
 xTerm*colorUL: yellow
 xTerm*colorBD: white
 
-Xft*dpi:96
-Xft*autohint: true
-Xft*antialias: true
-Xft*hinting: true
-Xft*hintstyle: hintslight
-Xft*lcdfilter: lcddefault
-Xft*rgba: rgb
-
 
 Xft.dpi:                96
 Xft.lcdfilter:          lcddefault
@@ -140,3 +132,5 @@ URxvt.color15:			#EEEEEC
 !URxvt.perl-ext-common:		translate-selection
 
 !URxvt.perl-ext-common:default,tabbed
+
+Emacs.geometry:         120x42+20+10
