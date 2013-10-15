@@ -175,7 +175,7 @@ space:set_align (center)
 space:set_wrap (word)
 
 -- {{{ MPD
---[[mpd = wibox.widget.textbox()
+mpd = wibox.widget.textbox()
 vicious.register(mpd, vicious.widgets.mpd,
     function (widget, args)
         if args["{state}"] == ("Stop" or "N/A") then
@@ -184,7 +184,7 @@ vicious.register(mpd, vicious.widgets.mpd,
             return '| <span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>'
             --naughty.notify({ text='<span color="gold">MPD Play: '.. args["{Artist}"]..' - '.. args["{Title}"] ..'</span>' })
         end
-    end, 5)--]]
+    end, 5)
 -- }}}
 
 -- {{{ Wifi
@@ -215,7 +215,7 @@ vicious.register(ip, vicious.widgets.wifi,
 -- }}}
 
 -- {{{ Net
---[[net = wibox.widget.textbox()
+net = wibox.widget.textbox()
     function netspeed(format)
         args = vicious.widgets.net(format)
         netspeed_tab = {}
@@ -223,7 +223,7 @@ vicious.register(ip, vicious.widgets.wifi,
         netspeed_tab['{up_kb}'] = args['{enp3s0 up_kb}']
         return netspeed_tab
     end
-vicious.register(net, netspeed, "Net: ${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)--]]
+vicious.register(net, netspeed, "Net: ${up_kb}KiB/s↑ ${down_kb}KiB/s↓", 1)
 -- }}}
 
 -- {{{ GMAIL
@@ -234,8 +234,8 @@ vicious.register(mygmail, vicious.widgets.gmail, "<span color='moccasin'>GMail:<
 -- }}}
 
 -- {{{ Disk IO
---[[diskio = wibox.widget.textbox()
-vicious.register(diskio, vicious.widgets.dio, 'IO Read: ${sda read_mb}MiB/s | IO Write: ${sda write_mb}MiB/s', 1)--]]
+diskio = wibox.widget.textbox()
+vicious.register(diskio, vicious.widgets.dio, 'IO Read: ${sda read_mb}MiB/s | IO Write: ${sda write_mb}MiB/s', 1)
 -- }}}
 
 -- {{{ CPU
@@ -398,7 +398,7 @@ for s = 1, screen.count() do
     -- Create the wibox
     my_top_wibox[s] = awful.wibox({ position = "top", height= 16, screen = s })
     --my_bottom_wibox[s] = awful.wibox({ position = "bottom", height= 16, screen = s })
-    my_bottom_wibox[s] = awful.wibox({ position = "bottom", screen = 1, ontop = false, width = 1, height = 14 })
+    --my_bottom_wibox[s] = awful.wibox({ position = "bottom", screen = 1, ontop = false, width = 1, height = 14 })
 
     -- Widgets that are aligned to the left
     local top_left_layout = wibox.layout.fixed.horizontal()
@@ -411,12 +411,12 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local top_right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then top_right_layout:add(wibox.widget.systray()) end
-    --top_right_layout:add(mpd)
-    --top_right_layout:add(separator)
-    --top_right_layout:add(net)
-    --top_right_layout:add(separator)
-    --top_right_layout:add(diskio)
-    --top_right_layout:add(separator)
+    top_right_layout:add(mpd)
+    top_right_layout:add(separator)
+    top_right_layout:add(net)
+    top_right_layout:add(separator)
+    top_right_layout:add(diskio)
+    top_right_layout:add(separator)
     top_right_layout:add(cpu)
     top_right_layout:add(space)
     top_right_layout:add(cpugraph)
@@ -722,7 +722,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 os.execute("fcitx -d")
 --os.execute("goagent-gtk &")
 os.execute("/usr/libexec/polkit-gnome-authentication-agent-1 &")
-os.execute("conky &")
+--os.execute("conky &")
 --os.execute("numlockx &")
 --os.execute("compton -S -Cc -fF -I-10 -O-10 -D1 -t-2 -l-3 -r4 &")
 --os.execute("xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4 &")
