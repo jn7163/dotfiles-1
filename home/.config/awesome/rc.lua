@@ -306,8 +306,8 @@ volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { {
 vicious.register(volbar, vicious.widgets.volume, "$1", 2, "Master")
 volbar:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle", false) end),
-    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 2dB+", false) end),
-    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 2dB-", false) end)
+    awful.button({ }, 4, function () awful.util.spawn("amixer set Master 5%+", false) end),
+    awful.button({ }, 5, function () awful.util.spawn("amixer set Master 5%-", false) end)
 ))
 vol = wibox.widget.textbox()
 vicious.register(vol, vicious.widgets.volume, "Vol: $2", 2, "Master")
@@ -471,9 +471,9 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "F2",                      function () awful.util.spawn(browser) end),
     awful.key({                   }, "F3",                      function () awful.util.spawn( "chromium" ) end),
     awful.key({                   }, "F4",                      function () awful.util.spawn( "emacs" ) end),
-    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer -q sset Master 2dB-", false ) end),
-    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer -q sset Master 2dB+",false ) end),
-    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer -q sset Master toggle",false ) end),
+    awful.key({                   }, "XF86AudioLowerVolume",    function () awful.util.spawn( "amixer set Master 5%-", false ) end),
+    awful.key({                   }, "XF86AudioRaiseVolume",    function () awful.util.spawn( "amixer set Master 5%+", false ) end),
+    awful.key({                   }, "XF86AudioMute",           function () awful.util.spawn( "amixer Master toggle", false ) end),
     awful.key({                   }, "XF86AudioNext",           function () awful.util.spawn( "mpc next", false ) end),
     awful.key({                   }, "XF86AudioPrev",           function () awful.util.spawn( "mpc prev", false ) end),
     awful.key({                   }, "XF86AudioPlay",           function () awful.util.spawn( "mpc play", false ) end),
