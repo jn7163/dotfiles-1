@@ -22,6 +22,10 @@ function hello() {
     [[ "-x /usr/bin/cowsay" && "-x /usr/bin/fortune" ]] && fortune-zh joke | cowsay
 }
 
+if [ -f /usr/bin/ccal ]; then
+    tty -s | egrep -i "pts" && ccal -u
+fi
+
 C_DEFAULT="\[\033[m\]"
 C_BLACK="\[\033[30m\]"			# base02
 C_RED="\[\033[31m\]"			# red
