@@ -23,7 +23,7 @@ function hello() {
 }
 
 if [ -f /usr/bin/ccal ]; then
-    tty -s | egrep -i "pts" && ccal -u
+    tty | egrep -i "pts" > /dev/null && ccal -u
 fi
 
 C_DEFAULT="\[\033[m\]"
