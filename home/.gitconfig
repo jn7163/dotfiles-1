@@ -2,10 +2,12 @@
     legacyheaders = false
     quotepath = false
     pager = less -+$LESS -FRX
+    autocrlf = input
+    safecrlf = true
     #pager = less -r
 [user]
-    name = Bardon
-    email = bardon.cn@gmail.com
+    name = Havanna
+    email = registerdedicated@yeah.net
 [diff]
     tool = diff
 [alias]
@@ -39,8 +41,8 @@
     private = no
     browse = no
 [github]
-    user = username
-    password= password
+    user = Havanna
+    password= xp5Lsq4jfBU7
 [push]
     default = matching
 [web]
