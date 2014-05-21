@@ -5,7 +5,7 @@
 	ignore = dirty
 [submodule "home/.bash"]
 	path = home/.bash
-	url = git://github.com/Ihavee/.bash.git
+	url = git://gitcafe.com/Havee/bash.git
 	branch = master
 	ignore = dirty
 [submodule "home/.emacs.d"]
@@ -15,9 +15,9 @@
 	ignore = dirty
 [submodule "home/.mutt"]
 	path = home/.mutt
-	url = git://github.com/Ihavee/.mutt.git
+	url = git://gitcafe.com/Havee/mutt.git
 	branch = master
 	ignore = dirty
 [submodule "home/.config/awesome"]
 	path = home/.config/awesome
-	url = git://github.com/Ihavee/awesome.git
+	url = git://gitcafe.com/Havee/awesome.git
