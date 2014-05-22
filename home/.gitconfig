@@ -4,6 +4,8 @@
     pager = less -+$LESS -FRX
     autocrlf = input
     safecrlf = true
+    excludesfile = /Users/cnhavee/.gitignore_global
+    editor = vim
     #pager = less -r
 [user]
     name = Havanna
@@ -11,7 +13,7 @@
 [diff]
     tool = diff
 [alias]
-    ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=15
+    ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=25
     l = log --stat --decorate --abbrev-commit --max-count=3
     sbi = submodule init
     sbu = submodule update
@@ -42,8 +44,13 @@
     browse = no
 [github]
     user = Havanna
-    password= xp5Lsq4jfBU7
 [push]
     default = matching
 [web]
     browser = firefox
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
