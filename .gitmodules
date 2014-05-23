@@ -16,3 +16,6 @@
 [submodule "home/.config/awesome"]
 	path = home/.config/awesome
 	url = git://gitcafe.com/Havee/awesome.git
+[submodule "home/.vim"]
+	path = home/.vim
+	url = git://gitcafe.com/Havee/vimrc.git
