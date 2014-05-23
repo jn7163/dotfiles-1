@@ -3,11 +3,6 @@
 	url = git://gitcafe.com/Havee/bash.git
 	branch = master
 	ignore = dirty
-[submodule "home/.emacs.d"]
-	path = home/.emacs.d
-	url = git://github.com/Ihavee/.emacs.d.git
-	branch = master
-	ignore = dirty
 [submodule "home/.mutt"]
 	path = home/.mutt
 	url = git://gitcafe.com/Havee/mutt.git
