@@ -8,11 +8,6 @@
 	url = git://gitcafe.com/Havee/awesome.git
 	branch = master
 	ignore = dirty
-[submodule "home/.vim"]
-	path = home/.vim
-	url = git://gitcafe.com/Havee/vimrc.git
-	branch = master
-	ignore = dirty
 [submodule "home/.bash"]
 	path = home/.bash
 	url = git://github.com/Ihavee/bash.git
