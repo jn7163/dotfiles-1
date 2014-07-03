@@ -13,13 +13,13 @@
 	url = git://gitcafe.com/Havee/vimrc.git
 	branch = master
 	ignore = dirty
-[submodule "home/.emacs.d"]
-	path = home/.emacs.d
-	url = git://gitcafe.com/Havee/emacs.d.git
-	branch = master
-	ignore = dirty
 [submodule "home/.bash"]
 	path = home/.bash
 	url = git://github.com/Ihavee/bash.git
+	branch = master
+	ignore = dirty
+[submodule "home/.emacs.d"]
+	path = home/.emacs.d
+	url = git://github.com/Ihavee/emacs.d.git
 	branch = master
 	ignore = dirty
