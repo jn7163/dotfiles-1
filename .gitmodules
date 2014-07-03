@@ -18,3 +18,8 @@
 	url = git://github.com/Ihavee/emacs.d.git
 	branch = master
 	ignore = dirty
+[submodule "home/.vim"]
+	path = home/.vim
+	url = git://github.com/Ihavee/vimrc.git
+	branch = master
+	ignore = dirty
