@@ -21,3 +21,5 @@
 [submodule "home/.config/awesome"]
 	path = home/.config/awesome
 	url = git://github.com/Ihavee/awesomerc.git
+	branch = master
+	ignore = dirty
