@@ -14,7 +14,8 @@
 [[ -f ~/.bash_alias ]] && . ~/.bash_alias
 
 #PS1='[\u@\h \W]\$ '
-PS1='\[\e[1;36m\]^_^\[\e[m\] \[\e[0;32m\]\w\[\e[m\] \[\e[0;32m\]\$\[\e[m\] '
+export GIT_PS_SHOWDIRTYSTATE=1
+export PS1='\[\e[1;36m\]→\[\e[m\] \[\e[0;32m\]\w\[\e[0;35m\]$(__git_ps1)\[\e[1;32m\] \$\[\e[m\] '
 
 export TERM=xterm-256color
 
