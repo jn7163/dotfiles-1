@@ -17,8 +17,8 @@
     l = log --stat --decorate --abbrev-commit --max-count=3
     sbi = submodule init
     sbu = submodule update
-    sbp = submodule foreach git pull origin master
-    sbc = submodule foreach git checkout master
+    sbp = submodule foreach --recursive git pull origin master
+    sbc = submodule foreach --recursive git checkout master
 [color]
     branch = auto
     diff = auto
