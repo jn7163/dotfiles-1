@@ -18,3 +18,8 @@
 	url = git://github.com/Ihavee/awesomerc.git
 	branch = master
 	ignore = dirty
+[submodule "home/.emacs.d"]
+	path = home/.emacs.d
+	url = git://github.com/Ihavee/emacs.d.git
+	branch = master
+	ignore = dirty
