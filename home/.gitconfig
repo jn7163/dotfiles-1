@@ -1,56 +1,56 @@
 [core]
-    legacyheaders = false
-    quotepath = false
-    pager = less -+$LESS -FRX
-    autocrlf = input
-    safecrlf = true
-    excludesfile = /Users/cnhavee/.gitignore_global
-    editor = vim
-    #pager = less -r
+	legacyheaders = false
+	quotepath = false
+	pager = less -+$LESS -FRX
+	autocrlf = input
+	safecrlf = true
+	excludesfile = /Users/cnhavee/.gitignore_global
+	editor = vim
+	#pager = less -r
 [user]
-    name = Havanna
-    email = registerdedicated@yeah.net
+	name = Havanna
+	email = registerdedicated@yeah.net
 [diff]
-    tool = diff
+	tool = diff
 [alias]
-    ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=25
-    l = log --stat --decorate --abbrev-commit --max-count=3
-    sbi = submodule init
-    sbu = submodule update
-    sbp = submodule foreach --recursive git pull origin master
-    sbc = submodule foreach --recursive git checkout master
+	ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=25
+	l = log --stat --decorate --abbrev-commit --max-count=3
+	sbi = submodule init
+	sbu = submodule update
+	sbp = submodule foreach --recursive git pull origin master
+	sbc = submodule foreach --recursive git checkout master
 [color]
-    branch = auto
-    diff = auto
-    status = auto
-    grep = auto
-    ui = auto
-    interactive = auto
+	branch = auto
+	diff = auto
+	status = auto
+	grep = auto
+	ui = auto
+	interactive = auto
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-    meta = yellow
-    frag = magenta
-    old = red
-    new = green
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [gist]
-    private = no
-    browse = no
+	private = no
+	browse = no
 [github]
-    user = Havanna
+	user = Havanna
 [push]
-    default = matching
+	default = matching
 [web]
-    browser = firefox
+	browser = firefox
 [difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
