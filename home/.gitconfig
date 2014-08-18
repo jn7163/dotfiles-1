@@ -15,8 +15,8 @@
 [alias]
 	ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=25
 	l = log --stat --decorate --abbrev-commit --max-count=3
-	sbi = submodule init
-	sbu = submodule update
+	sbi = submodule foreach --recursive git submodule init
+	sbu = submodule foreach --recursive git submodule update
 	sbp = submodule foreach --recursive git pull origin master
 	sbc = submodule foreach --recursive git checkout master
 [color]
