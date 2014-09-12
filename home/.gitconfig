@@ -13,7 +13,7 @@
 [diff]
 	tool = diff
 [alias]
-	ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=25
+	ll= log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset' --decorate --abbrev-commit --max-count=50
 	l = log --stat --decorate --abbrev-commit --max-count=3
 	sbi = submodule foreach --recursive git submodule init
 	sbu = submodule foreach --recursive git submodule update
