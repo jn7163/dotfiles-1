@@ -2,7 +2,7 @@
 
 !look and feel
 xterm*termName: xterm
-xterm*geometry: 100x24
+xterm*geometry: 118x32
 xterm*scrollBar: false
 xterm*rightScrollBar: true
 xterm*loginshell: true
@@ -32,7 +32,7 @@ xterm*utf8:     true
 xterm*utf8Title: true
 !xterm*fontMenu*fontdefault*Label: Default
 XTerm*faceName: DejaVu Sans Mono:antialias=true:pixelsize=13
-XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias=true:pixelsize=14
+XTerm*faceNameDoublesize: WenQuanYi Micro Hei Mono:antialias=false:pixelsize=14
 !xterm*faceNameDoublesize:WenQuanYi Micro Hei:pixelsize=13
 !xterm*faceSize: 10
 !xterm*xftAntialias: true
@@ -42,26 +42,47 @@ XTerm*cjkWidth:false
 !xterm*VT100.utf8Fonts.font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
 !xterm*VT100.utf8Fonts.widefont: -misc-fixed-medium-r-normal--18-120-100-100-c-180-iso10646-1
 
-xterm*background:  black
-xterm*foreground:  gray
-xTerm*color0: black
-xTerm*color1: red3
-xTerm*color2: green3
-xTerm*color3: yellow3
-xTerm*color4: DodgerBlue1
-xTerm*color5: magenta3
-xTerm*color6: cyan3
-xTerm*color7: gray90
-xTerm*color8: gray50
-xTerm*color9: red
-xTerm*color10: green
-xTerm*color11: yellow
-xTerm*color12: blue
-xTerm*color13: magenta
-xTerm*color14: cyan
-xTerm*color15: white
-xTerm*colorUL: yellow
-xTerm*colorBD: white
+!xterm*background:  black
+!xterm*foreground:  gray
+!xTerm*color0: black
+!xTerm*color1: red3
+!xTerm*color2: green3
+!xTerm*color3: yellow3
+!xTerm*color4: DodgerBlue1
+!xTerm*color5: magenta3
+!xTerm*color6: cyan3
+!xTerm*color7: gray90
+!xTerm*color8: gray50
+!xTerm*color9: red
+!xTerm*color10: green
+!xTerm*color11: yellow
+!xTerm*color12: blue
+!xTerm*color13: magenta
+!xTerm*color14: cyan
+!xTerm*color15: white
+!xTerm*colorUL: yellow
+!xTerm*colorBD: white
+
+! Molokai theme
+*xterm*background: #1D1D19
+*xterm*foreground: #F6F5EE
+*xterm*cursorColor: #F6F5EE
+*xterm*color0: #1C1D19
+*xterm*color1: #D01B24
+*xterm*color2: #A7D32C
+*xterm*color3: #D8CF67
+*xterm*color4: #61B8D0
+*xterm*color5: #695ABB
+*xterm*color6: #D53864
+*xterm*color7: #FEFFFE
+*xterm*color8: #1C1D19
+*xterm*color9: #D12A24
+*xterm*color10: #A7D32C
+*xterm*color11: #D8CF67
+*xterm*color12: #61B8D0
+*xterm*color13: #695ABB
+*xterm*color14: #D53864
+*xterm*color15: #FEFFFE 
 
 
 Xft.dpi:                96
