@@ -3,11 +3,6 @@
 	url = git://github.com/Ihavee/bash.git
 	branch = master
 	ignore = dirty
-[submodule "home/.vim"]
-	path = home/.vim
-	url = git://github.com/Ihavee/vimrc.git
-	branch = master
-	ignore = dirty
 [submodule "home/.mutt"]
 	path = home/.mutt
 	url = git://github.com/Ihavee/muttrc.git
@@ -21,5 +16,6 @@
 [submodule "home/.emacs.d"]
 	path = home/.emacs.d
 	url = git://github.com/Ihavee/emacs.d.git
-	branch = master
-	ignore = dirty
+[submodule "home/.vim"]
+	path = home/.vim
+	url = git://github.com/Ihavee/vimrc.git
