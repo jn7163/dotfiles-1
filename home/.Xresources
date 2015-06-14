@@ -2,9 +2,9 @@
 
 !look and feel
 xterm*termName: xterm
-xterm*geometry: 118x32
+xterm*geometry: 116x30
 xterm*scrollBar: false
-xterm*rightScrollBar: true
+!xterm*rightScrollBar: true
 xterm*loginshell: true
 xterm.cursorBlink: true
 xterm*borderLess: true
@@ -32,8 +32,7 @@ xterm*utf8:     true
 xterm*utf8Title: true
 !xterm*fontMenu*fontdefault*Label: Default
 XTerm*faceName: DejaVu Sans Mono:antialias=true:pixelsize=13
-XTerm*faceNameDoublesize: WenQuanYi Micro Hei Mono:antialias=false:pixelsize=14
-!xterm*faceNameDoublesize:WenQuanYi Micro Hei:pixelsize=13
+XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias=false:pixelsize=13
 !xterm*faceSize: 10
 !xterm*xftAntialias: true
 XTerm*cjkWidth:false
@@ -43,28 +42,71 @@ XTerm*cjkWidth:false
 !xterm*VT100.utf8Fonts.widefont: -misc-fixed-medium-r-normal--18-120-100-100-c-180-iso10646-1
 
 
-! Molokai theme
-xterm*background: #262626
-xterm*foreground: #F6F5EE
-xterm*cursorColor: #F6F5EE
-xterm*color0: #1C1D19
-xterm*color1: #D01B24
-xterm*color2: #A7D32C
-xterm*color3: #D8CF67
-xterm*color4: #61B8D0
-xterm*color5: #695ABB
-xterm*color6: #D53864
-xterm*color7: #FEFFFE
-xterm*color8: #1C1D19
-xterm*color9: #D12A24
-xterm*color10: #A7D32C
-xterm*color11: #D8CF67
-xterm*color12: #61B8D0
-xterm*color13: #695ABB
-xterm*color14: #D53864
-xterm*color15: #FEFFFE
-xterm*colorUL: yellow
-xterm*colorBD: white
+! Common
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+
+! Dark
+
+!#define S_base03        #002b36
+!#define S_base02        #073642
+!#define S_base01        #586e75
+!#define S_base00        #657b83
+!#define S_base0         #839496
+!#define S_base1         #93a1a1
+!#define S_base2         #eee8d5
+!#define S_base3         #fdf6e3
+
+
+! Light
+
+#define S_base03        #fdf6e3
+#define S_base02        #eee8d5
+#define S_base01        #93a1a1
+#define S_base00        #839496
+#define S_base0         #657b83
+#define S_base1         #586e75
+#define S_base2         #073642
+#define S_base3         #002b36
+
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background:            S_base03
+
+*background:              S_base03
+*foreground:              S_base0
+*fading:                  40
+*fadeColor:               S_base03
+*cursorColor:             S_base1
+*pointerColorBackground:  S_base01
+*pointerColorForeground:  S_base1
+
+*color0:                  S_base02
+*color1:                  S_red
+*color2:                  S_green
+*color3:                  S_yellow
+*color4:                  S_blue
+*color5:                  S_magenta
+*color6:                  S_cyan
+*color7:                  S_base2
+*color9:                  S_orange
+*color8:                  S_base03
+*color10:                 S_base01
+*color11:                 S_base00
+*color12:                 S_base0
+*color13:                 S_violet
+*color14:                 S_base1
+*color15:                 S_base3
 
 
 Xft.dpi:                96
@@ -73,7 +115,7 @@ Xft.antialias:          true
 Xft.rgba:               rgba
 Xft.hinting:            true
 Xft.autohint:           true
-Xft.hintstyle:          hintslight
+Xft.hintstyle:          hintsfull
 !! RXVT-unicode setting
 URxvt.geometry:			100x24+80+80
 !URxvt.background:		black
@@ -95,11 +137,11 @@ URxvt.saveLines:		2000
 !!URxvt.title:			Havee Rxvt-Unicode
 
 !!URxvt.font:xft:DejaVu Sans Mono:pixelsize=10:antialias=False,\xft:WenQuanYi Micro Hei:pixelsize=10:antialias=False
-URxvt.font:xft:DejaVu Sans Mono-10,xft:WenQuanYi Micro Hei-10
-URxvt.boldFont:xft:DejaVu Sans Mono-10:Bold,xft:WenQuanYi Micro Hei-10:Bold
+URxvt.font:xft:DejaVu Sans Mono-10,xft:Source Han Sans CN Light-10
+URxvt.boldFont:xft:DejaVu Sans Mono-10:Bold,xft:Source Han Sans CN Light-10:Bold
 
 !!Input Method set
-URxvt.inputMethod:		fcitx
+URxvt.inputMethod:		ibus
 URxvt.preeditType:		Root
 !URxvt.preeditType:		OffTheSpot
 !URxvt.preeditType:		OverTheSpot
