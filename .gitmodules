@@ -1,21 +1,21 @@
 [submodule "home/.bash"]
 	path = home/.bash
-	url = git://github.com/Ihavee/bash.git
+	url = git://github.com/iHavee/bash.git
 	branch = master
 	ignore = dirty
 [submodule "home/.mutt"]
 	path = home/.mutt
-	url = git://github.com/Ihavee/muttrc.git
+	url = git://github.com/iHavee/muttrc.git
 	branch = master
 	ignore = dirty
 [submodule "home/.config/awesome"]
 	path = home/.config/awesome
-	url = git://github.com/Ihavee/awesomerc.git
+	url = git://github.com/iHavee/awesomerc.git
 	branch = master
 	ignore = dirty
 [submodule "home/.emacs.d"]
 	path = home/.emacs.d
-	url = git://github.com/Ihavee/emacs.d.git
+	url = git://github.com/iHavee/emacs.d.git
 [submodule "home/.vim"]
 	path = home/.vim
-	url = git://github.com/Ihavee/vimrc.git
+	url = git://github.com/iHavee/vimrc.git
