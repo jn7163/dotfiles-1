@@ -16,7 +16,7 @@
 if [ `id -u` -ne 0 ]; then
     #PS1='[\u@\h \W]\$ '
     export GIT_PS_SHOWDIRTYSTATE=1
-    export PS1='\[\e[1;36m\]→\[\e[m\] \[\e[0;32m\]\w\[\e[0;35m\]$(__git_ps1)\[\e[1;32m\] \$\[\e[m\] '
+    export PS1='\[\e[1;36m\]→ \[\e[0;32m\]\w\[\e[0;35m\]$(__git_ps1)\[\e[1;32m\] \$\[\e[m\] '
 fi
 
 export TERM=xterm-256color
