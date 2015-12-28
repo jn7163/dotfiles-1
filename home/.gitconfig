@@ -4,7 +4,7 @@
 	pager = less -+$LESS -FRX
 	autocrlf = input
 	safecrlf = true
-	excludesfile = /Users/Havee/.gitignore_global
+	excludesfile = /Users/cnhavee/.gitignore_global
 	editor = vim
 	#pager = less -r
 [user]
@@ -13,18 +13,14 @@
 [diff]
 	tool = diff
 [alias]
-	ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%an, %cr)' --abbrev-commit
+	ll= log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%an, %cr)' --abbrev-commit
 	l = log --stat --decorate --abbrev-commit --max-count=3
-	sbi = submodule foreach --recursive git submodule init
-	sbu = submodule foreach --recursive git submodule update
-	sbp = submodule foreach --recursive git pull origin master
-	sbc = submodule foreach --recursive git checkout master
+	sbp = submodule update --recursive --init
 [color]
 	branch = auto
 	diff = auto
 	status = auto
 	grep = auto
-	ui = auto
 	interactive = auto
 [color "branch"]
 	current = yellow reverse
@@ -43,18 +39,13 @@
 	private = no
 	browse = no
 [github]
-	user = Havanna
+	user = registe
 [push]
 	default = matching
 [web]
 	browser = firefox
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 #[https]
 #	proxy = socks5://127.0.0.1:1080
 #[http]
 #	proxy = socks5://127.0.0.1:1080
+#	postBuffer = 524288000
