@@ -1,3 +1,1 @@
-media-video/ffmpeg
-www-client/google-chrome:unstable
-#>=www-client/firefox-21.0
+>=www-client/firefox-39
