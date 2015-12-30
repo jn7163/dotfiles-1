@@ -26,6 +26,7 @@ case $OS in
         [[ `id -u` == "501" ]] && PS
         ;;
     Linux)
+        [[ -f /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
         [[ `id -u` == "1000" ]] && PS
         ;;
 esac

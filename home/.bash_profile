@@ -14,11 +14,6 @@
 export HISTTIMEFORMAT="%Y-%m-%d %T "
 export HISTCONTROL=ignoreboth:erasedups
 
-# bash-completion
-if [ -f /etc/profile.d/bash-completion.sh ]; then
-    /etc/profile.d/bash-completion.sh
-fi
-
 # personal bash path
 [[ -d ~/.bash ]] && export PATH=$PATH:$HOME/.bash
 
