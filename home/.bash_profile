@@ -6,19 +6,20 @@
 
 [[ -f ~/.bash_alias ]] && . ~/.bash_alias
 
-if [ $(tty) == /dev/tty1 ]; then
-    [[ -f ~/.mpd/mpd.pid ]] && mpd --kill
-    mpd
+[[ -f /usr/bin/sudo ]] && complete -cf sudo
+
+[[ -f /usr/bin/man ]] && complete -cf man
+
+# history
+export HISTTIMEFORMAT="%Y-%m-%d %T "
+export HISTCONTROL=ignoreboth:erasedups
+
+# bash-completion
+if [ -f /etc/profile.d/bash-completion.sh ]; then
+    /etc/profile.d/bash-completion.sh
 fi
 
+# personal bash path
 [[ -d ~/.bash ]] && export PATH=$PATH:$HOME/.bash
 
 [[ -d ~/.gem ]] && export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
-
-[[ -x /usr/bin/vim ]] && export EDITOR=vim
-
-#[[ -f /usr/bin/sudo ]] && complete -cf sudo
-
-#[[ -f /usr/bin/man ]] && complete -cf man
-
-#[[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
