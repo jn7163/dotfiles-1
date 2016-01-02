@@ -9,6 +9,23 @@ alias netstat='netstat -antp'
 alias less='less -R'
 alias route='route -n'
 alias ssh='ssh -C'
-alias ping='ping -c 4'
 
-alias mptv='mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0'
+case `uname` in
+    Darwin)
+        alias httpd.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
+        alias httpd.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
+        alias httpd.restart='httpd.stop && httpd.start'
+        alias nginx.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
+        alias nginx.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
+        alias nginx.restart='nginx.stop && nginx.start'
+        alias lighttpd.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.lighttpd.plist'
+        alias lighttpd.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.lighttpd.plist'
+        alias lighttpd.restart='lighttpd.stop && lighttpd.start'
+        alias php-fpm.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
+        alias php-fpm.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
+        alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+        alias mariadb.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist'
+        alias mariadb.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist'
+        alias mariadb.restart='mariadb.stop && mariadb.start'
+        ;;
+esac
