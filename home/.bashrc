@@ -23,6 +23,7 @@ PS() {
 
 case $OS in
     Darwin)
+        [[ -f $(xcode-select -p)/usr/share/git-core/git-prompt.sh ]] && . $(xcode-select -p)/usr/share/git-core/git-prompt.sh
         [[ `id -u` == "501" ]] && PS
         ;;
     Linux)
