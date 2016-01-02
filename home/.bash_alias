@@ -2,10 +2,6 @@
 # ~/.bash_alias
 #
 
-alias grep='grep --color=auto'
-alias netstat='netstat -antp'
-alias less='less -R'
-alias route='route -n'
 alias ssh='ssh -C'
 
 case `uname` in
@@ -29,5 +25,9 @@ case `uname` in
         ;;
     Linux)
         alias ls='ls --color=auto'
+        alias grep='grep --color=auto'
+        alias netstat='netstat -antp'
+        alias less='less -R'
+        alias route='route -n'
         ;;
 esac
