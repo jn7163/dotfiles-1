@@ -2,6 +2,8 @@
 
 # This file is sourced by bash for login shells.  The following line
 # runs your .bashrc and is recommended by the bash info pages.
+[[ -f ~/.bash_color ]] && . ~/.bash_color
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 [[ -f ~/.bash_alias ]] && . ~/.bash_alias
