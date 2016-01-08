@@ -27,6 +27,7 @@ media-gfx/scrot
 media-libs/mesa
 media-sound/shntool
 media-video/gtk-recordmydesktop
+media-video/mpv
 net-analyzer/iftop
 net-analyzer/mtr
 net-firewall/firewalld
@@ -34,7 +35,6 @@ net-ftp/lftp
 net-misc/networkmanager-pptp
 net-misc/rdesktop
 net-misc/stunnel
-net-p2p/transmission
 net-proxy/shadowsocks-qt5
 sys-apps/dmidecode
 sys-apps/portage
@@ -52,6 +52,7 @@ sys-process/cronie
 sys-process/htop
 sys-process/iotop
 www-client/firefox
+www-client/google-chrome
 www-misc/profile-sync-daemon
 x11-apps/setxkbmap
 x11-base/xorg-server

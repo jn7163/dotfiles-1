@@ -13,7 +13,7 @@ app-editors/emacs xft gtk
 app-editors/sublime-text multislot
 app-editors/gvim gtk -python
 app-editors/vim -python
-app-emulation/qemu -python sdl usbredir vde
+app-emulation/qemu -python alsa sdl usbredir vde
 app-emulation/vmware-tools vmware_guest_freebsd vmware_guest_linux vmware_guest_windows
 app-i18n/fcitx cairo gtk gtk3 pango qt4 -table opencc
 app-i18n/fcitx-libpinyin dictmanager
@@ -40,6 +40,7 @@ dev-libs/botan threads
 dev-libs/folks eds
 dev-libs/libdbusmenu gtk
 dev-libs/libgcrypt static-libs
+dev-libs/libgdata gnome-online-accounts
 dev-libs/libgpg-error static-libs
 dev-libs/libpcre pcre16
 dev-libs/libxml2 python
@@ -53,8 +54,7 @@ dev-vcs/git cvs subversion highlight
 dev-vcs/subversion perl -dso
 gnome-base/gnome-control-center networkmanager
 gnome-base/gnome-extra-apps -games -shotwell
-gnome-base/gnome-settings-daemon policykit
-gnome-base/gnome-shell
+gnome-base/gnome-settings-daemon networkmanager
 gnome-base/gvfs afp archive cdda fuse gphoto2 gtk mtp udisks
 gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
@@ -95,8 +95,6 @@ media-sound/mpd cue lame mp4v2 wavpack -soup
 media-sound/rubyripper cdrdao normalize wav
 media-sound/shntool wavpack
 media-video/ffmpeg dirac sdl theora threads vorbis schroedinger opus
-media-video/libav qt-faststart dirac schroedinger opus sdl theora threads vorbis vpx -opengl
-media-video/mplayer2  vcd yuv4mpeg
 media-video/mpv libmpv
 media-video/vlc dirac directfb dts dvd libass live matroska mpegogg rtsp sid speex sqlite vorbis xv xml
 net-analyzer/mtr
@@ -117,7 +115,6 @@ net-print/cups -usb
 net-wireless/wpa_supplicant -qt5
 sys-apps/help2man -nls
 sys-apps/portage cvs git subversion
-sys-auth/consolekit policykit
 sys-block/parted device-mapper
 sys-boot/grub grub_platforms_efi-64
 sys-devel/gcc graphite
@@ -129,15 +126,13 @@ sys-libs/zlib minizip
 sys-power/pm-utils ntp
 virtual/ffmpeg mp3 sdl theora threads x264
 virtual/udev gudev hwdb
-www-client/firefox -crashreporter libnotifyi system-sqlite system-jpeg system-cairo custom-optimization system-icu system-libvpx
+www-client/firefox egl system-sqlite system-jpeg system-cairo custom-optimization system-icu system-libvpx
 www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi -nginx_modules_http_geo
 x11-base/xorg-server kdrive glamor xvfb xephyr
-#x11-base/xorg-server kdrive glamor xvfb xephyr video_cards_fbdev video_cards_vesa
 x11-libs/cairo xcb
-#x11-libs/libdrm libkms video_cards_amdgpu
-x11-libs/libdrm libkms
+x11-libs/libdrm libkms video_cards_amdgpu
 x11-libs/libfm gtk
 x11-libs/libxcb xkb
 x11-libs/vte:0 python
