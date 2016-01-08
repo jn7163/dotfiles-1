@@ -41,7 +41,9 @@
 [github]
 	user = registe
 [push]
-	default = matching
+	default = simple
+[pull]
+	default = simple
 [web]
 	browser = firefox
 #[https]
