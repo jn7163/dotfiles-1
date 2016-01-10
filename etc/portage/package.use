@@ -65,6 +65,7 @@ kde-libs/kdemultimedia-meta mplayer
 kde-base/kdeplasma-addons desktopglobe fcitx
 kde-base/systemsettings gtk
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
+media-fonts/source-han-sans linguas_zh_CN
 media-libs/clutter egl gtk
 media-libs/clutter-gtk gtk
 media-libs/cogl gles2
@@ -80,7 +81,7 @@ media-libs/libcanberra -udev
 media-libs/libmediaart -qt4 -qt5
 media-libs/libpng apng
 media-libs/libvpx postproc
-media-libs/mesa bindist gbm gles2 openvg osmesa xorg -vaapi
+media-libs/mesa bindist gbm gles2 openvg osmesa xorg egl vaapi
 media-libs/phonon pulseaudio
 media-libs/sdl-mixer smpeg
 media-gfx/ffcast vpx
@@ -126,7 +127,7 @@ sys-libs/zlib minizip
 sys-power/pm-utils ntp
 virtual/ffmpeg mp3 sdl theora threads x264
 virtual/udev gudev hwdb
-www-client/firefox egl system-sqlite system-jpeg system-cairo custom-optimization system-icu system-libvpx
+www-client/firefox system-sqlite system-jpeg system-cairo custom-optimization system-icu system-libvpx egl
 www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi -nginx_modules_http_geo
