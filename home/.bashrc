@@ -31,6 +31,8 @@ case $OS in
         ;;
 esac
 
+[[ -f $(which lantern.sh) ]] && complete -cf lantern.sh
+
 # ccal
 if [ -f /usr/bin/ccal ]; then
     tty | egrep -i "pts" > /dev/null && ccal -u
