@@ -21,7 +21,7 @@ dev-util/ccache
 gnome-base/gnome
 mail-client/mutt
 mail-mta/postfix
-media-fonts/wqy-microhei
+media-fonts/source-han-sans
 media-gfx/gimp
 media-gfx/scrot
 media-libs/mesa
@@ -35,6 +35,7 @@ net-ftp/lftp
 net-misc/networkmanager-pptp
 net-misc/rdesktop
 net-misc/stunnel
+net-proxy/lantern
 net-proxy/shadowsocks-qt5
 sys-apps/dmidecode
 sys-apps/portage
