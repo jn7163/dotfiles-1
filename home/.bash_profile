@@ -12,8 +12,6 @@
 
 [[ -f /usr/bin/man ]] && complete -cf man
 
-[[ -f $(which lantern.sh) ]] && complete -cf lantern.sh
-
 # history
 export HISTTIMEFORMAT="%Y-%m-%d %T "
 export HISTCONTROL=ignoreboth:erasedups
