@@ -31,8 +31,9 @@ xterm*locale: UTF-8
 xterm*utf8:     true
 xterm*utf8Title: true
 !xterm*fontMenu*fontdefault*Label: Default
+!XTerm*faceName: Source Han Sans CN:antialias=true:pixelsize=13
 XTerm*faceName: DejaVu Sans Mono:antialias=true:pixelsize=13
-XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias=false:pixelsize=13
+XTerm*faceNameDoublesize: Source Han Sans CN:antialias=false:pixelsize=13
 !xterm*faceSize: 10
 !xterm*xftAntialias: true
 XTerm*cjkWidth:false
