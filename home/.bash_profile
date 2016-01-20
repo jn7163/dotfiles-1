@@ -30,6 +30,7 @@ case `uname` in
             #export HOMEBREW_GITHUB_API_TOKEN=19a5822bd74d7643de20d39835d2b9254eba810b
             export HOMEBREW_EDITOR=/usr/bin/vim
             export PATH=$(brew --prefix)/sbin:$PATH
+            export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
         fi
         # HOMEBREW CASK
         #export HOMEBREW_CASK_OPTS="--appdir=$HOME/My\ Applications"
