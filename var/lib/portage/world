@@ -7,7 +7,9 @@ app-crypt/efitools
 app-editors/nano
 app-editors/vim
 app-emulation/qemu
-app-i18n/ibus-libpinyin
+app-i18n/fcitx-configtool
+app-i18n/fcitx-libpinyin
+app-i18n/fcitx-qt5
 app-i18n/ibus-qt
 app-office/wps-office
 app-portage/eix
@@ -35,7 +37,7 @@ net-ftp/lftp
 net-misc/networkmanager-pptp
 net-misc/rdesktop
 net-misc/stunnel
-net-proxy/lantern
+net-proxy/lantern-bin
 net-proxy/shadowsocks-qt5
 sys-apps/dmidecode
 sys-apps/portage
@@ -56,7 +58,7 @@ www-client/firefox
 www-client/google-chrome
 www-misc/profile-sync-daemon
 x11-apps/setxkbmap
-x11-base/xorg-server
 x11-drivers/xf86-input-evdev
 x11-drivers/xf86-video-ati
 x11-misc/numlockx
+x11-terms/xterm

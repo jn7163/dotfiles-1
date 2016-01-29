@@ -15,9 +15,7 @@ app-editors/gvim gtk -python
 app-editors/vim -python
 app-emulation/qemu -python alsa sdl usbredir vde
 app-emulation/vmware-tools vmware_guest_freebsd vmware_guest_linux vmware_guest_windows
-app-i18n/fcitx cairo gtk gtk3 pango qt4 -table opencc
-app-i18n/fcitx-libpinyin dictmanager
-app-i18n/ibus gtk
+app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker gstreamer
 app-office/abiword plugins
 app-office/libreoffice-bin java
