@@ -10,7 +10,6 @@ app-emulation/qemu
 app-i18n/fcitx-configtool
 app-i18n/fcitx-libpinyin
 app-i18n/fcitx-qt5
-app-i18n/ibus-qt
 app-office/wps-office
 app-portage/eix
 app-portage/gentoolkit

@@ -50,9 +50,10 @@ dev-python/PyQt4 declarative phonon script sql webkit
 dev-util/cmake qt4
 dev-vcs/git cvs subversion highlight
 dev-vcs/subversion perl -dso
-gnome-base/gnome-control-center networkmanager
+gnome-base/gnome-control-center -i18n networkmanager
 gnome-base/gnome-extra-apps -games -shotwell
 gnome-base/gnome-settings-daemon networkmanager
+gnome-base/gnome-shell -nls
 gnome-base/gvfs afp archive cdda fuse gphoto2 gtk mtp udisks
 gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
