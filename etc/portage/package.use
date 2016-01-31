@@ -1,4 +1,3 @@
-app-admin/conky curl mpd
 app-eselect/eselect-php fpm apache2
 app-admin/syslog-ng json
 app-arch/file-roller nautilus
@@ -7,42 +6,27 @@ app-arch/unzip natspec
 app-arch/zip natspec
 app-cdr/graveman dvdr
 app-crypt/gcr gtk
-app-crypt/heimdal -ssl
 app-crypt/pinentry gnome-keyring -qt5
 app-editors/emacs xft gtk
 app-editors/sublime-text multislot
 app-editors/gvim gtk -python
 app-editors/vim -python
 app-emulation/qemu -python alsa sdl usbredir vde
-app-emulation/vmware-tools vmware_guest_freebsd vmware_guest_linux vmware_guest_windows
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker gstreamer
-app-office/abiword plugins
-app-office/libreoffice-bin java
-app-office/wps-office abi_x86_32
 app-portage/eix sqlite
 app-portage/layman cvs git mercurial subversion sync-plugin-portage
 app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
-app-text/texlive dvipdffm xetex
-app-text/texlive-core xetex
-app-text/wv tools
-dev-db/mysql perl ssl
-dev-db/MariaDB perl ssl
-dev-db/sqlite secure-delete unlock-notify
-dev-java/icedtea-bin -nsplugin -cjk
-dev-java/swt cairo
+dev-db/sqlite secure-delete
 dev-lang/php apache2 cgi curl fpmd ftp gd mysql mysqli mysqlnd mhash pdo sqlite threads xml xmlreader xmlwriter
 dev-lang/python sqlite tk
 dev-libs/botan threads
 dev-libs/folks eds
 dev-libs/libdbusmenu gtk
-dev-libs/libgcrypt static-libs
 dev-libs/libgdata gnome-online-accounts
-dev-libs/libgpg-error static-libs
 dev-libs/libpcre pcre16
 dev-libs/libxml2 python
-dev-libs/lzo static-libs
 dev-libs/nettle gmp
 dev-libs/nss utils
 dev-libs/protobuf python
@@ -58,74 +42,41 @@ gnome-base/gvfs afp archive cdda fuse gphoto2 gtk mtp udisks
 gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
 gnome-extra/evolution-data-server vala
-kde-base/dolphin semantic-desktop
-kde-base/kdelibs fam
-kde-libs/kdemultimedia-meta mplayer
-kde-base/kdeplasma-addons desktopglobe fcitx
-kde-base/systemsettings gtk
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
 media-fonts/source-han-sans linguas_zh_CN
 media-libs/clutter egl gtk
 media-libs/clutter-gtk gtk
 media-libs/cogl gles2
-media-libs/freetype auto-hinter
 media-libs/gegl -raw cairo
 media-libs/gexiv2 -python
 media-libs/grilo playlist
 media-libs/gst-plugins-base theora
 media-libs/harfbuzz icu
-media-libs/lcms static-libs
 media-libs/libass enca
 media-libs/libcanberra -udev
 media-libs/libmediaart -qt4 -qt5
 media-libs/libpng apng
 media-libs/libvpx postproc
 media-libs/mesa bindist gbm gles2 openvg osmesa xorg egl vaapi
-media-libs/phonon pulseaudio
-media-libs/sdl-mixer smpeg
-media-gfx/ffcast vpx
-media-gfx/splashutils fbcondecor
 media-plugins/gst-plugins-meta ffmpeg
 media-plugins/grilo-plugins upnp-av tracker
-media-sound/deadbeef ape converter cover cover-imlib2 dts -gtk2 m3u sndfile wavpack shn linguas_zh_CN
-media-sound/easytag wavpack
 media-sound/gnome-music -python_single_target_python3_3 python_single_target_python3_4
-media-sound/moc ffmpeg mad sndfile wavpack
-media-sound/mpd cue lame mp4v2 wavpack -soup
-media-sound/rubyripper cdrdao normalize wav
 media-sound/shntool wavpack
-media-video/ffmpeg dirac sdl theora threads vorbis schroedinger opus
 media-video/mpv libmpv
-media-video/vlc dirac directfb dts dvd libass live matroska mpegogg rtsp sid speex sqlite vorbis xv xml
-net-analyzer/mtr
-net-fs/cifs-utils -acl
-net-libs/libmicrohttpd messages
 net-libs/libproxy networkmanager
 net-libs/loudmouth debug
 net-misc/curl threads
 net-misc/networkmanager -dhclient connection-sharing dhcpcd resolvconf wifi
-net-misc/rdesktop -alsa
-net-misc/spice-gtk usbredir
 net-misc/openssh -ldap
-net-misc/wicd -nls
 net-nds/openldap -gnutls
-net-p2p/rtorrent xmlrpc color daemon
-net-p2p/transmission -qt5 -qt4
 net-print/cups -usb
-net-wireless/wpa_supplicant -qt5
-sys-apps/help2man -nls
 sys-apps/portage cvs git subversion
 sys-block/parted device-mapper
-sys-boot/grub grub_platforms_efi-64
 sys-devel/gcc graphite
 sys-fs/ntfs3g ntfsprogs
-sys-fs/udev extras hwdb gudev
-sys-kernel/linux-firmware savedconfig
-sys-libs/talloc python
 sys-libs/zlib minizip
 sys-power/pm-utils ntp
 virtual/ffmpeg mp3 sdl theora threads x264
-virtual/udev gudev hwdb
 www-client/firefox system-sqlite system-jpeg system-cairo custom-optimization system-icu system-libvpx egl
 www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
 www-servers/lighttpd minimal mysql php webdav zlib
@@ -133,7 +84,4 @@ www-servers/nginx fastcgi -nginx_modules_http_geo
 x11-base/xorg-server kdrive glamor xvfb xephyr
 x11-libs/cairo xcb
 x11-libs/libdrm libkms video_cards_amdgpu
-x11-libs/libfm gtk
 x11-libs/libxcb xkb
-x11-libs/vte:0 python
-x11-terms/rxvt-unicode 256-color pixbuf xft
