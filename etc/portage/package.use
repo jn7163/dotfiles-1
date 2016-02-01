@@ -77,7 +77,6 @@ sys-fs/ntfs3g ntfsprogs
 sys-libs/zlib minizip
 sys-power/pm-utils ntp
 virtual/ffmpeg mp3 sdl theora threads x264
-www-client/firefox system-sqlite system-jpeg system-cairo custom-optimization system-icu system-libvpx egl
 www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi -nginx_modules_http_geo

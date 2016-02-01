@@ -53,7 +53,7 @@ sys-power/pm-utils
 sys-process/cronie
 sys-process/htop
 sys-process/iotop
-www-client/firefox
+www-client/firefox-bin
 www-client/google-chrome
 www-misc/profile-sync-daemon
 x11-apps/setxkbmap
