@@ -16,3 +16,10 @@
 [submodule "home/.emacs.d"]
 	path = home/.emacs.d
 	url = git://github.com/iHavee/emacs.d.git
+	branch = master
+	ignore = dirty
+[submodule "home/.vim"]
+	path = home/.vim
+	url = git://github.com/iHavee/vimrc.git
+	branch = master
+	ignore = dirty
