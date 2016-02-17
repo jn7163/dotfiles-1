@@ -1,1 +1,2 @@
 >=www-client/firefox-39
+>=www-client/firefox-bin-39

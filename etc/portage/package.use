@@ -43,7 +43,7 @@ gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
 gnome-extra/evolution-data-server vala
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
-media-fonts/source-han-sans linguas_zh_CN
+media-fonts/source-han-sans linguas_zh_CN linguas_zh_TW linguas_ja linguas_ko
 media-libs/clutter egl gtk
 media-libs/clutter-gtk gtk
 media-libs/cogl gles2
@@ -77,6 +77,7 @@ sys-fs/ntfs3g ntfsprogs
 sys-libs/zlib minizip
 sys-power/pm-utils ntp
 virtual/ffmpeg mp3 sdl theora threads x264
+www-client/firefox gstreamer system-cairo system-icu system-jpeg system-libvpx system-sqlite
 www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi -nginx_modules_http_geo
