@@ -20,7 +20,7 @@ xterm*utf8Title:            true
 XTerm*faceName:             DejaVu Sans Mono:antialias=true
 XTerm*faceNameDoublesize:   Source Han Sans CN:antialias=false
 xterm*faceSize:             10
-XTerm*cjkWidth:             true
+XTerm*cjkWidth:             false
 
 #include                    ".Xresources.d/monokai"
 !#include                   ".Xresources.d/solarized"
