@@ -9,7 +9,7 @@ OS=`uname`
 
 PS() {
     export GIT_PS_SHOWDIRTYSTATE=1
-    export PS1='\[\e[0;33m\][\t] \[\e[0;32m\]\w\[\e[0;35m$(__git_ps1)\] \[\e[1;36m\]→ \[\e[0;32m\]\$\[\e[0;37m\] '
+    export PS1='\[\e[0;33m\][\t] \[\e[1;36m\]→ \[\e[0;32m\]\w\[\e[0;35m$(__git_ps1)\] \[\e[0;32m\]\$\[\e[0;37m\] '
     export LANG="en_US.UTF-8"
 }
 
@@ -28,3 +28,5 @@ esac
 if [ -f /usr/bin/ccal ]; then
     tty | egrep -i "pts" > /dev/null && ccal -u
 fi
+
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
