@@ -1,7 +1,2 @@
-app-emulation/virtualbox-bin PUEL
 www-client/google-chrome google-chrome
-www-plugins/adobe-flash AdobeFlash-11.x
 app-office/wps-office WPS-EULA
-media-video/makemkv MakeMKV-EULA
-www-plugins/chrome-binary-plugins google-chrome
-app-editors/sublime-text Sublime

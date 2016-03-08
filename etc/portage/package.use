@@ -14,7 +14,6 @@ app-editors/gvim gtk -python
 app-editors/vim -python
 app-emulation/qemu -python alsa sdl usbredir vde
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
-app-misc/tracker gstreamer
 app-portage/eix sqlite
 app-portage/layman cvs git mercurial subversion sync-plugin-portage
 app-text/ghostscript-gpl cups
@@ -44,7 +43,7 @@ gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
 gnome-extra/evolution-data-server vala
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
-media-fonts/source-han-sans cjk linguas_zh_CN linguas_zh_TW linguas_ja linguas_ko
+media-fonts/source-han-sans cjk linguas_zh_CN
 media-libs/clutter egl gtk
 media-libs/clutter-gtk gtk
 media-libs/cogl gles2
