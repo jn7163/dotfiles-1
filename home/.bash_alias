@@ -6,7 +6,7 @@ alias ssh='ssh -C'
 
 case `uname` in
     Darwin)
-        alias ls='ls -Gp'
+        alias ls='ls -G'
         alias httpd.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
         alias httpd.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
         alias httpd.restart='httpd.stop && httpd.start'
