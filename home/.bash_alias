@@ -29,5 +29,6 @@ case `uname` in
         alias netstat='netstat -antp'
         alias less='less -R'
         alias route='route -n'
+        alias ip='ip -h -c -f inet -4 -s'
         ;;
 esac
