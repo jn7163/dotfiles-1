@@ -15,26 +15,10 @@
 [alias]
 	ll= log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%an, %cr)' --abbrev-commit
 	l = log --stat --decorate --abbrev-commit --max-count=3
-	sbp = submodule update --recursive --init
+	sp = submodule update --recursive --init
+	sf = submodule foreach git submodule update --recursive --init
 [color]
-	branch = auto
-	diff = auto
-	status = auto
-	grep = auto
-	interactive = auto
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow
-	frag = magenta
-	old = red
-	new = green
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+	ui = true
 [gist]
 	private = no
 	browse = no
