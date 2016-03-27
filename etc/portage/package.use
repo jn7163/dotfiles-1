@@ -61,12 +61,14 @@ media-libs/libvpx postproc
 media-libs/mesa bindist gbm gles2 openvg osmesa xorg egl vaapi
 media-plugins/gst-plugins-meta ffmpeg
 media-plugins/grilo-plugins upnp-av tracker
+media-sound/deadbeef shn wma linguas_zh_CN
+media-sound/moc alsa
 media-sound/shntool wavpack
 media-video/mpv libmpv
 net-libs/libproxy networkmanager
 net-libs/loudmouth debug
 net-misc/curl threads
-net-misc/networkmanager -dhclient connection-sharing dhcpcd resolvconf
+net-misc/networkmanager -dhclient connection-sharing dhcpcd resolvconf -wext -wifi
 net-misc/openssh -ldap
 net-nds/openldap -gnutls
 net-print/cups -usb
@@ -76,7 +78,7 @@ sys-devel/gcc graphite
 sys-fs/ntfs3g ntfsprogs
 sys-libs/zlib minizip
 sys-power/pm-utils ntp
-www-client/firefox gstreamer system-cairo system-icu system-jpeg system-libvpx system-sqlite
+www-client/firefox gstreamer system-cairo system-icu system-jpeg system-libevent system-libvpx system-sqlite
 www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi -nginx_modules_http_geo
