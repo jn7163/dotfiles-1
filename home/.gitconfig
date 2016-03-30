@@ -25,7 +25,7 @@
 [github]
 	user = registe
 [push]
-	default = simple
+	default = upstream
 [pull]
 	default = simple
 [web]
