@@ -74,11 +74,17 @@ ${color}${diskiograph_read /dev/sda 30,200 ffffff ffffff}
 ${color slate grey}Disk Write:${alignr}${color}${diskio_write}ps
 ${color}${diskiograph_write /dev/sda 30,200 ffffff ffffff}
 ${color grey}${hr}
-${color slate grey}Internet:
+${if_up wlp6s0}${color slate grey}Internet:${alignr}${color}${wireless_essid wlp6s0}
+${color slate grey}${font} Tot.up. ${color}${totalup wlp6s0}
+${color slate grey}${font} Up: ${color}${upspeed wlp6s0}ps
+${upspeedgraph wlp6s0 30,200 ffffff ffffff}
+${color slate grey}${font} Tot.dow. ${color}${totaldown wlp6s0}
+${color slate grey}${font} Down: ${color}${downspeed wlp6s0}ps
+${downspeedgraph wlp6s0 30,200 ffffff ffffff}
+${else}${if_up enp3s0}${color slate grey}Internet:${alignr}${color}enp3s0
 ${color slate grey}${font} Tot.up. ${color}${totalup enp3s0}
 ${color slate grey}${font} Up: ${color}${upspeed enp3s0}ps
 ${upspeedgraph enp3s0 30,200 ffffff ffffff}
 ${color slate grey}${font} Tot.dow. ${color}${totaldown enp3s0}
 ${color slate grey}${font} Down: ${color}${downspeed enp3s0}ps
-${downspeedgraph enp3s0 30,200 ffffff ffffff}
-
+${downspeedgraph enp3s0 30,200 ffffff ffffff}${endif}${endif}
