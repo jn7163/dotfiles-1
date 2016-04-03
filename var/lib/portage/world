@@ -18,8 +18,10 @@ app-shells/bash-completion
 app-text/tree
 dev-util/ccache
 gnome-base/gnome
+media-fonts/source-han-sans
 media-gfx/gimp
 media-libs/mesa
+media-sound/deadbeef
 media-sound/moc
 media-video/mpv
 net-analyzer/iftop
@@ -28,12 +30,15 @@ net-firewall/firewalld
 net-misc/networkmanager-pptp
 net-proxy/lantern-bin
 net-proxy/shadowsocks-qt5
+net-wireless/broadcom-sta
 sys-apps/dmidecode
 sys-apps/portage
 sys-apps/usbutils
 sys-boot/efibootmgr
+sys-boot/syslinux
 sys-devel/bc
 sys-firmware/radeon-ucode
+sys-fs/btrfs-progs
 sys-fs/dosfstools
 sys-fs/fuse-exfat
 sys-fs/hfsutils
