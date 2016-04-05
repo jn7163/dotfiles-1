@@ -31,6 +31,7 @@ case `uname` in
             export HOMEBREW_EDITOR=/usr/bin/vim
             export PATH=$(brew --prefix)/sbin:$PATH
             export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+            export HOMEBREW_CACHE=~/Library/Caches/Homebrew
         fi
         # HOMEBREW CASK
         #export HOMEBREW_CASK_OPTS="--appdir=$HOME/My\ Applications"
