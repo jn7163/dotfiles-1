@@ -1,5 +1,4 @@
-app-eselect/eselect-php fpm apache2
-app-admin/conky hddtemp imlib iostats
+app-admin/conky hddtemp imlib iostats wifi
 app-admin/syslog-ng json
 app-arch/file-roller nautilus
 app-arch/p7zip rar wxwidgets
@@ -12,10 +11,12 @@ app-editors/emacs xft gtk
 app-editors/sublime-text multislot
 app-editors/gvim gtk -python
 app-editors/vim -python
+app-emulation/docker -seccomp
 app-emulation/qemu -python alsa sdl usbredir vde
+app-eselect/eselect-php fpm apache2
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-portage/eix sqlite
-app-portage/layman cvs git mercurial subversion sync-plugin-portage
+app-portage/layman cvs git mercurial subversion sync-plugin-portage -python_targets_python3_5
 app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
 dev-db/sqlite secure-delete
@@ -61,14 +62,14 @@ media-libs/libvpx postproc
 media-libs/mesa bindist gbm gles2 openvg osmesa xorg egl vaapi
 media-plugins/gst-plugins-meta ffmpeg
 media-plugins/grilo-plugins upnp-av tracker
-media-sound/deadbeef shn wma linguas_zh_CN
+media-sound/deadbeef -alsa shn wma linguas_zh_CN
 media-sound/moc alsa
 media-sound/shntool wavpack
 media-video/mpv libmpv
 net-libs/libproxy networkmanager
 net-libs/loudmouth debug
 net-misc/curl threads
-net-misc/networkmanager -dhclient connection-sharing dhcpcd resolvconf -wext -wifi
+net-misc/networkmanager dhclient -dhcpcd connection-sharing resolvconf -wext wifi
 net-misc/openssh -ldap
 net-nds/openldap -gnutls
 net-print/cups -usb
