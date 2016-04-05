@@ -9,7 +9,7 @@
 	#pager = less -r
 [user]
 	name = Register
-	email = registerdedicated@gmail.com
+	email = registerdedicated+github@gmail.com
 [diff]
 	tool = diff
 [alias]
