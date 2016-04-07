@@ -10,6 +10,7 @@
 [user]
 	name = Register
 	email = registerdedicated+github@gmail.com
+	signingkey = public gpg key
 [diff]
 	tool = diff
 [alias]
