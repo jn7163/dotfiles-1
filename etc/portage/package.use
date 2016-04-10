@@ -15,6 +15,7 @@ app-emulation/docker -seccomp
 app-emulation/qemu -python alsa sdl usbredir vde
 app-eselect/eselect-php fpm apache2
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
+app-misc/tracker ffmpeg -gstreamer
 app-portage/eix sqlite
 app-portage/layman cvs git mercurial subversion sync-plugin-portage -python_targets_python3_5
 app-text/ghostscript-gpl cups
@@ -36,7 +37,7 @@ dev-util/cmake qt4
 dev-vcs/git cvs subversion highlight
 dev-vcs/subversion perl -dso
 gnome-base/gnome-control-center -i18n networkmanager
-gnome-base/gnome-extra-apps -share -tracker -games -shotwell
+gnome-base/gnome-extra-apps -share -games -shotwell
 gnome-base/gnome-settings-daemon networkmanager
 gnome-base/gnome-shell -nls
 gnome-base/gvfs afp archive cdda fuse gphoto2 gtk mtp udisks
@@ -73,13 +74,14 @@ net-misc/networkmanager dhclient -dhcpcd connection-sharing resolvconf -wext wif
 net-misc/openssh -ldap
 net-nds/openldap -gnutls
 net-print/cups -usb
+net-wireless/wpa_supplicant -qt4 -qt5
 sys-apps/portage cvs git subversion
 sys-block/parted device-mapper
 sys-devel/gcc graphite
 sys-fs/ntfs3g ntfsprogs
 sys-libs/zlib minizip
 sys-power/pm-utils ntp
-www-client/firefox gstreamer system-cairo system-icu system-jpeg system-libevent system-libvpx system-sqlite
+www-client/firefox system-cairo system-icu system-jpeg system-libevent system-libvpx system-sqlite
 www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
 www-servers/lighttpd minimal mysql php webdav zlib
 www-servers/nginx fastcgi -nginx_modules_http_geo
