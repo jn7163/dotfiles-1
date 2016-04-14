@@ -3,6 +3,7 @@
 #
 
 alias ssh='ssh -C'
+alias httping='httping -S -K -Y -s -Z -G -b'
 
 case `uname` in
     Darwin)
