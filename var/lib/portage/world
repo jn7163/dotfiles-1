@@ -7,8 +7,8 @@ app-editors/gvim
 app-editors/vim
 app-emulation/qemu
 app-i18n/fcitx-configtool
-app-i18n/fcitx-libpinyin
 app-i18n/fcitx-qt5
+app-i18n/fcitx-rime
 app-office/wps-office
 app-portage/eix
 app-portage/gentoolkit
@@ -38,7 +38,6 @@ sys-boot/efibootmgr
 sys-boot/syslinux
 sys-devel/bc
 sys-firmware/radeon-ucode
-sys-fs/btrfs-progs
 sys-fs/dosfstools
 sys-fs/fuse-exfat
 sys-fs/hfsutils

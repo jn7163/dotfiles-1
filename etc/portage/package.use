@@ -6,13 +6,13 @@ app-arch/unzip natspec
 app-arch/zip natspec
 app-cdr/graveman dvdr
 app-crypt/gcr gtk
-app-crypt/pinentry gnome-keyring -qt5
+app-crypt/pinentry gnome-keyring
 app-editors/emacs xft gtk
 app-editors/sublime-text multislot
 app-editors/gvim gtk -python
 app-editors/vim -python
 app-emulation/docker -seccomp
-app-emulation/qemu -python alsa sdl usbredir vde
+app-emulation/qemu -python alsa sdl usbredir vde python_targets_python2_7
 app-eselect/eselect-php fpm apache2
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker ffmpeg -gstreamer
@@ -22,7 +22,7 @@ app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
 dev-db/sqlite secure-delete
 dev-lang/php apache2 cgi curl fpmd ftp gd mysql mysqli mysqlnd mhash pdo sqlite threads xml xmlreader xmlwriter
-dev-lang/python sqlite tk
+dev-lang/python sqlite
 dev-libs/botan threads
 dev-libs/folks eds
 dev-libs/libdbusmenu gtk
@@ -57,7 +57,7 @@ media-libs/harfbuzz icu
 media-libs/lensfun -python_single_target_python3_4 python_single_target_python3_5
 media-libs/libass enca
 media-libs/libcanberra -udev
-media-libs/libmediaart -qt4 -qt5
+media-libs/libmediaart -qt4
 media-libs/libpng apng
 media-libs/libvpx postproc
 media-libs/mesa bindist gbm gles2 openvg osmesa xorg egl vaapi
@@ -74,7 +74,7 @@ net-misc/networkmanager dhclient -dhcpcd connection-sharing resolvconf -wext wif
 net-misc/openssh -ldap
 net-nds/openldap -gnutls
 net-print/cups -usb
-net-wireless/wpa_supplicant -qt4 -qt5
+net-wireless/wpa_supplicant -qt4
 sys-apps/portage cvs git subversion
 sys-block/parted device-mapper
 sys-devel/gcc graphite
@@ -89,3 +89,4 @@ x11-base/xorg-server kdrive glamor xvfb xephyr
 x11-libs/cairo xcb
 x11-libs/libdrm libkms video_cards_amdgpu
 x11-libs/libxcb xkb
+media-libs/lensfun -python_single_target_python3_5 python_single_target_python3_4
