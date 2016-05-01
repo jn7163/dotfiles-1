@@ -32,6 +32,7 @@ case `uname` in
             export PATH=$(brew --prefix)/sbin:$PATH
             export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
             export HOMEBREW_CACHE=~/Library/Caches/Homebrew
+            export HOMEBREW_NO_ANALYTICS=1
         fi
         # HOMEBREW CASK
         #export HOMEBREW_CASK_OPTS="--appdir=$HOME/My\ Applications"
