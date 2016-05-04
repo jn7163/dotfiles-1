@@ -1,6 +1,13 @@
 ! xterm setting
 xterm*termName:             xterm
+xterm*dpi:                  96
 xterm*geometry:             110x30
+xterm*autohint:             false
+xterm*hinting:              true
+xterm*hintstyle:            hintfull
+xterm*antialias:            true
+xterm*rgba:                 rbg
+xterm*lcdfilter:            lcddefault
 xterm*scrollBar:            false
 xterm*loginshell:           true
 xterm.cursorBlink:          true
@@ -21,7 +28,6 @@ xterm*utf8:                 true
 xterm*utf8Title:            true
 xterm*faceName:             DejaVu Sans Mono
 xterm*faceNameDoublesize:   Source Han Sans CN
-xterm*xftAntialias:         true
 xterm*faceSize:             11
 xterm*cjkWidth:             false
 
