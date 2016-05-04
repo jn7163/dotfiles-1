@@ -1,5 +1,5 @@
 ! xterm setting
-xterm*termName:             xterm-256color
+xterm*termName:             xterm
 xterm*geometry:             110x30
 xterm*scrollBar:            false
 xterm*loginshell:           true
@@ -7,20 +7,23 @@ xterm.cursorBlink:          true
 xterm*borderLess:           true
 xterm*cursorBlink:          true
 xterm*borderWidth:          0
+xterm*visualBell:           false
+xterm*marginBell:           false
 
 xterm*saveLines:            4096
 xterm*eightBitInput:        false
 xterm*altSendsEscape:       true
 xterm*metaSendsEscape:      true
 
-XTerm*renderFont:           true
+xterm*renderFont:           true
 xterm*locale:               true
 xterm*utf8:                 true
 xterm*utf8Title:            true
-XTerm*faceName:             DejaVu Sans Mono:antialias=true
-XTerm*faceNameDoublesize:   Source Han Sans CN:antialias=false
-xterm*faceSize:             10
-XTerm*cjkWidth:             false
+xterm*faceName:             DejaVu Sans Mono
+xterm*faceNameDoublesize:   Source Han Sans CN
+xterm*xftAntialias:         true
+xterm*faceSize:             11
+xterm*cjkWidth:             false
 
 #include                    ".Xresources.d/monokai"
 !#include                   ".Xresources.d/solarized"
