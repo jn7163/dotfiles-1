@@ -1,7 +1,7 @@
 ! xterm setting
 xterm*termName:             xterm
 xterm*dpi:                  96
-xterm*geometry:             110x30
+xterm*geometry:             80x24
 xterm*autohint:             false
 xterm*hinting:              true
 xterm*hintstyle:            hintfull
