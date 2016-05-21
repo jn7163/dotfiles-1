@@ -17,7 +17,7 @@ app-eselect/eselect-php fpm apache2
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker ffmpeg -gstreamer
 app-portage/eix sqlite
-app-portage/layman cvs git mercurial subversion sync-plugin-portage -python_targets_python3_5
+app-portage/layman cvs git mercurial subversion sqlite sync-plugin-portage -python_targets_python3_5
 app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
 dev-db/sqlite secure-delete
@@ -54,7 +54,7 @@ media-libs/gexiv2 -python
 media-libs/grilo playlist
 media-libs/gst-plugins-base theora
 media-libs/harfbuzz icu
-media-libs/lensfun -python_single_target_python3_4 python_single_target_python3_5
+media-libs/lensfun -python_single_target_python3_5 python_single_target_python3_4
 media-libs/libass enca
 media-libs/libcanberra -udev
 media-libs/libmediaart -qt4
@@ -73,7 +73,6 @@ net-misc/curl threads
 net-misc/networkmanager dhclient -dhcpcd connection-sharing resolvconf -wext wifi
 net-misc/openssh -ldap
 net-nds/openldap -gnutls
-net-print/cups -usb
 net-wireless/wpa_supplicant -qt4
 sys-apps/portage cvs git subversion
 sys-block/parted device-mapper
@@ -89,4 +88,3 @@ x11-base/xorg-server kdrive glamor xvfb xephyr
 x11-libs/cairo xcb
 x11-libs/libdrm libkms video_cards_amdgpu
 x11-libs/libxcb xkb
-media-libs/lensfun -python_single_target_python3_5 python_single_target_python3_4
