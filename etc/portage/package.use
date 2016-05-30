@@ -13,6 +13,8 @@ app-editors/gvim gtk -python
 app-editors/vim -python
 app-emulation/docker -seccomp
 app-emulation/qemu -python alsa sdl usbredir vde python_targets_python2_7
+app-emulation/wine -vaapi abi_x86_32 abi_x86_64
+app-emulation/vmware-tools vmware_guest_linux vmware_guest_windows
 app-eselect/eselect-php fpm apache2
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker ffmpeg -gstreamer
