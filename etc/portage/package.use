@@ -44,7 +44,7 @@ gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
 gnome-extra/evolution-data-server vala
 mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
-media-fonts/source-han-sans cjk linguas_zh_CN
+media-fonts/source-han-sans cjk l10n_zh-CN
 media-libs/clutter egl gtk
 media-libs/clutter-gtk gtk
 media-libs/cogl gles2

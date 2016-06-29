@@ -1,5 +1,4 @@
 >=www-client/firefox-46
 >=www-client/firefox-bin-46
 >=net-firewall/firewalld-0.4.0
-#>=app-admin/conky-1.10.1
 >=app-i18n/opencc-1.0.4
