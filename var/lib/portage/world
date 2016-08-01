@@ -4,6 +4,9 @@ app-arch/p7zip
 app-arch/unrar
 app-crypt/efitools
 app-editors/vim
+app-emulation/aqemu
+app-emulation/docker
+app-emulation/docker-compose
 app-emulation/qemu
 app-i18n/fcitx-configtool
 app-i18n/fcitx-qt5
@@ -24,17 +27,13 @@ media-fonts/source-han-sans
 media-gfx/gimp
 media-libs/mesa
 media-sound/deadbeef
-media-sound/moc
 media-video/mpv
 net-analyzer/iftop
 net-analyzer/mtr
 net-firewall/firewalld
 net-irc/irssi
-net-misc/aria2
-net-misc/networkmanager-pptp
-net-proxy/lantern-bin
+net-misc/rdesktop
 net-proxy/shadowsocks-qt5
-net-wireless/broadcom-sta
 sys-apps/dmidecode
 sys-apps/portage
 sys-apps/usbutils
@@ -44,8 +43,6 @@ sys-devel/bc
 sys-firmware/radeon-ucode
 sys-fs/dosfstools
 sys-fs/fuse-exfat
-sys-fs/hfsutils
-sys-fs/ntfs3g
 sys-kernel/gentoo-sources
 sys-power/pm-utils
 sys-process/cronie

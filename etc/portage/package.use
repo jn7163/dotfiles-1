@@ -10,7 +10,7 @@ app-crypt/pinentry gnome-keyring
 app-editors/emacs xft gtk
 app-editors/sublime-text multislot
 app-editors/gvim gtk
-app-emulation/docker -seccomp
+app-emulation/docker overlay -device-mapper
 app-emulation/qemu alsa sdl usbredir vde
 app-emulation/wine -vaapi abi_x86_32 abi_x86_64
 app-emulation/vmware-tools vmware_guest_linux vmware_guest_windows
@@ -18,7 +18,7 @@ app-eselect/eselect-php fpm apache2
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker ffmpeg -gstreamer
 app-portage/eix sqlite
-app-portage/layman cvs git mercurial subversion sqlite sync-plugin-portage
+app-portage/layman git sqlite sync-plugin-portage
 app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
 dev-db/sqlite secure-delete
@@ -55,6 +55,7 @@ media-libs/harfbuzz icu
 media-libs/libass enca
 media-libs/libcanberra -udev
 media-libs/libmediaart -qt4
+media-libs/libmypaint gegl
 media-libs/libpng apng
 media-libs/libvpx postproc
 media-libs/mesa bindist gbm gles2 openvg osmesa xorg egl vaapi
