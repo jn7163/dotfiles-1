@@ -1,87 +1,43 @@
 app-admin/conky hddtemp imlib iostats wifi
 app-admin/syslog-ng json
 app-arch/file-roller nautilus
-app-arch/p7zip rar wxwidgets
-app-arch/unzip natspec
-app-arch/zip natspec
-app-cdr/graveman dvdr
-app-crypt/gcr gtk
-app-crypt/pinentry gnome-keyring
-app-editors/emacs xft gtk
-app-editors/sublime-text multislot
-app-editors/gvim gtk
 app-emulation/docker overlay -device-mapper
 app-emulation/qemu alsa sdl usbredir vde
-app-emulation/wine -vaapi abi_x86_32 abi_x86_64
-app-emulation/vmware-tools vmware_guest_linux vmware_guest_windows
-app-eselect/eselect-php fpm apache2
 app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker ffmpeg -gstreamer
 app-portage/eix sqlite
 app-portage/layman git sqlite sync-plugin-portage
-app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
 dev-db/sqlite secure-delete
-dev-lang/php apache2 cgi curl fpmd ftp gd mysql mysqli mysqlnd mhash pdo sqlite threads xml xmlreader xmlwriter
 dev-lang/python sqlite
 dev-libs/botan threads
-dev-libs/folks eds
-dev-libs/libdbusmenu gtk
-dev-libs/libgdata gnome-online-accounts
 dev-libs/libpcre pcre16
-dev-libs/nettle gmp
 dev-libs/nss utils
 dev-python/PyQt4 declarative phonon script sql webkit
-dev-util/cmake qt4
-dev-vcs/git cvs subversion highlight
-dev-vcs/subversion perl -dso
-gnome-base/gnome-control-center -i18n networkmanager
-gnome-base/gnome-extra-apps -share -games -shotwell
-gnome-base/gnome-settings-daemon networkmanager
+dev-vcs/git highlight
+gnome-base/gnome-control-center -i18n
+gnome-base/gnome-extra-apps -share -games -shotwell -tracker
 gnome-base/gnome-shell -nls
 gnome-base/gvfs afp archive cdda fuse gphoto2 gtk mtp udisks
 gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
-gnome-extra/evolution-data-server vala
-mail-client/mutt imap mbox nntp pop smime smtp sasl -gnutls
-media-fonts/source-han-sans cjk l10n_zh-CN
+media-fonts/source-han-sans l10n_zh-CN
 media-libs/clutter egl gtk
 media-libs/clutter-gtk gtk
-media-libs/cogl gles2
-media-libs/gegl -raw cairo
-media-libs/grilo playlist
 media-libs/gst-plugins-base theora
-media-libs/harfbuzz icu
-media-libs/libass enca
-media-libs/libcanberra -udev
-media-libs/libmediaart -qt4
-media-libs/libmypaint gegl
 media-libs/libpng apng
 media-libs/libvpx postproc
 media-libs/mesa bindist gbm gles2 openvg osmesa xorg egl vaapi
-media-plugins/gst-plugins-meta ffmpeg
-media-plugins/grilo-plugins upnp-av tracker
-media-sound/deadbeef -alsa shn wma linguas_zh_CN
-media-sound/moc alsa
-media-sound/shntool wavpack
 media-video/mpv libmpv
-net-libs/libproxy networkmanager
-net-libs/loudmouth debug
 net-misc/curl threads
 net-misc/networkmanager dhclient -dhcpcd connection-sharing resolvconf -wext wifi
 net-misc/openssh -ldap
 net-nds/openldap -gnutls
-net-wireless/wpa_supplicant -qt4
-sys-apps/portage cvs git subversion
 sys-block/parted device-mapper
 sys-devel/gcc graphite
 sys-fs/ntfs3g ntfsprogs
 sys-libs/zlib minizip
-sys-power/pm-utils ntp
-www-client/firefox system-cairo system-icu system-jpeg system-libevent system-libvpx system-sqlite
-www-servers/apache apache2_mpms_prefork apache2_modules_auth_digest
-www-servers/lighttpd minimal mysql php webdav zlib
-www-servers/nginx fastcgi -nginx_modules_http_geo
+www-client/firefox system-cairo system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite
 x11-base/xorg-server kdrive glamor xvfb xephyr
 x11-libs/cairo xcb
 x11-libs/libdrm libkms video_cards_amdgpu
