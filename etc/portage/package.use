@@ -22,6 +22,7 @@ gnome-base/gvfs afp archive cdda fuse gphoto2 gtk mtp udisks
 gnome-base/nautilus sendto tracker
 gnome-extra/nm-applet modemmanager
 media-fonts/source-han-sans l10n_zh-CN
+media-gfx/imagemagick -raw
 media-libs/clutter egl gtk
 media-libs/clutter-gtk gtk
 media-libs/gst-plugins-base theora
@@ -35,7 +36,6 @@ net-misc/openssh -ldap
 net-nds/openldap -gnutls
 sys-block/parted device-mapper
 sys-devel/gcc graphite
-sys-fs/ntfs3g ntfsprogs
 sys-libs/zlib minizip
 www-client/firefox system-cairo system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite
 x11-base/xorg-server kdrive glamor xvfb xephyr
