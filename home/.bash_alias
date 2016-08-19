@@ -3,10 +3,12 @@
 #
 
 alias ssh='ssh -C'
+alias httping='httping -S -K -Y -s -Z -X'
 
 case `uname` in
     Darwin)
         alias ls='ls -G'
+        alias netstat='netstat -anp'
         alias httpd.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
         alias httpd.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
         alias httpd.restart='httpd.stop && httpd.start'
@@ -26,7 +28,7 @@ case `uname` in
     Linux)
         alias ls='ls --color=auto'
         alias grep='grep --color=auto'
-        alias netstat='netstat -antp'
+        alias netstat='netstat -antpu'
         alias less='less -R'
         alias route='route -n'
         alias ip='ip -h -c -f inet -4 -s'
