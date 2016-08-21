@@ -17,6 +17,7 @@ case $OS in
     Darwin)
         [[ -f $(xcode-select -p)/usr/share/git-core/git-prompt.sh ]] && . $(xcode-select -p)/usr/share/git-core/git-prompt.sh
         [[ ${EUID} == "501" ]] && PS
+        export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
         ;;
     Linux)
         [[ -f /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
@@ -29,4 +30,3 @@ if [ -f /usr/bin/ccal ]; then
     tty | egrep -i "pts" > /dev/null && ccal -u
 fi
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
