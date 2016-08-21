@@ -22,6 +22,7 @@ media-libs/mesa
 media-video/mpv
 net-firewall/firewalld
 net-proxy/shadowsocks-qt5
+net-wireless/broadcom-sta
 sys-apps/dmidecode
 sys-apps/portage
 sys-apps/usbutils
