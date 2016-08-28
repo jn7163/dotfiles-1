@@ -10,7 +10,7 @@ export HISTTIMEFORMAT="%Y-%m-%d %T "
 export HISTCONTROL=ignoreboth:erasedups
 
 # personal bash path
-[[ -d ~/.bash ]] && export PATH=$PATH:$HOME/.bash
+[[ -d ~/.bash ]] && export PATH=$HOME/.bash:$PATH
 
 case `uname` in
     Darwin)
