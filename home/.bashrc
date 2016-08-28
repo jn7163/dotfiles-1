@@ -12,7 +12,7 @@ OS=`uname`
 
 PS() {
     export GIT_PS1_SHOWDIRTYSTATE=1
-    export PS1='\[\e[0;32m\](\h) → [\t] \w\[\e[0;33m\]$(__git_ps1) \[\e[0;32m\]\$\[\e[0m\] '
+    export PS1='\[\e[32;40m\](\h) → [\t] \w\[\e[31;40m\]$(__git_ps1) \[\e[32;40m\]\$\[\e[37;40m\] '
     export LANG="en_US.UTF-8"
 }
 
