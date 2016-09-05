@@ -7,6 +7,7 @@ app-i18n/fcitx cairo gtk gtk3 introspection pango qt4 -table opencc
 app-misc/tracker ffmpeg -gstreamer
 app-portage/eix sqlite
 app-portage/layman git sqlite sync-plugin-portage
+app-text/ghostscript-gpl cups
 app-text/poppler cairo cjk
 dev-db/sqlite secure-delete
 dev-lang/python sqlite
@@ -42,3 +43,4 @@ x11-base/xorg-server kdrive glamor xvfb xephyr
 x11-libs/cairo xcb
 x11-libs/libdrm libkms video_cards_amdgpu
 x11-libs/libxcb xkb
+x11-apps/xinit -minimal
