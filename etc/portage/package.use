@@ -43,4 +43,3 @@ x11-base/xorg-server kdrive glamor xvfb xephyr
 x11-libs/cairo xcb
 x11-libs/libdrm libkms video_cards_amdgpu
 x11-libs/libxcb xkb
-x11-apps/xinit -minimal
