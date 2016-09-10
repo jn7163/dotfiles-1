@@ -1,1 +1,2 @@
+>=www-client/firefox-46
 >=sys-kernel/gentoo-sources-4.5
