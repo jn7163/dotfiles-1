@@ -37,4 +37,3 @@ www-client/firefox
 www-misc/profile-sync-daemon
 x11-drivers/xf86-input-evdev
 x11-drivers/xf86-video-ati
-x11-terms/xterm
