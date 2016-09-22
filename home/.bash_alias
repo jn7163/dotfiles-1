@@ -9,21 +9,6 @@ case `uname` in
     Darwin)
         alias ls='ls -G'
         alias netstat='netstat -anp'
-        alias httpd.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
-        alias httpd.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.httpd24.plist'
-        alias httpd.restart='httpd.stop && httpd.start'
-        alias nginx.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
-        alias nginx.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
-        alias nginx.restart='nginx.stop && nginx.start'
-        alias lighttpd.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.lighttpd.plist'
-        alias lighttpd.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.lighttpd.plist'
-        alias lighttpd.restart='lighttpd.stop && lighttpd.start'
-        alias php-fpm.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
-        alias php-fpm.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
-        alias php-fpm.restart='php-fpm.stop && php-fpm.start'
-        alias mariadb.start='launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist'
-        alias mariadb.stop='launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist'
-        alias mariadb.restart='mariadb.stop && mariadb.start'
         ;;
     Linux)
         alias ls='ls --color=auto'
