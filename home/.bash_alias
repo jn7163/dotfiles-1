@@ -2,6 +2,8 @@
 # ~/.bash_alias
 #
 
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
 alias ssh='ssh -C'
 alias httping='httping -S -K -Y -s -Z -X'
 
@@ -12,7 +14,6 @@ case `uname` in
         ;;
     Linux)
         alias ls='ls --color=auto'
-        alias grep='grep --color=auto'
         alias netstat='netstat -antpu'
         alias less='less -R'
         alias route='route -n'

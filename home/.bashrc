@@ -16,20 +16,23 @@ PS() {
     export LANG="en_US.UTF-8"
 }
 
+run_ccal() {
+    if [ `which ccal 2> /dev/null` ]; then
+        tty | egrep -i "tty" > /dev/null && ccal -u
+    fi
+}
+
 case $OS in
     Darwin)
         [[ -f $(xcode-select -p)/usr/share/git-core/git-prompt.sh ]] && . $(xcode-select -p)/usr/share/git-core/git-prompt.sh
         [[ ${EUID} == "501" ]] && PS
         export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+        run_ccal
         ;;
     Linux)
         [[ -f /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
         [[ ${EUID} == "1000" ]] && PS
+        run_ccal
         ;;
 esac
-
-# ccal
-if [ -f /usr/bin/ccal ]; then
-    tty | egrep -i "pts" > /dev/null && ccal -u
-fi
 
